@@ -1,0 +1,15 @@
+ 1, chauncey_billups
+ 12, will_bynum
+ 5, kentavious_caldwell-pope
+ 13, luigi_datome
+ 0, andre_drummond
+ 55, josh_harrellson
+ 7, brandon_jennings
+ 33, jonas_jerebko
+ 9, tony_mitchell
+ 10, greg_monroe
+ 25, kyle_singler
+ 34, peyton_siva
+ 6, josh_smith
+ 3, rodney_stuckey
+ 31, charlie_villanueva

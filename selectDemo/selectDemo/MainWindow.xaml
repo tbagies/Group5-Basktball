@@ -1,0 +1,64 @@
+﻿<Window x:Class="selectDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:k="http://schemas.microsoft.com/kinect/2013"
+        Title="MainWindow" Height="500" Width="720">
+    <Window.Background>
+        <ImageBrush ImageSource="resources/Screen4/background.png"/>
+    </Window.Background>
+    <Grid Margin="10,0,2,0" HorizontalAlignment="Center" Width="700">
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi"/>
+        <k:KinectRegion Name="kinectRegion" Margin="-4,0,0,0">
+            <Grid>
+                <!-- is for testing purposes, comment out later-->
+                <k:KinectUserViewer VerticalAlignment="Top" HorizontalAlignment="Center"
+                UserColoringMode="HighlightPrimary" PrimaryUserColor="AliceBlue"                     
+                k:KinectRegion.KinectRegion="{Binding ElementName=kinectRegion}" Height="100" Panel.ZIndex="10"/>
+
+                <!--This is where the players will be shown-->
+                <k:KinectTileButton Name="p1" Click="playerSelected" Margin="70,108,524,254" Height="Auto" Width="Auto" HorizontalAlignment="Center" Background="{x:Null}"></k:KinectTileButton>
+                <k:KinectTileButton x:Name="p2" Click="playerSelected" Margin="184,108,410,254" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p3" Click="playerSelected" Margin="298,108,296,254" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p4" Click="playerSelected" Margin="413,108,181,254" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p5" Click="playerSelected" Margin="528,108,66,254" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p6" Click="playerSelected" Margin="70,223,524,139" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p7" Click="playerSelected" Margin="184,223,410,139" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p8" Click="playerSelected" Margin="298,223,296,139" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p9" Click="playerSelected" Margin="413,223,181,139" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p10" Click="playerSelected" Margin="528,223,66,139" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p11" Click="playerSelected" Margin="70,338,524,24" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p12" Click="playerSelected" Margin="184,338,410,24" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p13" Click="playerSelected" Margin="298,338,296,24" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p14" Click="playerSelected" Margin="413,338,181,24" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+                <k:KinectTileButton x:Name="p15" Click="playerSelected" Margin="528,338,66,24" Height="Auto" Width="Auto" HorizontalAlignment="Center"/>
+
+            </Grid>
+        </k:KinectRegion>
+
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="484*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>-->
+
+        <Border BorderThickness="1" HorizontalAlignment="Center" Height="88" Margin="88,7,98,0" VerticalAlignment="Top" Width="518" RenderTransformOrigin="0.571,0.568" IsEnabled="False" Panel.ZIndex="-1">
+            <Border.Background>
+                <ImageBrush ImageSource="resources/Screen4/title_background.png"/>
+            </Border.Background>
+            <Label Content="SELECT A PLAYER" HorizontalAlignment="Center" Height="62" Margin="9,9,0,0" VerticalAlignment="Top" Width="512" Background="{x:Null}" FontSize="48" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Franklin Gothic Demi Cond"/>
+        </Border>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="88" Margin="-4,7,0,0" VerticalAlignment="Top" Width="87" Panel.ZIndex="-1">
+            <Border.Background>
+                <ImageBrush ImageSource="resources/Screen4/ref_background.png"/>
+            </Border.Background>
+        </Border>
+        <Border BorderThickness="1" Height="88" Margin="0,7,4,0" VerticalAlignment="Top" Width="87" HorizontalAlignment="Right" Panel.ZIndex="-1">
+            <Border.Background>
+                <ImageBrush ImageSource="resources/Screen4/ref_background.png"/>
+            </Border.Background>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,16 @@
+ 12, jeff_adrien
+ 34, giannis_antetokounmpo
+ 3, caron_butler
+ 31, john_henson
+ 7, ersan_ilyasova
+ 11, brandon_knight
+ 00, oj_mayo
+ 22, khris_middleton
+ 12, gary_neal
+ 27, zaza_pachulia
+ 9, miroslav_raduljica
+ 13, luke_ridnour
+ 8, larry_sanders
+ 13, ramon_sessions
+ 5, ekpe_udoh
+ 6, nate_wolters

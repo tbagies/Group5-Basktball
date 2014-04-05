@@ -1,0 +1,17 @@
+ 11, andris_biedrins
+ 3, trey_burke
+ 10, alec_burks
+ 21, ian_clark
+ 40, jeremy_evans
+ 15, derrick_favors
+ 8, diante_garrett
+ 27, rudy_gobert
+ 33, mike_harris
+ 20, gordon_hayward
+ 24, richard_jefferson
+ 0, enes_kanter
+ 5, john_iii_lucas
+ 25, brandon_rush
+ 22, malcolm_thomas
+ 6, jamaal_tinsley
+ 2, marvin_williams

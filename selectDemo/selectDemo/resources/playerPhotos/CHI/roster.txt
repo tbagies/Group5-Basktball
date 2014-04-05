@@ -1,0 +1,17 @@
+ 14, dj_augustin
+ 5, carlos_boozer
+ 21, jimmy_butler
+ 9, luol_deng
+ 34, mike_dunleavy
+ 22, taj_gibson
+ 12, kirk_hinrich
+ 8, mike_james
+ 15, cartier_martin
+ 48, nazr_mohammed
+ 31, erik_murphy
+ 13, joakim_noah
+ 1, derrick_rose
+ 7, tornike_shengelia
+ 20, tony_snell
+ 25, marquis_teague
+ 32, jarvis_varnado

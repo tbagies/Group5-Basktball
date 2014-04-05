@@ -1,0 +1,15 @@
+ 4, jeff_adrien
+ 0, bismack_biyombo
+ 55, chris_douglas-roberts
+ 8, ben_gordon
+ 9, gerald_henderson
+ 25, al_jefferson
+ 14, michael_kidd-gilchrist
+ 11, josh_mcroberts
+ 5, jannero_pargo
+ 7, ramon_sessions
+ 31, james_southerland
+ 44, jeff_taylor
+ 43, anthony_tolliver
+ 15, kemba_walker
+ 40, cody_zeller

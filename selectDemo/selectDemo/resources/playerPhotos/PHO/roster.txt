@@ -1,0 +1,14 @@
+ 10, leandro_barbosa
+ 2, eric_bledsoe
+ 25, dionte_christmas
+ 1, goran_dragic
+ 8, channing_frye
+ 20, archie_goodwin
+ 14, gerald_green
+ 55, viacheslav_kravtsov
+ 21, alex_len
+ 15, marcus_morris
+ 11, markieff_morris
+ 22, miles_plumlee
+ 3, ish_smith
+ 17, pj_tucker

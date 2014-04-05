@@ -1,0 +1,16 @@
+ 5, lavoy_allen
+ 8, rasual_butler
+ 22, chris_copeland
+ 24, paul_george
+ 33, danny_granger
+ 55, roy_hibbert
+ 3, george_hill
+ 9, solomon_hill
+ 11, orlando_johnson
+ 28, ian_mahinmi
+ 4, luis_scola
+ 15, donald_sloan
+ 1, lance_stephenson
+ 12, evan_turner
+ 32, cj_watson
+ 21, david_west

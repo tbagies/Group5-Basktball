@@ -1,0 +1,16 @@
+ 00, darrell_arthur
+ 0, aaron_brooks
+ 21, wilson_chandler
+ 35, kenneth_faried
+ 94, evan_fournier
+ 4, randy_foye
+ 1, jordan_hamilton
+ 7, jj_hickson
+ 3, ty_lawson
+ 34, javale_mcgee
+ 24, andre_miller
+ 30, quincy_miller
+ 25, timofey_mozgov
+ 15, anthony_randolph
+ 10, nate_robinson
+ 24, jan_vesely

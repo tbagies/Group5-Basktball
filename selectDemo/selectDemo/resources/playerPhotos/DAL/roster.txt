@@ -1,0 +1,15 @@
+ 45, dejuan_blair
+ 8, jose_calderon
+ 25, vince_carter
+ 9, jae_crowder
+ 1, samuel_dalembert
+ 21, wayne_ellington
+ 11, monta_ellis
+ 20, devin_harris
+ 5, bernard_james
+ 3, shane_larkin
+ 7, ricky_ledo
+ 0, shawn_marion
+ 33, gal_mekel
+ 41, dirk_nowitzki
+ 34, brandan_wright

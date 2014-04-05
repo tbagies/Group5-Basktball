@@ -1,0 +1,15 @@
+ 34, ray_allen
+ 11, chris_andersen
+ 50, joel_anthony
+ 31, shane_battier
+ 8, michael_beasley
+ 1, chris_bosh
+ 15, mario_chalmers
+ 30, norris_cole
+ 0, toney_douglas
+ 40, udonis_haslem
+ 6, lebron_james
+ 22, james_jones
+ 9, rashard_lewis
+ 20, greg_oden
+ 3, dwyane_wade

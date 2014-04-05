@@ -1,0 +1,17 @@
+ 6, pero_antic
+ 14, gustavo_ayon
+ 42, elton_brand
+ 5, demarre_carroll
+ 7, jared_cunningham
+ 15, al_horford
+ 12, john_jenkins
+ 26, kyle_korver
+ 8, shelvin_mack
+ 20, cartier_martin
+ 4, paul_millsap
+ 2, james_nunnally
+ 45, dexter_pittman
+ 17, dennis_schroder
+ 32, mike_scott
+ 0, jeff_teague
+ 3, louis_williams

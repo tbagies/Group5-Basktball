@@ -1,0 +1,17 @@
+ 11, jeff_ayres
+ 16, aron_baynes
+ 3, marco_belinelli
+ 15, matt_bonner
+ 1, shannon_brown
+ 25, nando_de_colo
+ 33, boris_diaw
+ 21, tim_duncan
+ 20, manu_ginobili
+ 4, danny_green
+ 7, othyus_jeffers
+ 5, cory_joseph
+ 2, kawhi_leonard
+ 8, patrick_mills
+ 9, tony_parker
+ 22, tiago_splitter
+ 24, malcolm_thomas

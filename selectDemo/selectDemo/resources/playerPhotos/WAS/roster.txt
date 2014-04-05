@@ -1,0 +1,16 @@
+ 1, trevor_ariza
+ 3, bradley_beal
+ 35, trevor_booker
+ 4, marcin_gortat
+ 7, al_harrington
+ 42, nene
+ 6, eric_maynor
+ 24, andre_miller
+ 22, otto_porter
+ 14, glen_rice_jr
+ 13, kevin_seraphin
+ 31, chris_singleton
+ 17, garrett_temple
+ 24, jan_vesely
+ 2, john_wall
+ 9, martell_webster

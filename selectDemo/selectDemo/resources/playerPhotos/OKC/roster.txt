@@ -1,0 +1,15 @@
+ 12, steven_adams
+ 4, nick_collison
+ 35, kevin_durant
+ 6, derek_fisher
+ 8, ryan_gomes
+ 9, serge_ibaka
+ 7, royal_ivey
+ 15, reggie_jackson
+ 3, perry_jones
+ 11, jeremy_lamb
+ 5, kendrick_perkins
+ 21, andre_roberson
+ 25, thabo_sefolosha
+ 34, hasheem_thabeet
+ 0, russell_westbrook

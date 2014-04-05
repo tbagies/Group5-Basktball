@@ -1,0 +1,14 @@
+ 4, arron_afflalo
+ 11, glen_davis
+ 21, maurice_harkless
+ 12, tobias_harris
+ 22, solomon_jones
+ 1, doron_lamb
+ 54, jason_maxiell
+ 55, etwaun_moore
+ 14, jameer_nelson
+ 44, andrew_nicholson
+ 2, kyle_oquinn
+ 5, victor_oladipo
+ 10, ronnie_price
+ 9, nikola_vucevic

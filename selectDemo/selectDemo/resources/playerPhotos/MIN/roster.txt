@@ -1,0 +1,16 @@
+ 11, jose_barea
+ 13, corey_brewer
+ 10, chase_budinger
+ 33, dante_cunningham
+ 5, gorgui_dieng
+ 6, robbie_hummel
+ 42, kevin_love
+ 23, kevin_martin
+ 12, luc_mbah_a_moute
+ 15, shabazz_muhammad
+ 14, nikola_pekovic
+ 22, aj_price
+ 9, ricky_rubio
+ 1, alexey_shved
+ 32, ronny_turiaf
+ 7, derrick_williams

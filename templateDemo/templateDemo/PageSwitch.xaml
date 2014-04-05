@@ -1,0 +1,9 @@
+﻿<Window x:Class="templateDemo.PageSwitch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="700" Width="1000">
+        <!--For some reason this sets the size for all pages-->
+    <Grid>
+        
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+ 9, tony_allen
+ 7, jerryd_bayless
+ 12, nick_calathes
+ 11, mike_conley
+ 1, seth_curry
+ 32, ed_davis
+ 22, jamaal_franklin
+ 33, marc_gasol
+ 3, james_johnson
+ 41, kosta_koufos
+ 5, courtney_lee
+ 30, jon_leuer
+ 13, mike_miller
+ 7, darius_morris
+ 20, quincy_pondexter
+ 21, tayshaun_prince
+ 50, zach_randolph

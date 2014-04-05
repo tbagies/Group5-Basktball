@@ -1,0 +1,15 @@
+ 12, lamarcus_aldridge
+ 5, will_barton
+ 88, nicolas_batum
+ 18, victor_claver
+ 23, allen_crabbe
+ 19, joel_freeland
+ 11, meyers_leonard
+ 0, damian_lillard
+ 42, robin_lopez
+ 2, wesley_matthews
+ 3, cj_mccollum
+ 41, thomas_robinson
+ 17, earl_watson
+ 25, mo_williams
+ 1, dorell_wright

@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{289EA877-8B15-48F6-A333-4DE588C3BDB7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>selectDemo</RootNamespace>
+    <AssemblyName>selectDemo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Kinect.Toolkit">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\bin\Microsoft.Kinect.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit.Controls">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\bin\Microsoft.Kinect.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit.Interaction, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\bin\Microsoft.Kinect.Toolkit.Interaction.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="resources\playerPhotos\getPhotos" />
+    <None Include="resources\playerPhotos\rosters.csv" />
+    <None Include="resources\Screen4\.DS_Store" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen4\background.png" />
+    <Resource Include="resources\Screen4\messagebox.png" />
+    <Resource Include="resources\Screen4\ref_background.png" />
+    <Resource Include="resources\Screen4\title_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\playerPhotos\addManually.txt" />
+    <Resource Include="resources\playerPhotos\ATL\0_jeff_teague.png" />
+    <Resource Include="resources\playerPhotos\ATL\12_john_jenkins.png" />
+    <Resource Include="resources\playerPhotos\ATL\14_gustavo_ayon.png" />
+    <Resource Include="resources\playerPhotos\ATL\15_al_horford.png" />
+    <Resource Include="resources\playerPhotos\ATL\17_dennis_schroder.png" />
+    <Resource Include="resources\playerPhotos\ATL\20_cartier_martin.png" />
+    <Resource Include="resources\playerPhotos\ATL\26_kyle_korver.png" />
+    <Resource Include="resources\playerPhotos\ATL\2_james_nunnally.png" />
+    <Resource Include="resources\playerPhotos\ATL\32_mike_scott.png" />
+    <Resource Include="resources\playerPhotos\ATL\3_louis_williams.png" />
+    <Resource Include="resources\playerPhotos\ATL\42_elton_brand.png" />
+    <Resource Include="resources\playerPhotos\ATL\45_dexter_pittman.png" />
+    <Resource Include="resources\playerPhotos\ATL\4_paul_millsap.png" />
+    <Resource Include="resources\playerPhotos\ATL\5_demarre_carroll.png" />
+    <Resource Include="resources\playerPhotos\ATL\6_pero_antic.png" />
+    <Resource Include="resources\playerPhotos\ATL\7_jared_cunningham.png" />
+    <Resource Include="resources\playerPhotos\ATL\8_shelvin_mack.png" />
+    <Resource Include="resources\playerPhotos\ATL\roster.txt" />
+    <Resource Include="resources\playerPhotos\BOS\0_avery_bradley.png" />
+    <Resource Include="resources\playerPhotos\BOS\11_courtney_lee.png" />
+    <Resource Include="resources\playerPhotos\BOS\11_jerryd_bayless.png" />
+    <Resource Include="resources\playerPhotos\BOS\12_chris_johnson.png" />
+    <Resource Include="resources\playerPhotos\BOS\12_marshon_brooks.png" />
+    <Resource Include="resources\playerPhotos\BOS\13_vander_blue.png" />
+    <Resource Include="resources\playerPhotos\BOS\26_phil_pressey.png" />
+    <Resource Include="resources\playerPhotos\BOS\27_jordan_crawford.png" />
+    <Resource Include="resources\playerPhotos\BOS\30_brandon_bass.png" />
+    <Resource Include="resources\playerPhotos\BOS\38_vitor_faverani.png" />
+    <Resource Include="resources\playerPhotos\BOS\41_kelly_olynyk.png" />
+    <Resource Include="resources\playerPhotos\BOS\43_kris_humphries.png" />
+    <Resource Include="resources\playerPhotos\BOS\45_gerald_wallace.png" />
+    <Resource Include="resources\playerPhotos\BOS\4_keith_bogans.png" />
+    <Resource Include="resources\playerPhotos\BOS\50_joel_anthony.png" />
+    <Resource Include="resources\playerPhotos\BOS\7_jared_sullinger.png" />
+    <Resource Include="resources\playerPhotos\BOS\8_jeff_green.png" />
+    <Resource Include="resources\playerPhotos\BOS\9_rajon_rondo.png" />
+    <Resource Include="resources\playerPhotos\BOS\roster.txt" />
+    <Resource Include="resources\playerPhotos\BRK\0_andray_blatche.png" />
+    <Resource Include="resources\playerPhotos\BRK\10_tyshawn_taylor.png" />
+    <Resource Include="resources\playerPhotos\BRK\11_brook_lopez.png" />
+    <Resource Include="resources\playerPhotos\BRK\12_marquis_teague.png" />
+    <Resource Include="resources\playerPhotos\BRK\14_shaun_livingston.png" />
+    <Resource Include="resources\playerPhotos\BRK\1_mason_plumlee.png" />
+    <Resource Include="resources\playerPhotos\BRK\20_tornike_shengelia.png" />
+    <Resource Include="resources\playerPhotos\BRK\2_kevin_garnett.png" />
+    <Resource Include="resources\playerPhotos\BRK\30_reggie_evans.png" />
+    <Resource Include="resources\playerPhotos\BRK\31_jason_terry.png" />
+    <Resource Include="resources\playerPhotos\BRK\33_mirza_teletovic.png" />
+    <Resource Include="resources\playerPhotos\BRK\34_paul_pierce.png" />
+    <Resource Include="resources\playerPhotos\BRK\46_jason_collins.png" />
+    <Resource Include="resources\playerPhotos\BRK\47_andrei_kirilenko.png" />
+    <Resource Include="resources\playerPhotos\BRK\6_alan_anderson.png" />
+    <Resource Include="resources\playerPhotos\BRK\7_joe_johnson.png" />
+    <Resource Include="resources\playerPhotos\BRK\8_deron_williams.png" />
+    <Resource Include="resources\playerPhotos\BRK\roster.txt" />
+    <Resource Include="resources\playerPhotos\CHA\0_bismack_biyombo.png" />
+    <Resource Include="resources\playerPhotos\CHA\11_josh_mcroberts.png" />
+    <Resource Include="resources\playerPhotos\CHA\14_michael_kidd-gilchrist.png" />
+    <Resource Include="resources\playerPhotos\CHA\15_kemba_walker.png" />
+    <Resource Include="resources\playerPhotos\CHA\25_al_jefferson.png" />
+    <Resource Include="resources\playerPhotos\CHA\31_james_southerland.png" />
+    <Resource Include="resources\playerPhotos\CHA\40_cody_zeller.png" />
+    <Resource Include="resources\playerPhotos\CHA\43_anthony_tolliver.png" />
+    <Resource Include="resources\playerPhotos\CHA\44_jeff_taylor.png" />
+    <Resource Include="resources\playerPhotos\CHA\4_jeff_adrien.png" />
+    <Resource Include="resources\playerPhotos\CHA\55_chris_douglas-roberts.png" />
+    <Resource Include="resources\playerPhotos\CHA\5_jannero_pargo.png" />
+    <Resource Include="resources\playerPhotos\CHA\7_ramon_sessions.png" />
+    <Resource Include="resources\playerPhotos\CHA\8_ben_gordon.png" />
+    <Resource Include="resources\playerPhotos\CHA\9_gerald_henderson.png" />
+    <Resource Include="resources\playerPhotos\CHA\roster.txt" />
+    <Resource Include="resources\playerPhotos\CHI\12_kirk_hinrich.png" />
+    <Resource Include="resources\playerPhotos\CHI\13_joakim_noah.png" />
+    <Resource Include="resources\playerPhotos\CHI\14_dj_augustin.png" />
+    <Resource Include="resources\playerPhotos\CHI\15_cartier_martin.png" />
+    <Resource Include="resources\playerPhotos\CHI\1_derrick_rose.png" />
+    <Resource Include="resources\playerPhotos\CHI\20_tony_snell.png" />
+    <Resource Include="resources\playerPhotos\CHI\21_jimmy_butler.png" />
+    <Resource Include="resources\playerPhotos\CHI\22_taj_gibson.png" />
+    <Resource Include="resources\playerPhotos\CHI\25_marquis_teague.png" />
+    <Resource Include="resources\playerPhotos\CHI\31_erik_murphy.png" />
+    <Resource Include="resources\playerPhotos\CHI\32_jarvis_varnado.png" />
+    <Resource Include="resources\playerPhotos\CHI\34_mike_dunleavy.png" />
+    <Resource Include="resources\playerPhotos\CHI\48_nazr_mohammed.png" />
+    <Resource Include="resources\playerPhotos\CHI\5_carlos_boozer.png" />
+    <Resource Include="resources\playerPhotos\CHI\7_tornike_shengelia.png" />
+    <Resource Include="resources\playerPhotos\CHI\8_mike_james.png" />
+    <Resource Include="resources\playerPhotos\CHI\9_luol_deng.png" />
+    <Resource Include="resources\playerPhotos\CHI\roster.txt" />
+    <Resource Include="resources\playerPhotos\CLE\0_cj_miles.png" />
+    <Resource Include="resources\playerPhotos\CLE\10_sergey_karasev.png" />
+    <Resource Include="resources\playerPhotos\CLE\13_tristan_thompson.png" />
+    <Resource Include="resources\playerPhotos\CLE\14_henry_sims.png" />
+    <Resource Include="resources\playerPhotos\CLE\15_anthony_bennett.png" />
+    <Resource Include="resources\playerPhotos\CLE\17_anderson_varejao.png" />
+    <Resource Include="resources\playerPhotos\CLE\1_jarrett_jack.png" />
+    <Resource Include="resources\playerPhotos\CLE\21_andrew_bynum.png" />
+    <Resource Include="resources\playerPhotos\CLE\2_kyrie_irving.png" />
+    <Resource Include="resources\playerPhotos\CLE\30_carrick_felix.png" />
+    <Resource Include="resources\playerPhotos\CLE\32_spencer_hawes.png" />
+    <Resource Include="resources\playerPhotos\CLE\33_alonzo_gee.png" />
+    <Resource Include="resources\playerPhotos\CLE\3_dion_waiters.png" />
+    <Resource Include="resources\playerPhotos\CLE\40_tyler_zeller.png" />
+    <Resource Include="resources\playerPhotos\CLE\6_earl_clark.png" />
+    <Resource Include="resources\playerPhotos\CLE\8_matthew_dellavedova.png" />
+    <Resource Include="resources\playerPhotos\CLE\9_luol_deng.png" />
+    <Resource Include="resources\playerPhotos\CLE\roster.txt" />
+    <Resource Include="resources\playerPhotos\DAL\0_shawn_marion.png" />
+    <Resource Include="resources\playerPhotos\DAL\11_monta_ellis.png" />
+    <Resource Include="resources\playerPhotos\DAL\1_samuel_dalembert.png" />
+    <Resource Include="resources\playerPhotos\DAL\20_devin_harris.png" />
+    <Resource Include="resources\playerPhotos\DAL\21_wayne_ellington.png" />
+    <Resource Include="resources\playerPhotos\DAL\25_vince_carter.png" />
+    <Resource Include="resources\playerPhotos\DAL\33_gal_mekel.png" />
+    <Resource Include="resources\playerPhotos\DAL\34_brandan_wright.png" />
+    <Resource Include="resources\playerPhotos\DAL\3_shane_larkin.png" />
+    <Resource Include="resources\playerPhotos\DAL\41_dirk_nowitzki.png" />
+    <Resource Include="resources\playerPhotos\DAL\45_dejuan_blair.png" />
+    <Resource Include="resources\playerPhotos\DAL\5_bernard_james.png" />
+    <Resource Include="resources\playerPhotos\DAL\7_ricky_ledo.png" />
+    <Resource Include="resources\playerPhotos\DAL\8_jose_calderon.png" />
+    <Resource Include="resources\playerPhotos\DAL\9_jae_crowder.png" />
+    <Resource Include="resources\playerPhotos\DAL\roster.txt" />
+    <Resource Include="resources\playerPhotos\DEN\00_darrell_arthur.png" />
+    <Resource Include="resources\playerPhotos\DEN\0_aaron_brooks.png" />
+    <Resource Include="resources\playerPhotos\DEN\10_nate_robinson.png" />
+    <Resource Include="resources\playerPhotos\DEN\15_anthony_randolph.png" />
+    <Resource Include="resources\playerPhotos\DEN\1_jordan_hamilton.png" />
+    <Resource Include="resources\playerPhotos\DEN\21_wilson_chandler.png" />
+    <Resource Include="resources\playerPhotos\DEN\24_andre_miller.png" />
+    <Resource Include="resources\playerPhotos\DEN\24_jan_vesely.png" />
+    <Resource Include="resources\playerPhotos\DEN\25_timofey_mozgov.png" />
+    <Resource Include="resources\playerPhotos\DEN\30_quincy_miller.png" />
+    <Resource Include="resources\playerPhotos\DEN\34_javale_mcgee.png" />
+    <Resource Include="resources\playerPhotos\DEN\35_kenneth_faried.png" />
+    <Resource Include="resources\playerPhotos\DEN\3_ty_lawson.png" />
+    <Resource Include="resources\playerPhotos\DEN\4_randy_foye.png" />
+    <Resource Include="resources\playerPhotos\DEN\7_jj_hickson.png" />
+    <Resource Include="resources\playerPhotos\DEN\94_evan_fournier.png" />
+    <Resource Include="resources\playerPhotos\DEN\roster.txt" />
+    <Resource Include="resources\playerPhotos\DET\0_andre_drummond.png" />
+    <Resource Include="resources\playerPhotos\DET\10_greg_monroe.png" />
+    <Resource Include="resources\playerPhotos\DET\12_will_bynum.png" />
+    <Resource Include="resources\playerPhotos\DET\13_luigi_datome.png" />
+    <Resource Include="resources\playerPhotos\DET\1_chauncey_billups.png" />
+    <Resource Include="resources\playerPhotos\DET\25_kyle_singler.png" />
+    <Resource Include="resources\playerPhotos\DET\31_charlie_villanueva.png" />
+    <Resource Include="resources\playerPhotos\DET\33_jonas_jerebko.png" />
+    <Resource Include="resources\playerPhotos\DET\34_peyton_siva.png" />
+    <Resource Include="resources\playerPhotos\DET\3_rodney_stuckey.png" />
+    <Resource Include="resources\playerPhotos\DET\55_josh_harrellson.png" />
+    <Resource Include="resources\playerPhotos\DET\5_kentavious_caldwell-pope.png" />
+    <Resource Include="resources\playerPhotos\DET\6_josh_smith.png" />
+    <Resource Include="resources\playerPhotos\DET\7_brandon_jennings.png" />
+    <Resource Include="resources\playerPhotos\DET\9_tony_mitchell.png" />
+    <Resource Include="resources\playerPhotos\DET\roster.txt" />
+    <Resource Include="resources\playerPhotos\GSW\0_toney_douglas.png" />
+    <Resource Include="resources\playerPhotos\GSW\10_david_lee.png" />
+    <Resource Include="resources\playerPhotos\GSW\11_klay_thompson.png" />
+    <Resource Include="resources\playerPhotos\GSW\12_andrew_bogut.png" />
+    <Resource Include="resources\playerPhotos\GSW\1_ognjen_kuzmic.png" />
+    <Resource Include="resources\playerPhotos\GSW\20_kent_bazemore.png" />
+    <Resource Include="resources\playerPhotos\GSW\21_dewayne_dedmon.png" />
+    <Resource Include="resources\playerPhotos\GSW\23_draymond_green.png" />
+    <Resource Include="resources\playerPhotos\GSW\25_steve_blake.png" />
+    <Resource Include="resources\playerPhotos\GSW\2_marshon_brooks.png" />
+    <Resource Include="resources\playerPhotos\GSW\30_stephen_curry.png" />
+    <Resource Include="resources\playerPhotos\GSW\40_harrison_barnes.png" />
+    <Resource Include="resources\playerPhotos\GSW\55_jordan_crawford.png" />
+    <Resource Include="resources\playerPhotos\GSW\57_hilton_armstrong.png" />
+    <Resource Include="resources\playerPhotos\GSW\5_marreese_speights.png" />
+    <Resource Include="resources\playerPhotos\GSW\7_jermaine_oneal.png" />
+    <Resource Include="resources\playerPhotos\GSW\8_nemanja_nedovic.png" />
+    <Resource Include="resources\playerPhotos\GSW\9_andre_iguodala.png" />
+    <Resource Include="resources\playerPhotos\GSW\roster.txt" />
+    <Resource Include="resources\playerPhotos\HOU\0_aaron_brooks.png" />
+    <Resource Include="resources\playerPhotos\HOU\10_ronnie_brewer.png" />
+    <Resource Include="resources\playerPhotos\HOU\12_dwight_howard.png" />
+    <Resource Include="resources\playerPhotos\HOU\13_james_harden.png" />
+    <Resource Include="resources\playerPhotos\HOU\18_omri_casspi.png" />
+    <Resource Include="resources\playerPhotos\HOU\1_isaiah_canaan.png" />
+    <Resource Include="resources\playerPhotos\HOU\20_donatas_motiejunas.png" />
+    <Resource Include="resources\playerPhotos\HOU\25_chandler_parsons.png" />
+    <Resource Include="resources\playerPhotos\HOU\2_patrick_beverley.png" />
+    <Resource Include="resources\playerPhotos\HOU\32_francisco_garcia.png" />
+    <Resource Include="resources\playerPhotos\HOU\33_robert_covington.png" />
+    <Resource Include="resources\playerPhotos\HOU\3_omer_asik.png" />
+    <Resource Include="resources\playerPhotos\HOU\4_greg_smith.png" />
+    <Resource Include="resources\playerPhotos\HOU\5_jordan_hamilton.png" />
+    <Resource Include="resources\playerPhotos\HOU\6_terrence_jones.png" />
+    <Resource Include="resources\playerPhotos\HOU\7_jeremy_lin.png" />
+    <Resource Include="resources\playerPhotos\HOU\roster.txt" />
+    <Resource Include="resources\playerPhotos\IND\11_orlando_johnson.png" />
+    <Resource Include="resources\playerPhotos\IND\12_evan_turner.png" />
+    <Resource Include="resources\playerPhotos\IND\15_donald_sloan.png" />
+    <Resource Include="resources\playerPhotos\IND\1_lance_stephenson.png" />
+    <Resource Include="resources\playerPhotos\IND\21_david_west.png" />
+    <Resource Include="resources\playerPhotos\IND\22_chris_copeland.png" />
+    <Resource Include="resources\playerPhotos\IND\24_paul_george.png" />
+    <Resource Include="resources\playerPhotos\IND\28_ian_mahinmi.png" />
+    <Resource Include="resources\playerPhotos\IND\32_cj_watson.png" />
+    <Resource Include="resources\playerPhotos\IND\33_danny_granger.png" />
+    <Resource Include="resources\playerPhotos\IND\3_george_hill.png" />
+    <Resource Include="resources\playerPhotos\IND\4_luis_scola.png" />
+    <Resource Include="resources\playerPhotos\IND\55_roy_hibbert.png" />
+    <Resource Include="resources\playerPhotos\IND\5_lavoy_allen.png" />
+    <Resource Include="resources\playerPhotos\IND\8_rasual_butler.png" />
+    <Resource Include="resources\playerPhotos\IND\9_solomon_hill.png" />
+    <Resource Include="resources\playerPhotos\IND\roster.txt" />
+    <Resource Include="resources\playerPhotos\LAC\0_byron_mullens.png" />
+    <Resource Include="resources\playerPhotos\LAC\11_jamal_crawford.png" />
+    <Resource Include="resources\playerPhotos\LAC\15_ryan_hollins.png" />
+    <Resource Include="resources\playerPhotos\LAC\18_sasha_vujacic.png" />
+    <Resource Include="resources\playerPhotos\LAC\1_stephen_jackson.png" />
+    <Resource Include="resources\playerPhotos\LAC\22_matt_barnes.png" />
+    <Resource Include="resources\playerPhotos\LAC\25_reggie_bullock.png" />
+    <Resource Include="resources\playerPhotos\LAC\2_darren_collison.png" />
+    <Resource Include="resources\playerPhotos\LAC\32_blake_griffin.png" />
+    <Resource Include="resources\playerPhotos\LAC\33_antawn_jamison.png" />
+    <Resource Include="resources\playerPhotos\LAC\34_willie_green.png" />
+    <Resource Include="resources\playerPhotos\LAC\3_chris_paul.png" />
+    <Resource Include="resources\playerPhotos\LAC\4_jj_redick.png" />
+    <Resource Include="resources\playerPhotos\LAC\5_maalik_wayns.png" />
+    <Resource Include="resources\playerPhotos\LAC\6_deandre_jordan.png" />
+    <Resource Include="resources\playerPhotos\LAC\7_darius_morris.png" />
+    <Resource Include="resources\playerPhotos\LAC\8_hedo_turkoglu.png" />
+    <Resource Include="resources\playerPhotos\LAC\9_jared_dudley.png" />
+    <Resource Include="resources\playerPhotos\LAC\roster.txt" />
+    <Resource Include="resources\playerPhotos\LAL\0_nick_young.png" />
+    <Resource Include="resources\playerPhotos\LAL\10_steve_nash.png" />
+    <Resource Include="resources\playerPhotos\LAL\11_wesley_johnson.png" />
+    <Resource Include="resources\playerPhotos\LAL\12_kendall_marshall.png" />
+    <Resource Include="resources\playerPhotos\LAL\16_pau_gasol.png" />
+    <Resource Include="resources\playerPhotos\LAL\1_jordan_farmar.png" />
+    <Resource Include="resources\playerPhotos\LAL\20_jodie_meeks.png" />
+    <Resource Include="resources\playerPhotos\LAL\24_kobe_bryant.png" />
+    <Resource Include="resources\playerPhotos\LAL\27_jordan_hill.png" />
+    <Resource Include="resources\playerPhotos\LAL\2_elias_harris.png" />
+    <Resource Include="resources\playerPhotos\LAL\2_marshon_brooks.png" />
+    <Resource Include="resources\playerPhotos\LAL\3_manny_harris.png" />
+    <Resource Include="resources\playerPhotos\LAL\3_shawne_williams.png" />
+    <Resource Include="resources\playerPhotos\LAL\4_ryan_kelly.png" />
+    <Resource Include="resources\playerPhotos\LAL\50_robert_sacre.png" />
+    <Resource Include="resources\playerPhotos\LAL\5_steve_blake.png" />
+    <Resource Include="resources\playerPhotos\LAL\6_kent_bazemore.png" />
+    <Resource Include="resources\playerPhotos\LAL\7_xavier_henry.png" />
+    <Resource Include="resources\playerPhotos\LAL\9_chris_kaman.png" />
+    <Resource Include="resources\playerPhotos\LAL\roster.txt" />
+    <Resource Include="resources\playerPhotos\MEM\11_mike_conley.png" />
+    <Resource Include="resources\playerPhotos\MEM\12_nick_calathes.png" />
+    <Resource Include="resources\playerPhotos\MEM\13_mike_miller.png" />
+    <Resource Include="resources\playerPhotos\MEM\1_seth_curry.png" />
+    <Resource Include="resources\playerPhotos\MEM\20_quincy_pondexter.png" />
+    <Resource Include="resources\playerPhotos\MEM\21_tayshaun_prince.png" />
+    <Resource Include="resources\playerPhotos\MEM\22_jamaal_franklin.png" />
+    <Resource Include="resources\playerPhotos\MEM\30_jon_leuer.png" />
+    <Resource Include="resources\playerPhotos\MEM\32_ed_davis.png" />
+    <Resource Include="resources\playerPhotos\MEM\33_marc_gasol.png" />
+    <Resource Include="resources\playerPhotos\MEM\3_james_johnson.png" />
+    <Resource Include="resources\playerPhotos\MEM\41_kosta_koufos.png" />
+    <Resource Include="resources\playerPhotos\MEM\50_zach_randolph.png" />
+    <Resource Include="resources\playerPhotos\MEM\5_courtney_lee.png" />
+    <Resource Include="resources\playerPhotos\MEM\7_darius_morris.png" />
+    <Resource Include="resources\playerPhotos\MEM\7_jerryd_bayless.png" />
+    <Resource Include="resources\playerPhotos\MEM\9_tony_allen.png" />
+    <Resource Include="resources\playerPhotos\MEM\roster.txt" />
+    <Resource Include="resources\playerPhotos\MIA\0_toney_douglas.png" />
+    <Resource Include="resources\playerPhotos\MIA\11_chris_andersen.png" />
+    <Resource Include="resources\playerPhotos\MIA\15_mario_chalmers.png" />
+    <Resource Include="resources\playerPhotos\MIA\1_chris_bosh.png" />
+    <Resource Include="resources\playerPhotos\MIA\20_greg_oden.png" />
+    <Resource Include="resources\playerPhotos\MIA\22_james_jones.png" />
+    <Resource Include="resources\playerPhotos\MIA\30_norris_cole.png" />
+    <Resource Include="resources\playerPhotos\MIA\31_shane_battier.png" />
+    <Resource Include="resources\playerPhotos\MIA\34_ray_allen.png" />
+    <Resource Include="resources\playerPhotos\MIA\3_dwyane_wade.png" />
+    <Resource Include="resources\playerPhotos\MIA\40_udonis_haslem.png" />
+    <Resource Include="resources\playerPhotos\MIA\50_joel_anthony.png" />
+    <Resource Include="resources\playerPhotos\MIA\6_lebron_james.png" />
+    <Resource Include="resources\playerPhotos\MIA\8_michael_beasley.png" />
+    <Resource Include="resources\playerPhotos\MIA\9_rashard_lewis.png" />
+    <Resource Include="resources\playerPhotos\MIA\roster.txt" />
+    <Resource Include="resources\playerPhotos\MIL\00_oj_mayo.png" />
+    <Resource Include="resources\playerPhotos\MIL\11_brandon_knight.png" />
+    <Resource Include="resources\playerPhotos\MIL\12_gary_neal.png" />
+    <Resource Include="resources\playerPhotos\MIL\12_jeff_adrien.png" />
+    <Resource Include="resources\playerPhotos\MIL\13_luke_ridnour.png" />
+    <Resource Include="resources\playerPhotos\MIL\13_ramon_sessions.png" />
+    <Resource Include="resources\playerPhotos\MIL\22_khris_middleton.png" />
+    <Resource Include="resources\playerPhotos\MIL\27_zaza_pachulia.png" />
+    <Resource Include="resources\playerPhotos\MIL\31_john_henson.png" />
+    <Resource Include="resources\playerPhotos\MIL\34_giannis_antetokounmpo.png" />
+    <Resource Include="resources\playerPhotos\MIL\3_caron_butler.png" />
+    <Resource Include="resources\playerPhotos\MIL\5_ekpe_udoh.png" />
+    <Resource Include="resources\playerPhotos\MIL\6_nate_wolters.png" />
+    <Resource Include="resources\playerPhotos\MIL\7_ersan_ilyasova.png" />
+    <Resource Include="resources\playerPhotos\MIL\8_larry_sanders.png" />
+    <Resource Include="resources\playerPhotos\MIL\9_miroslav_raduljica.png" />
+    <Resource Include="resources\playerPhotos\MIL\roster.txt" />
+    <Resource Include="resources\playerPhotos\MIN\10_chase_budinger.png" />
+    <Resource Include="resources\playerPhotos\MIN\11_jose_barea.png" />
+    <Resource Include="resources\playerPhotos\MIN\12_luc_mbah_a_moute.png" />
+    <Resource Include="resources\playerPhotos\MIN\13_corey_brewer.png" />
+    <Resource Include="resources\playerPhotos\MIN\14_nikola_pekovic.png" />
+    <Resource Include="resources\playerPhotos\MIN\15_shabazz_muhammad.png" />
+    <Resource Include="resources\playerPhotos\MIN\1_alexey_shved.png" />
+    <Resource Include="resources\playerPhotos\MIN\22_aj_price.png" />
+    <Resource Include="resources\playerPhotos\MIN\23_kevin_martin.png" />
+    <Resource Include="resources\playerPhotos\MIN\32_ronny_turiaf.png" />
+    <Resource Include="resources\playerPhotos\MIN\33_dante_cunningham.png" />
+    <Resource Include="resources\playerPhotos\MIN\42_kevin_love.png" />
+    <Resource Include="resources\playerPhotos\MIN\5_gorgui_dieng.png" />
+    <Resource Include="resources\playerPhotos\MIN\6_robbie_hummel.png" />
+    <Resource Include="resources\playerPhotos\MIN\7_derrick_williams.png" />
+    <Resource Include="resources\playerPhotos\MIN\9_ricky_rubio.png" />
+    <Resource Include="resources\playerPhotos\MIN\roster.txt" />
+    <Resource Include="resources\playerPhotos\NOP\0_al-farouq_aminu.png" />
+    <Resource Include="resources\playerPhotos\NOP\10_eric_gordon.png" />
+    <Resource Include="resources\playerPhotos\NOP\11_jrue_holiday.png" />
+    <Resource Include="resources\playerPhotos\NOP\14_jason_smith.png" />
+    <Resource Include="resources\playerPhotos\NOP\17_louis_amundson.png" />
+    <Resource Include="resources\playerPhotos\NOP\1_tyreke_evans.png" />
+    <Resource Include="resources\playerPhotos\NOP\21_arinze_onuaku.png" />
+    <Resource Include="resources\playerPhotos\NOP\22_brian_roberts.png" />
+    <Resource Include="resources\playerPhotos\NOP\23_anthony_davis.png" />
+    <Resource Include="resources\playerPhotos\NOP\25_austin_rivers.png" />
+    <Resource Include="resources\playerPhotos\NOP\2_darius_miller.png" />
+    <Resource Include="resources\playerPhotos\NOP\33_ryan_anderson.png" />
+    <Resource Include="resources\playerPhotos\NOP\34_greg_stiemsma.png" />
+    <Resource Include="resources\playerPhotos\NOP\3_anthony_morrow.png" />
+    <Resource Include="resources\playerPhotos\NOP\42_alexis_ajinca.png" />
+    <Resource Include="resources\playerPhotos\NOP\42_lance_thomas.png" />
+    <Resource Include="resources\playerPhotos\NOP\5_jeff_withey.png" />
+    <Resource Include="resources\playerPhotos\NOP\8_josh_childress.png" />
+    <Resource Include="resources\playerPhotos\NOP\8_luke_babbitt.png" />
+    <Resource Include="resources\playerPhotos\NOP\roster.txt" />
+    <Resource Include="resources\playerPhotos\NYK\18_beno_udrih.png" />
+    <Resource Include="resources\playerPhotos\NYK\1_amare_stoudemire.png" />
+    <Resource Include="resources\playerPhotos\NYK\21_iman_shumpert.png" />
+    <Resource Include="resources\playerPhotos\NYK\23_toure_murry.png" />
+    <Resource Include="resources\playerPhotos\NYK\2_raymond_felton.png" />
+    <Resource Include="resources\playerPhotos\NYK\3_kenyon_martin.png" />
+    <Resource Include="resources\playerPhotos\NYK\45_cole_aldrich.png" />
+    <Resource Include="resources\playerPhotos\NYK\4_jeremy_tyler.png" />
+    <Resource Include="resources\playerPhotos\NYK\51_metta_world_peace.png" />
+    <Resource Include="resources\playerPhotos\NYK\5_tim_hardaway_jr.png" />
+    <Resource Include="resources\playerPhotos\NYK\6_tyson_chandler.png" />
+    <Resource Include="resources\playerPhotos\NYK\77_andrea_bargnani.png" />
+    <Resource Include="resources\playerPhotos\NYK\7_carmelo_anthony.png" />
+    <Resource Include="resources\playerPhotos\NYK\8_jr_smith.png" />
+    <Resource Include="resources\playerPhotos\NYK\9_pablo_prigioni.png" />
+    <Resource Include="resources\playerPhotos\NYK\roster.txt" />
+    <Resource Include="resources\playerPhotos\NYK\_chris_smith.png" />
+    <Resource Include="resources\playerPhotos\OKC\0_russell_westbrook.png" />
+    <Resource Include="resources\playerPhotos\OKC\11_jeremy_lamb.png" />
+    <Resource Include="resources\playerPhotos\OKC\12_steven_adams.png" />
+    <Resource Include="resources\playerPhotos\OKC\15_reggie_jackson.png" />
+    <Resource Include="resources\playerPhotos\OKC\21_andre_roberson.png" />
+    <Resource Include="resources\playerPhotos\OKC\25_thabo_sefolosha.png" />
+    <Resource Include="resources\playerPhotos\OKC\34_hasheem_thabeet.png" />
+    <Resource Include="resources\playerPhotos\OKC\35_kevin_durant.png" />
+    <Resource Include="resources\playerPhotos\OKC\3_perry_jones.png" />
+    <Resource Include="resources\playerPhotos\OKC\4_nick_collison.png" />
+    <Resource Include="resources\playerPhotos\OKC\5_kendrick_perkins.png" />
+    <Resource Include="resources\playerPhotos\OKC\6_derek_fisher.png" />
+    <Resource Include="resources\playerPhotos\OKC\7_royal_ivey.png" />
+    <Resource Include="resources\playerPhotos\OKC\8_ryan_gomes.png" />
+    <Resource Include="resources\playerPhotos\OKC\9_serge_ibaka.png" />
+    <Resource Include="resources\playerPhotos\OKC\roster.txt" />
+    <Resource Include="resources\playerPhotos\ORL\10_ronnie_price.png" />
+    <Resource Include="resources\playerPhotos\ORL\11_glen_davis.png" />
+    <Resource Include="resources\playerPhotos\ORL\12_tobias_harris.png" />
+    <Resource Include="resources\playerPhotos\ORL\14_jameer_nelson.png" />
+    <Resource Include="resources\playerPhotos\ORL\1_doron_lamb.png" />
+    <Resource Include="resources\playerPhotos\ORL\21_maurice_harkless.png" />
+    <Resource Include="resources\playerPhotos\ORL\22_solomon_jones.png" />
+    <Resource Include="resources\playerPhotos\ORL\2_kyle_oquinn.png" />
+    <Resource Include="resources\playerPhotos\ORL\44_andrew_nicholson.png" />
+    <Resource Include="resources\playerPhotos\ORL\4_arron_afflalo.png" />
+    <Resource Include="resources\playerPhotos\ORL\54_jason_maxiell.png" />
+    <Resource Include="resources\playerPhotos\ORL\55_etwaun_moore.png" />
+    <Resource Include="resources\playerPhotos\ORL\5_victor_oladipo.png" />
+    <Resource Include="resources\playerPhotos\ORL\9_nikola_vucevic.png" />
+    <Resource Include="resources\playerPhotos\ORL\roster.txt" />
+    <Resource Include="resources\playerPhotos\PHI\00_spencer_hawes.png" />
+    <Resource Include="resources\playerPhotos\PHI\11_eric_maynor.png" />
+    <Resource Include="resources\playerPhotos\PHI\12_evan_turner.png" />
+    <Resource Include="resources\playerPhotos\PHI\1_michael_carter-williams.png" />
+    <Resource Include="resources\playerPhotos\PHI\20_brandon_davies.png" />
+    <Resource Include="resources\playerPhotos\PHI\21_thaddeus_young.png" />
+    <Resource Include="resources\playerPhotos\PHI\25_elliot_williams.png" />
+    <Resource Include="resources\playerPhotos\PHI\30_byron_mullens.png" />
+    <Resource Include="resources\playerPhotos\PHI\30_dewayne_dedmon.png" />
+    <Resource Include="resources\playerPhotos\PHI\31_hollis_thompson.png" />
+    <Resource Include="resources\playerPhotos\PHI\33_daniel_orton.png" />
+    <Resource Include="resources\playerPhotos\PHI\35_henry_sims.png" />
+    <Resource Include="resources\playerPhotos\PHI\50_lavoy_allen.png" />
+    <Resource Include="resources\playerPhotos\PHI\5_arnett_moultrie.png" />
+    <Resource Include="resources\playerPhotos\PHI\7_darius_morris.png" />
+    <Resource Include="resources\playerPhotos\PHI\7_lorenzo_brown.png" />
+    <Resource Include="resources\playerPhotos\PHI\8_tony_wroten.png" />
+    <Resource Include="resources\playerPhotos\PHI\9_james_anderson.png" />
+    <Resource Include="resources\playerPhotos\PHI\roster.txt" />
+    <Resource Include="resources\playerPhotos\PHO\10_leandro_barbosa.png" />
+    <Resource Include="resources\playerPhotos\PHO\11_markieff_morris.png" />
+    <Resource Include="resources\playerPhotos\PHO\14_gerald_green.png" />
+    <Resource Include="resources\playerPhotos\PHO\15_marcus_morris.png" />
+    <Resource Include="resources\playerPhotos\PHO\17_pj_tucker.png" />
+    <Resource Include="resources\playerPhotos\PHO\1_goran_dragic.png" />
+    <Resource Include="resources\playerPhotos\PHO\20_archie_goodwin.png" />
+    <Resource Include="resources\playerPhotos\PHO\21_alex_len.png" />
+    <Resource Include="resources\playerPhotos\PHO\22_miles_plumlee.png" />
+    <Resource Include="resources\playerPhotos\PHO\25_dionte_christmas.png" />
+    <Resource Include="resources\playerPhotos\PHO\2_eric_bledsoe.png" />
+    <Resource Include="resources\playerPhotos\PHO\3_ish_smith.png" />
+    <Resource Include="resources\playerPhotos\PHO\55_viacheslav_kravtsov.png" />
+    <Resource Include="resources\playerPhotos\PHO\8_channing_frye.png" />
+    <Resource Include="resources\playerPhotos\PHO\roster.txt" />
+    <Resource Include="resources\playerPhotos\POR\0_damian_lillard.png" />
+    <Resource Include="resources\playerPhotos\POR\11_meyers_leonard.png" />
+    <Resource Include="resources\playerPhotos\POR\12_lamarcus_aldridge.png" />
+    <Resource Include="resources\playerPhotos\POR\17_earl_watson.png" />
+    <Resource Include="resources\playerPhotos\POR\18_victor_claver.png" />
+    <Resource Include="resources\playerPhotos\POR\19_joel_freeland.png" />
+    <Resource Include="resources\playerPhotos\POR\1_dorell_wright.png" />
+    <Resource Include="resources\playerPhotos\POR\23_allen_crabbe.png" />
+    <Resource Include="resources\playerPhotos\POR\25_mo_williams.png" />
+    <Resource Include="resources\playerPhotos\POR\2_wesley_matthews.png" />
+    <Resource Include="resources\playerPhotos\POR\3_cj_mccollum.png" />
+    <Resource Include="resources\playerPhotos\POR\41_thomas_robinson.png" />
+    <Resource Include="resources\playerPhotos\POR\42_robin_lopez.png" />
+    <Resource Include="resources\playerPhotos\POR\5_will_barton.png" />
+    <Resource Include="resources\playerPhotos\POR\88_nicolas_batum.png" />
+    <Resource Include="resources\playerPhotos\POR\roster.txt" />
+    <Resource Include="resources\playerPhotos\SAC\10_greivis_vasquez.png" />
+    <Resource Include="resources\playerPhotos\SAC\13_derrick_williams.png" />
+    <Resource Include="resources\playerPhotos\SAC\15_demarcus_cousins.png" />
+    <Resource Include="resources\playerPhotos\SAC\16_ben_mclemore.png" />
+    <Resource Include="resources\playerPhotos\SAC\22_isaiah_thomas.png" />
+    <Resource Include="resources\playerPhotos\SAC\23_marcus_thornton.png" />
+    <Resource Include="resources\playerPhotos\SAC\24_carl_landry.png" />
+    <Resource Include="resources\playerPhotos\SAC\25_travis_outlaw.png" />
+    <Resource Include="resources\playerPhotos\SAC\30_reggie_evans.png" />
+    <Resource Include="resources\playerPhotos\SAC\33_aaron_gray.png" />
+    <Resource Include="resources\playerPhotos\SAC\33_luc_mbah_a_moute.png" />
+    <Resource Include="resources\playerPhotos\SAC\34_jason_thompson.png" />
+    <Resource Include="resources\playerPhotos\SAC\3_ray_mccallum.png" />
+    <Resource Include="resources\playerPhotos\SAC\42_chuck_hayes.png" />
+    <Resource Include="resources\playerPhotos\SAC\55_hamady_ndiaye.png" />
+    <Resource Include="resources\playerPhotos\SAC\5_john_salmons.png" />
+    <Resource Include="resources\playerPhotos\SAC\5_quincy_acy.png" />
+    <Resource Include="resources\playerPhotos\SAC\7_jimmer_fredette.png" />
+    <Resource Include="resources\playerPhotos\SAC\8_rudy_gay.png" />
+    <Resource Include="resources\playerPhotos\SAC\9_patrick_patterson.png" />
+    <Resource Include="resources\playerPhotos\SAC\roster.txt" />
+    <Resource Include="resources\playerPhotos\SAS\11_jeff_ayres.png" />
+    <Resource Include="resources\playerPhotos\SAS\15_matt_bonner.png" />
+    <Resource Include="resources\playerPhotos\SAS\16_aron_baynes.png" />
+    <Resource Include="resources\playerPhotos\SAS\1_shannon_brown.png" />
+    <Resource Include="resources\playerPhotos\SAS\20_manu_ginobili.png" />
+    <Resource Include="resources\playerPhotos\SAS\21_tim_duncan.png" />
+    <Resource Include="resources\playerPhotos\SAS\22_tiago_splitter.png" />
+    <Resource Include="resources\playerPhotos\SAS\24_malcolm_thomas.png" />
+    <Resource Include="resources\playerPhotos\SAS\25_nando_de_colo.png" />
+    <Resource Include="resources\playerPhotos\SAS\2_kawhi_leonard.png" />
+    <Resource Include="resources\playerPhotos\SAS\33_boris_diaw.png" />
+    <Resource Include="resources\playerPhotos\SAS\3_marco_belinelli.png" />
+    <Resource Include="resources\playerPhotos\SAS\4_danny_green.png" />
+    <Resource Include="resources\playerPhotos\SAS\5_cory_joseph.png" />
+    <Resource Include="resources\playerPhotos\SAS\7_othyus_jeffers.png" />
+    <Resource Include="resources\playerPhotos\SAS\8_patrick_mills.png" />
+    <Resource Include="resources\playerPhotos\SAS\9_tony_parker.png" />
+    <Resource Include="resources\playerPhotos\SAS\roster.txt" />
+    <Resource Include="resources\playerPhotos\TOR\10_demar_derozan.png" />
+    <Resource Include="resources\playerPhotos\TOR\13_dwight_buycks.png" />
+    <Resource Include="resources\playerPhotos\TOR\14_dj_augustin.png" />
+    <Resource Include="resources\playerPhotos\TOR\15_amir_johnson.png" />
+    <Resource Include="resources\playerPhotos\TOR\16_steve_novak.png" />
+    <Resource Include="resources\playerPhotos\TOR\17_jonas_valanciunas.png" />
+    <Resource Include="resources\playerPhotos\TOR\21_greivis_vasquez.png" />
+    <Resource Include="resources\playerPhotos\TOR\22_rudy_gay.png" />
+    <Resource Include="resources\playerPhotos\TOR\25_john_salmons.png" />
+    <Resource Include="resources\playerPhotos\TOR\2_landry_fields.png" />
+    <Resource Include="resources\playerPhotos\TOR\31_terrence_ross.png" />
+    <Resource Include="resources\playerPhotos\TOR\34_aaron_gray.png" />
+    <Resource Include="resources\playerPhotos\TOR\3_nando_de_colo.png" />
+    <Resource Include="resources\playerPhotos\TOR\44_chuck_hayes.png" />
+    <Resource Include="resources\playerPhotos\TOR\4_quincy_acy.png" />
+    <Resource Include="resources\playerPhotos\TOR\50_tyler_hansbrough.png" />
+    <Resource Include="resources\playerPhotos\TOR\54_patrick_patterson.png" />
+    <Resource Include="resources\playerPhotos\TOR\5_austin_daye.png" />
+    <Resource Include="resources\playerPhotos\TOR\77_julyan_stone.png" />
+    <Resource Include="resources\playerPhotos\TOR\7_kyle_lowry.png" />
+    <Resource Include="resources\playerPhotos\TOR\roster.txt" />
+    <Resource Include="resources\playerPhotos\UTA\0_enes_kanter.png" />
+    <Resource Include="resources\playerPhotos\UTA\10_alec_burks.png" />
+    <Resource Include="resources\playerPhotos\UTA\11_andris_biedrins.png" />
+    <Resource Include="resources\playerPhotos\UTA\15_derrick_favors.png" />
+    <Resource Include="resources\playerPhotos\UTA\20_gordon_hayward.png" />
+    <Resource Include="resources\playerPhotos\UTA\21_ian_clark.png" />
+    <Resource Include="resources\playerPhotos\UTA\22_malcolm_thomas.png" />
+    <Resource Include="resources\playerPhotos\UTA\24_richard_jefferson.png" />
+    <Resource Include="resources\playerPhotos\UTA\25_brandon_rush.png" />
+    <Resource Include="resources\playerPhotos\UTA\27_rudy_gobert.png" />
+    <Resource Include="resources\playerPhotos\UTA\2_marvin_williams.png" />
+    <Resource Include="resources\playerPhotos\UTA\33_mike_harris.png" />
+    <Resource Include="resources\playerPhotos\UTA\3_trey_burke.png" />
+    <Resource Include="resources\playerPhotos\UTA\40_jeremy_evans.png" />
+    <Resource Include="resources\playerPhotos\UTA\5_john_iii_lucas.png" />
+    <Resource Include="resources\playerPhotos\UTA\6_jamaal_tinsley.png" />
+    <Resource Include="resources\playerPhotos\UTA\8_diante_garrett.png" />
+    <Resource Include="resources\playerPhotos\UTA\roster.txt" />
+    <Resource Include="resources\playerPhotos\WAS\13_kevin_seraphin.png" />
+    <Resource Include="resources\playerPhotos\WAS\14_glen_rice_jr.png" />
+    <Resource Include="resources\playerPhotos\WAS\17_garrett_temple.png" />
+    <Resource Include="resources\playerPhotos\WAS\1_trevor_ariza.png" />
+    <Resource Include="resources\playerPhotos\WAS\22_otto_porter.png" />
+    <Resource Include="resources\playerPhotos\WAS\24_andre_miller.png" />
+    <Resource Include="resources\playerPhotos\WAS\24_jan_vesely.png" />
+    <Resource Include="resources\playerPhotos\WAS\2_john_wall.png" />
+    <Resource Include="resources\playerPhotos\WAS\31_chris_singleton.png" />
+    <Resource Include="resources\playerPhotos\WAS\35_trevor_booker.png" />
+    <Resource Include="resources\playerPhotos\WAS\3_bradley_beal.png" />
+    <Resource Include="resources\playerPhotos\WAS\42_nene.png" />
+    <Resource Include="resources\playerPhotos\WAS\4_marcin_gortat.png" />
+    <Resource Include="resources\playerPhotos\WAS\6_eric_maynor.png" />
+    <Resource Include="resources\playerPhotos\WAS\7_al_harrington.png" />
+    <Resource Include="resources\playerPhotos\WAS\9_martell_webster.png" />
+    <Resource Include="resources\playerPhotos\WAS\roster.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

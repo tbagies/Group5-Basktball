@@ -1,0 +1,16 @@
+ 3, omer_asik
+ 2, patrick_beverley
+ 10, ronnie_brewer
+ 0, aaron_brooks
+ 1, isaiah_canaan
+ 18, omri_casspi
+ 33, robert_covington
+ 32, francisco_garcia
+ 5, jordan_hamilton
+ 13, james_harden
+ 12, dwight_howard
+ 6, terrence_jones
+ 7, jeremy_lin
+ 20, donatas_motiejunas
+ 25, chandler_parsons
+ 4, greg_smith

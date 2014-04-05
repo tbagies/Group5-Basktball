@@ -1,0 +1,17 @@
+ 6, alan_anderson
+ 0, andray_blatche
+ 46, jason_collins
+ 30, reggie_evans
+ 2, kevin_garnett
+ 7, joe_johnson
+ 47, andrei_kirilenko
+ 14, shaun_livingston
+ 11, brook_lopez
+ 34, paul_pierce
+ 1, mason_plumlee
+ 20, tornike_shengelia
+ 10, tyshawn_taylor
+ 12, marquis_teague
+ 33, mirza_teletovic
+ 31, jason_terry
+ 8, deron_williams

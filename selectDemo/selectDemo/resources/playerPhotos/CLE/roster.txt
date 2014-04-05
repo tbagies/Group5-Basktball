@@ -1,0 +1,17 @@
+ 15, anthony_bennett
+ 21, andrew_bynum
+ 6, earl_clark
+ 8, matthew_dellavedova
+ 9, luol_deng
+ 30, carrick_felix
+ 33, alonzo_gee
+ 32, spencer_hawes
+ 2, kyrie_irving
+ 1, jarrett_jack
+ 10, sergey_karasev
+ 0, cj_miles
+ 14, henry_sims
+ 13, tristan_thompson
+ 17, anderson_varejao
+ 3, dion_waiters
+ 40, tyler_zeller

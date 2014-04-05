@@ -1,0 +1,52 @@
+#!/bin/bash
+# This is a script to read NBA player names from a file and get images of the players from a website
+
+WEBSITE="http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/"
+
+echo -e "What file contains the roster?"
+read FILENAME
+
+if [ ! -f $FILENAME ]; then
+	echo "$FILENAME is not here"
+	exit
+fi
+
+#Read the file and get photos
+IFS=','
+mkdir -p playerPhotos
+
+count=0
+while read line
+do
+	#Split line by ',' and retrieve player's name
+	read -a NAMES <<< "$line"
+	curName=$(echo "${NAMES[2]/ /}" | tr '[:upper:]' '[:lower:]' | tr -d '.' | tr -d "'" | tr ' ' '_')
+	curTeam=$(echo "${NAMES[0]}") 
+
+	if [ ! -d "playerPhotos/$curTeam" ]; then
+		mkdir -p "playerPhotos/$curTeam"
+	fi
+
+	wget "$WEBSITE$curName.png"
+	if [ -f "$curName.png" ]; then
+		echo "got a picture"
+
+		# #stupid way to see if a picture with the same name is already there
+		# cd playerPhotos/
+		# if [ -f "$curName.png" ]; then
+		# 	echo "$curName" >> duplicateName.txt
+		# 	let "count -=1"
+		# fi
+		# cd ..
+
+		mv "$curName.png" "playerPhotos/$curTeam/${NAMES[1]}_$curName.png"
+		echo "${NAMES[1]}, $curName" >> "playerPhotos/$curTeam/roster.txt"
+		let "count+=1"
+	else
+		echo $curName >> addManually.txt
+	fi
+
+done < $FILENAME
+
+echo "Total found $count"
+mv addManually.txt playerPhotos/
