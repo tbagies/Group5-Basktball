@@ -23,6 +23,7 @@ namespace templateDemo.Screens
         public TeamSelect()
         {
             InitializeComponent();
+            App.Current.Properties["Team"] = "Bulls";
         }
          
         public void UtilizeState(object state)

@@ -3,6 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="PageSwitch.xaml">
     <Application.Resources>
-         
+        <Style x:Key="background" TargetType="Grid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="./resources/Screen6/background.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="appFont" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="../resources/#BigNoodleTitling"/>
+        </Style>
+        <Style x:Key="refButton" TargetType="Rectangle"> 
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <ImageBrush ImageSource="./resources/Screen3/ref_background.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="titleBackground" TargetType="Rectangle">
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <ImageBrush ImageSource="./resources/Screen3/title_background.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
