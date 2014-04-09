@@ -1,0 +1,14 @@
+Chris Bosh,chris_bosh.png
+LeBron James,lebron_james.png
+Dwyane Wade,dwyane_wade.png
+Udonis Haslem,udonis_haslem.png
+Mario Chalmers,mario_chalmers.png
+Shane Battier,shane_battier.png
+Ray Allen,ray_allen.png
+Toney Douglas,toney_douglas.png
+James Jones,james_jones.png
+Rashard Lewis,rashard_lewis.png
+Chris Andersen,chris_andersen.png
+Norris Cole,norris_cole.png
+Greg Oden,greg_oden.png
+Michael Beasley,michael_beasley.png

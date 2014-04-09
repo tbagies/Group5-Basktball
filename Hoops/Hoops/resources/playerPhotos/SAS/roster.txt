@@ -1,0 +1,15 @@
+Tony Parker,tony_parker.png
+Tim Duncan,tim_duncan.png
+Tiago Splitter,tiago_splitter.png
+Manu Ginobili,manu_ginobili.png
+Boris Diaw,boris_diaw.png
+Matt Bonner,matt_bonner.png
+Danny Green,danny_green.png
+Marco Belinelli,marco_belinelli.png
+Kawhi Leonard,kawhi_leonard.png
+Jeff Ayres,jeff_ayres.png
+Patrick Mills,patrick_mills.png
+Cory Joseph,cory_joseph.png
+Austin Daye,austin_daye.png
+Aron Baynes,aron_baynes.png
+Shannon Brown,shannon_brown.png

@@ -1,0 +1,15 @@
+Kobe Bryant,kobe_bryant.png
+Pau Gasol,pau_gasol.png
+Steve Nash,steve_nash.png
+Jordan Hill,jordan_hill.png
+Chris Kaman,chris_kaman.png
+Jodie Meeks,jodie_meeks.png
+MarShon Brooks,marshon_brooks.png
+Nick Young,nick_young.png
+Wesley Johnson,wesley_johnson.png
+Xavier Henry,xavier_henry.png
+Jordan Farmar,jordan_farmar.png
+Kent Bazemore,kent_bazemore.png
+Robert Sacre,robert_sacre.png
+Kendall Marshall,kendall_marshall.png
+Ryan Kelly,ryan_kelly.png

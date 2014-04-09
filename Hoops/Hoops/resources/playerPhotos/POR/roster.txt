@@ -1,0 +1,14 @@
+LaMarcus Aldridge,lamarcus_aldridge.png
+Nicolas Batum,nicolas_batum.png
+Wesley Matthews,wesley_matthews.png
+Robin Lopez,robin_lopez.png
+Thomas Robinson,thomas_robinson.png
+Damian Lillard,damian_lillard.png
+Dorell Wright,dorell_wright.png
+Joel Freeland,joel_freeland.png
+Mo Williams,mo_williams.png
+C.J. McCollum,cj_mccollum.png
+Meyers Leonard,meyers_leonard.png
+Victor Claver,victor_claver.png
+Earl Watson,earl_watson.png
+Allen Crabbe,allen_crabbe.png

@@ -1,0 +1,14 @@
+Kris Humphries,kris_humphries.png
+Rajon Rondo,rajon_rondo.png
+Gerald Wallace,gerald_wallace.png
+Jeff Green,jeff_green.png
+Brandon Bass,brandon_bass.png
+Keith Bogans,keith_bogans.png
+Joel Anthony,joel_anthony.png
+Jerryd Bayless,jerryd_bayless.png
+Avery Bradley,avery_bradley.png
+Vitor Faverani,vitor_faverani.png
+Kelly Olynyk,kelly_olynyk.png
+Jared Sullinger,jared_sullinger.png
+Phil Pressey,phil_pressey.png
+Chris Johnson,chris_johnson.png

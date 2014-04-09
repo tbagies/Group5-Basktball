@@ -1,0 +1,14 @@
+Derrick Rose,derrick_rose.png
+Carlos Boozer,carlos_boozer.png
+Joakim Noah,joakim_noah.png
+Taj Gibson,taj_gibson.png
+Kirk Hinrich,kirk_hinrich.png
+Mike Dunleavy,mike_dunleavy.png
+Tony Snell,tony_snell.png
+Jimmy Butler,jimmy_butler.png
+Marquis Teague,marquis_teague.png
+Nazr Mohammed,nazr_mohammed.png
+Tornike Shengelia,tornike_shengelia.png
+D.J. Augustin,dj_augustin.png
+Erik Murphy,erik_murphy.png
+Jarvis Varnado,jarvis_varnado.png

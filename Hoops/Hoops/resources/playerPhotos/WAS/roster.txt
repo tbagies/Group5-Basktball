@@ -1,0 +1,15 @@
+Marcin Gortat,marcin_gortat.png
+Trevor Ariza,trevor_ariza.png
+John Wall,john_wall.png
+Martell Webster,martell_webster.png
+Bradley Beal,bradley_beal.png
+Otto Porter,otto_porter.png
+Jan Vesely,jan_vesely.png
+Kevin Seraphin,kevin_seraphin.png
+Trevor Booker,trevor_booker.png
+Eric Maynor,eric_maynor.png
+Chris Singleton,chris_singleton.png
+Garrett Temple,garrett_temple.png
+Al Harrington,al_harrington.png
+Nene Hilario,nene.png
+Glen Rice,glen_rice_jr.png

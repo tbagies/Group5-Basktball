@@ -1,0 +1,15 @@
+DeMar DeRozan,demar_derozan.png
+John Salmons,john_salmons.png
+Amir Johnson,amir_johnson.png
+Landry Fields,landry_fields.png
+Kyle Lowry,kyle_lowry.png
+Chuck Hayes,chuck_hayes.png
+Steve Novak,steve_novak.png
+Jonas Valanciunas,jonas_valanciunas.png
+Tyler Hansbrough,tyler_hansbrough.png
+Patrick Patterson,patrick_patterson.png
+Terrence Ross,terrence_ross.png
+Greivis Vasquez,greivis_vasquez.png
+Nando De Colo,nando_de_colo.png
+Julyan Stone,julyan_stone.png
+Dwight Buycks,dwight_buycks.png
