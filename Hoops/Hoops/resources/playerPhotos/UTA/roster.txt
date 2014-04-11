@@ -1,0 +1,15 @@
+Richard Jefferson,richard_jefferson.png
+Andris Biedrins,andris_biedrins.png
+Marvin Williams,marvin_williams.png
+Derrick Favors,derrick_favors.png
+Enes Kanter,enes_kanter.png
+Brandon Rush,brandon_rush.png
+Gordon Hayward,gordon_hayward.png
+Trey Burke,trey_burke.png
+Alec Burks,alec_burks.png
+Jeremy Evans,jeremy_evans.png
+Rudy Gobert,rudy_gobert.png
+Diante Garrett,diante_garrett.png
+Malcolm Thomas,malcolm_thomas.png
+Ian Clark,ian_clark.png
+John Lucas,john_iii_lucas.png
