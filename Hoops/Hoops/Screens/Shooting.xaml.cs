@@ -21,10 +21,13 @@ namespace Hoops.Screens
     /// </summary>
     public partial class Shooting : UserControl, ISwitchable
     {
+        string [] bioStats = new string[10];
+
         public Shooting()
         {
             InitializeComponent();
-            load((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], "1");
+            loadFromDatabase();
+            load((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], bioStats[1]);
         }
         public void UtilizeState(object state)
         {
@@ -52,12 +55,14 @@ namespace Hoops.Screens
             labelAnimation.Duration = new Duration(TimeSpan.FromSeconds(.3));
             label.BeginAnimation(FontSizeProperty, labelAnimation);
 
+            // Set the text for the name 
             if (player.Length > 13)
                 playerNameLabel.FontSize = 120;
             playerNameLabel.Text = player;
             playerNumberLabel.Text = number;
 
             string shortTeam = "";
+            string teamName = "";
             string conference = "";
             string color1 = "";
             string color2 = "";
@@ -68,6 +73,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#01244C";
                 color2 = "#D21933";
+                teamName = "hawks";
             }
             else if (team == "boston")
             {
@@ -75,6 +81,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#009E60";
+                teamName = "celtics";
             }
             else if (team == "brooklyn")
             {
@@ -82,6 +89,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#8A8D8F";
+                teamName = "nets";
             }
             else if (team == "charlotte")
             {
@@ -89,6 +97,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#002B5C";
                 color2 = "#F26531";
+                teamName = "bobcats";
             }
             else if (team == "chicago")
             {
@@ -96,6 +105,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#D4001F";
+                teamName = "bulls";
             }
             else if (team == "cleveland")
             {
@@ -103,6 +113,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#B99D6A";
                 color2 = "#9F1425";
+                teamName = "cavaliers";
             }
             else if (team == "detroit")
             {
@@ -110,6 +121,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#00519A";
                 color2 = "#EB003C";
+                teamName = "pistons";
             }
             else if (team == "indiana")
             {
@@ -117,6 +129,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#092C57";
                 color2 = "#FFC322";
+                teamName = "pacers";
             }
             else if (team == "miami")
             {
@@ -124,6 +137,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#B62630";
+                teamName = "heat";
             }
             else if (team == "milwaukee")
             {
@@ -131,6 +145,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#003614";
                 color2 = "#E32636";
+                teamName = "bucks";
             }
             else if (team == "newyork")
             {
@@ -138,6 +153,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#0953A0";
                 color2 = "#FF7518";
+                teamName = "knicks";
             }
             else if (team == "orlando")
             {
@@ -145,6 +161,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#0047AB";
+                teamName = "magic";
             }
             else if (team == "philadelphia")
             {
@@ -152,6 +169,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#D0103A";
                 color2 = "#0046AD";
+                teamName = "76ers";
             }
             else if (team == "toronto")
             {
@@ -159,6 +177,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#FFFFFF";
                 color2 = "#CD1041";
+                teamName = "raptors";
             }
             else if (team == "washington")
             {
@@ -166,6 +185,7 @@ namespace Hoops.Screens
                 conference = "East";
                 color1 = "#002244";
                 color2 = "#F0163A";
+                teamName = "wizards";
             }
             else if (team == "dallas")
             {
@@ -173,6 +193,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#A9A9A9";
                 color2 = "#0B60AD";
+                teamName = "mavericks";
             }
             else if (team == "denver")
             {
@@ -180,6 +201,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#4B90CD";
                 color2 = "#FDB827";
+                teamName = "nuggets";
             }
             else if (team == "goldenstate")
             {
@@ -187,6 +209,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#04529C";
                 color2 = "#FFCC33";
+                teamName = "warriors";
             }
             else if (team == "houston")
             {
@@ -194,6 +217,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#FFFFFF";
                 color2 = "#CE1138";
+                teamName = "rockets";
             }
             else if (team == "lac")
             {
@@ -201,6 +225,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#EE2944";
                 color2 = "#146AA2";
+                teamName = "clippers";
             }
             else if (team == "lal")
             {
@@ -208,6 +233,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#4A2583";
                 color2 = "#F5AF1B";
+                teamName = "lakers";
             }
             else if (team == "memphis")
             {
@@ -215,6 +241,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#001F70";
                 color2 = "#7399C6";
+                teamName = "grizzlies";
             }
             else if (team == "minnesota")
             {
@@ -222,6 +249,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#0F4D92";
                 color2 = "#8C92AC";
+                teamName = "timberwolves";
             }
             else if (team == "neworleans")
             {
@@ -229,6 +257,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#002B5C";
                 color2 = "#B4975A";
+                teamName = "pelicans";
             }
             else if (team == "okc")
             {
@@ -236,6 +265,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#007DC3";
                 color2 = "#F05133";
+                teamName = "thunder";
             }
             else if (team == "phoenix")
             {
@@ -243,6 +273,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#1C105E";
                 color2 = "#E65F20";
+                teamName = "suns";
             }
             else if (team == "portland")
             {
@@ -250,6 +281,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#FFFFFF";
                 color2 = "#F0163A";
+                teamName = "trail blazers";
             }
             else if (team == "sacramento")
             {
@@ -257,6 +289,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#753BBD";
                 color2 = "#8A8D8F";
+                teamName = "kings";
             }
             else if (team == "sanantonio")
             {
@@ -264,6 +297,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#FFFFFF";
                 color2 = "#B1B3B3";
+                teamName = "spurs";
             }
             else if (team == "utah")
             {
@@ -271,6 +305,7 @@ namespace Hoops.Screens
                 conference = "West";
                 color1 = "#00275D";
                 color2 = "#FF9100";
+                teamName = "jazz";
             }
 
             // Set the team picture in the back of player photo
@@ -291,8 +326,34 @@ namespace Hoops.Screens
             playerPhoto.EndInit();
             playerPic.Source = playerPhoto;
 
-          
+            //Update text
+            teamLabel.Text = team + " " + teamName;
+            numberLabel.Text = "number: " + bioStats[1];
+            positionLabel.Text = "position: " + bioStats[3];
+            birthdate.Text = "birthdate: " + bioStats[6];
+            height.Text = "height: " + bioStats[4].Replace("-", "'") + "\"";
+            weight.Text = "weight: " + bioStats[5] + "lbs";
+            college.Text = bioStats[8];
+            experience.Text = "experience: " + bioStats[7];
+            salary.Text = "salary: " + bioStats[9];
 
+        }
+
+        void loadFromDatabase()
+        {
+            // LOAD INFO FROM DATABASE TO ARRAY
+
+            // Sample data
+            bioStats[0] = "LAL";
+            bioStats[1] = "5";
+            bioStats[2] = "Kobe Bryant";
+            bioStats[3] = "SG";
+            bioStats[4] = "6-11";
+            bioStats[5] = "260";
+            bioStats[6] = "July 29 1982";
+            bioStats[7] = "2";
+            bioStats[8] = "Duke";
+            bioStats[9] = "$17000000";
         }
     }
 }

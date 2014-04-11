@@ -23,7 +23,7 @@ namespace Hoops.Screens
         public PlayerSelect()
         {
             InitializeComponent();
-            App.Current.Properties["Player"] = "Kobe Bryant";
+            App.Current.Properties["Player"] = "Rajon Rondo";
         }
 
         public void UtilizeState(object state)

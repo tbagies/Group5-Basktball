@@ -33,6 +33,7 @@ namespace Hoops.Screens
         TeamColors teamColors;
         double totalNBAPlayers;
         double totalTeamPlayers;
+        string playerNumber;
 
         string[,] statsArray = new string[8, 3];
 
@@ -46,8 +47,8 @@ namespace Hoops.Screens
         {
             InitializeComponent();
             populateArrays();
-            loadInfo((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], "1");
             loadStats();
+            loadInfo((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], playerNumber);
         }
 
         public void UtilizeState(object state)
@@ -288,7 +289,11 @@ namespace Hoops.Screens
 
         private void loadStats()
         {
-            // Data I should be getting from Dave
+            //***************************************************************************
+            //
+            // GET DATA FROM DATABASE HERE
+            //
+            //***************************************************************************
             statsArray[0, 0] = "12.3";
             statsArray[0, 1] = "1";
             statsArray[0, 2] = "275";
@@ -313,6 +318,10 @@ namespace Hoops.Screens
             statsArray[7, 0] = "6.6";
             statsArray[7, 1] = "7";
             statsArray[7, 2] = "1";
+
+            //***********************************************
+            // Get the total number of players for rankings
+            //***********************************************
             totalNBAPlayers = 550;
             totalTeamPlayers = 15;
 
@@ -320,6 +329,11 @@ namespace Hoops.Screens
             {
                 statslabelsArray[i].Text = statsArray[i, 0];
             }
+
+            //***********************************
+            // Get player number from database
+            //***********************************
+            playerNumber = "24";
 
         }
 
