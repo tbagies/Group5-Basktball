@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Kinect;
 
 namespace Hoops.Screens
 {
@@ -20,21 +21,53 @@ namespace Hoops.Screens
     /// </summary>
     public partial class Title : UserControl, ISwitchable
     {
+        private static KinectSensor sensor;
+        private static TipOff tipOff = new TipOff();      
         public Title()
         {
-            InitializeComponent();
-            
+            InitializeComponent(); 
         }
 
-        public void UtilizeState(object state)
+       public void UtilizeState(object state)
         {
-            throw new NotImplementedException();
+            Loaded += Title_Loaded;
         }
 
-        //event handler for going to next screen, for now it uses a button
-        private void NEXT_Click(object sender, RoutedEventArgs e)
+        private void Title_Loaded(object sender, RoutedEventArgs e)
         {
-            Switcher.Switch(new TipOff());
+            sensor = KinectSensor.KinectSensors.Where(
+                                    s => s.Status == KinectStatus.Connected).FirstOrDefault();
+            if (sensor != null)
+            {
+                sensor.SkeletonStream.Enable();
+                sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
+                sensor.Start();
+            }
+        }
+        static void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            using (var frame = e.OpenSkeletonFrame())
+            {
+                if (frame != null)
+                {
+                    Skeleton[] skeletons = new Skeleton[frame.SkeletonArrayLength];
+
+                    frame.CopySkeletonDataTo(skeletons);
+
+                    if (skeletons.Length > 0)
+                    {
+                        var user = skeletons.Where(
+                                   u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
+
+                        if (user != null)
+                        {
+                            sensor.Stop();
+                            sensor.Dispose();
+                            Switcher.Switch(tipOff);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -19,24 +19,32 @@ namespace Hoops
     /// <summary>
     /// Interaction logic for PageSwitch.xaml
     /// </summary>
-    public partial class PageSwitch : Window
+   public partial class PageSwitch : Window
     {
         public PageSwitch()
         {
             InitializeComponent();
             Switcher.pageSwitch = this;
-            
+
+            App.Current.Properties["Team"] = "chicago";
+            App.Current.Properties["Player"] = "Derrick Rose";
             //home page goes here
             Switcher.Switch(new Title());
         }
         public void Navigate(UserControl nextPage)
         {
-            this.Content = nextPage;
+            this.grid0.Children.Clear();
+            this.grid0.Children.Add(nextPage);
+            
+           // this.Content = nextPage;
+            
         }
 
         public void Navigate(UserControl nextPage, object state)
         {
-            this.Content = nextPage;
+           this.grid0.Children.Clear();
+            this.grid0.Children.Add(nextPage);
+        //    this.Content = nextPage;
             ISwitchable s = nextPage as ISwitchable;
 
             if (s != null)

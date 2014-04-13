@@ -10,14 +10,17 @@ namespace Hoops
     public static class Switcher
     {
         public static PageSwitch pageSwitch;
+        public static UserControl _newPage;
 
         public static void Switch(UserControl newPage) 
         {
-            pageSwitch.Navigate(newPage);
+            _newPage = newPage;
+            pageSwitch.Navigate(_newPage);
         }
         public static void Switch(UserControl newPage, object state)
         {
-            pageSwitch.Navigate(newPage, state);
+            _newPage = newPage;
+            pageSwitch.Navigate(_newPage, state);
         }
     }
 }

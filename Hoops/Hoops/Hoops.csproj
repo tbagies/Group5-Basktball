@@ -34,8 +34,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\v1.8\Assemblies\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\Assemblies\Microsoft.Kinect.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit.Controls">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\Assemblies\Microsoft.Kinect.Toolkit.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Kinect.Toolkit.Interaction, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SDKs\Kinect\Developer Toolkit v1.8.0\Assemblies\Microsoft.Kinect.Toolkit.Interaction.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,14 +68,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="PageSwitch.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="ISwitchable.cs" />
+    <Compile Include="PageSwitch.xaml.cs">
+      <DependentUpon>PageSwitch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Switcher.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Gestures\IGestureSegment.cs" />
+    <Compile Include="Gestures\JumpGesture.cs" />
+    <Compile Include="Gestures\JumpSegment1.cs" />
+    <Compile Include="Gestures\PassingGesture.cs" />
+    <Compile Include="Gestures\ShootingGesture.cs" />
+    <Compile Include="Gestures\PassingSegment1.cs" />
+    <Compile Include="Gestures\ShootingSegment1.cs" />
+    <Compile Include="Gestures\TimeOutGesture.cs" />
+    <Compile Include="Gestures\TimeOutSegment1.cs" />
     <Compile Include="Screens\PlayerSelect.xaml.cs">
       <DependentUpon>PlayerSelect.xaml</DependentUpon>
     </Compile>
@@ -79,12 +107,13 @@
     <Compile Include="Screens\Title.xaml.cs">
       <DependentUpon>Title.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Switcher.cs" />
-    <Compile Include="ISwitchable.cs" />
-    <Compile Include="PageSwitch.xaml.cs">
-      <DependentUpon>PageSwitch.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Screens\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="PageSwitch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Screens\PlayerSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +135,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Title.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +183,78 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen1\background.png" />
+    <Resource Include="resources\Screen1\title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen2\background.png" />
+    <Resource Include="resources\Screen2\ball.png" />
+    <Resource Include="resources\Screen2\gifbackground.png" />
+    <Resource Include="resources\Screen2\title_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen3\background.png" />
+    <Resource Include="resources\Screen3\Logos\East\atlanta.png" />
+    <Resource Include="resources\Screen3\Logos\East\boston.png" />
+    <Resource Include="resources\Screen3\Logos\East\brooklyn.png" />
+    <Resource Include="resources\Screen3\Logos\East\charlotte.png" />
+    <Resource Include="resources\Screen3\Logos\East\chicago.png" />
+    <Resource Include="resources\Screen3\Logos\East\cleveland.png" />
+    <Resource Include="resources\Screen3\Logos\East\detroit.png" />
+    <Resource Include="resources\Screen3\Logos\East\east.png" />
+    <Resource Include="resources\Screen3\Logos\East\indiana.png" />
+    <Resource Include="resources\Screen3\Logos\East\miami.png" />
+    <Resource Include="resources\Screen3\Logos\East\milwaukee.png" />
+    <Resource Include="resources\Screen3\Logos\East\newyork.png" />
+    <Resource Include="resources\Screen3\Logos\East\orlando.png" />
+    <Resource Include="resources\Screen3\Logos\East\philadelphia.png" />
+    <Resource Include="resources\Screen3\Logos\East\toronto.png" />
+    <Resource Include="resources\Screen3\Logos\East\washington.png" />
+    <Resource Include="resources\Screen3\Logos\West\dallas.png" />
+    <Resource Include="resources\Screen3\Logos\West\denver.png" />
+    <Resource Include="resources\Screen3\Logos\West\goldenstate.png" />
+    <Resource Include="resources\Screen3\Logos\West\houston.png" />
+    <Resource Include="resources\Screen3\Logos\West\lac.png" />
+    <Resource Include="resources\Screen3\Logos\West\lal.png" />
+    <Resource Include="resources\Screen3\Logos\West\memphis.png" />
+    <Resource Include="resources\Screen3\Logos\West\minnesota.png" />
+    <Resource Include="resources\Screen3\Logos\West\neworleans.png" />
+    <Resource Include="resources\Screen3\Logos\West\okc.png" />
+    <Resource Include="resources\Screen3\Logos\West\phoenix.png" />
+    <Resource Include="resources\Screen3\Logos\West\portland.png" />
+    <Resource Include="resources\Screen3\Logos\West\sacramento.png" />
+    <Resource Include="resources\Screen3\Logos\West\sanantonio.png" />
+    <Resource Include="resources\Screen3\Logos\West\utah.png" />
+    <Resource Include="resources\Screen3\Logos\West\west.png" />
+    <Resource Include="resources\Screen3\ref_background.png" />
+    <Resource Include="resources\Screen3\team_background.png" />
+    <Resource Include="resources\Screen3\title_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen4\background.png" />
+    <Resource Include="resources\Screen4\messagebox.png" />
+    <Resource Include="resources\Screen4\ref_background.png" />
+    <Resource Include="resources\Screen4\title_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen5\background.png" />
+    <Resource Include="resources\Screen5\gif_background.png" />
+    <Resource Include="resources\Screen5\info_background.png" />
+    <Resource Include="resources\Screen5\messagebox.png" />
+    <Resource Include="resources\Screen5\player_background.png" />
+    <Resource Include="resources\Screen5\ref_background.png" />
+    <Resource Include="resources\Screen5\title_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\Screen6\background.png" />
+    <Resource Include="resources\Screen6\court.png" />
+    <Resource Include="resources\Screen6\per_background.png" />
+    <Resource Include="resources\Screen6\player_background.png" />
+    <Resource Include="resources\Screen6\ref_background.png" />
+    <Resource Include="resources\Screen6\selector.png" />
+    <Resource Include="resources\Screen6\title_background.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\playerPhotos\addManually.txt" />
@@ -616,79 +725,11 @@
     <Resource Include="resources\playerPhotos\WAS\trevor_booker.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\Screen1\background.png" />
-    <Resource Include="resources\Screen1\title.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resources\Screen2\background.png" />
-    <Resource Include="resources\Screen2\ball.png" />
-    <Resource Include="resources\Screen2\gifbackground.png" />
-    <Resource Include="resources\Screen2\title_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resources\Screen3\background.png" />
-    <Resource Include="resources\Screen3\Logos\East\atlanta.png" />
-    <Resource Include="resources\Screen3\Logos\East\boston.png" />
-    <Resource Include="resources\Screen3\Logos\East\brooklyn.png" />
-    <Resource Include="resources\Screen3\Logos\East\charlotte.png" />
-    <Resource Include="resources\Screen3\Logos\East\chicago.png" />
-    <Resource Include="resources\Screen3\Logos\East\cleveland.png" />
-    <Resource Include="resources\Screen3\Logos\East\detroit.png" />
-    <Resource Include="resources\Screen3\Logos\East\east.png" />
-    <Resource Include="resources\Screen3\Logos\East\indiana.png" />
-    <Resource Include="resources\Screen3\Logos\East\miami.png" />
-    <Resource Include="resources\Screen3\Logos\East\milwaukee.png" />
-    <Resource Include="resources\Screen3\Logos\East\newyork.png" />
-    <Resource Include="resources\Screen3\Logos\East\orlando.png" />
-    <Resource Include="resources\Screen3\Logos\East\philadelphia.png" />
-    <Resource Include="resources\Screen3\Logos\East\toronto.png" />
-    <Resource Include="resources\Screen3\Logos\East\washington.png" />
-    <Resource Include="resources\Screen3\Logos\West\dallas.png" />
-    <Resource Include="resources\Screen3\Logos\West\denver.png" />
-    <Resource Include="resources\Screen3\Logos\West\goldenstate.png" />
-    <Resource Include="resources\Screen3\Logos\West\houston.png" />
-    <Resource Include="resources\Screen3\Logos\West\lac.png" />
-    <Resource Include="resources\Screen3\Logos\West\lal.png" />
-    <Resource Include="resources\Screen3\Logos\West\memphis.png" />
-    <Resource Include="resources\Screen3\Logos\West\minnesota.png" />
-    <Resource Include="resources\Screen3\Logos\West\neworleans.png" />
-    <Resource Include="resources\Screen3\Logos\West\okc.png" />
-    <Resource Include="resources\Screen3\Logos\West\phoenix.png" />
-    <Resource Include="resources\Screen3\Logos\West\portland.png" />
-    <Resource Include="resources\Screen3\Logos\West\sacramento.png" />
-    <Resource Include="resources\Screen3\Logos\West\sanantonio.png" />
-    <Resource Include="resources\Screen3\Logos\West\utah.png" />
-    <Resource Include="resources\Screen3\Logos\West\west.png" />
-    <Resource Include="resources\Screen3\ref_background.png" />
-    <Resource Include="resources\Screen3\team_background.png" />
-    <Resource Include="resources\Screen3\title_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resources\Screen4\background.png" />
-    <Resource Include="resources\Screen4\messagebox.png" />
-    <Resource Include="resources\Screen4\ref_background.png" />
-    <Resource Include="resources\Screen4\title_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resources\Screen5\background.png" />
-    <Resource Include="resources\Screen5\gif_background.png" />
-    <Resource Include="resources\Screen5\info_background.png" />
-    <Resource Include="resources\Screen5\messagebox.png" />
-    <Resource Include="resources\Screen5\player_background.png" />
-    <Resource Include="resources\Screen5\ref_background.png" />
-    <Resource Include="resources\Screen5\title_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="resources\Screen6\background.png" />
-    <Resource Include="resources\Screen6\court.png" />
-    <Resource Include="resources\Screen6\per_background.png" />
-    <Resource Include="resources\Screen6\player_background.png" />
-    <Resource Include="resources\Screen6\ref_background.png" />
-    <Resource Include="resources\Screen6\selector.png" />
-    <Resource Include="resources\Screen6\title_background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\playerPhotos\team\" />
+    <Resource Include="resources\Screen2\!basketball4.jpg" />
+    <Content Include="resources\Screen6\dribble.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="resources\Screen6\rside.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
