@@ -142,7 +142,7 @@ namespace Hoops.Screens
                 Tag = a
             };
             button.Click += tileButtonOnClick;
-            EastContent.Children.Add(button);
+      //      EastContent.Children.Add(button);
         }
 
         // adds the team buttons for the Western Conference 
@@ -170,7 +170,10 @@ namespace Hoops.Screens
         private void tileButtonOnClick(object sender, RoutedEventArgs e)
         {
             var temp = (KinectTileButton)sender;
-            App.Current.Properties["Team"] = (string)temp.Tag;
+         //  
+            String[] delimiter = new String[]{"/","."};
+            String[] str = (temp.Tag.ToString()).Split(delimiter,StringSplitOptions.RemoveEmptyEntries);
+            App.Current.Properties["Team"] = str[str.Length-2];
             sensorChooser.Stop();
             Switcher.Switch(new PlayerSelect()); 
         }

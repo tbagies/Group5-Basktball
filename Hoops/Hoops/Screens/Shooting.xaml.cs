@@ -50,8 +50,8 @@ namespace Hoops.Screens
                 sensor.SkeletonStream.Enable();
                 sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
                 _gesture.GestureRecognized += Gesture_GestureRecognized;
-                timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-                passingGesture.GestureRecognized += passingGesture_GestureRecognized;  
+             //   timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+              //  passingGesture.GestureRecognized += passingGesture_GestureRecognized;  
                 sensor.Start();
             }
         }
@@ -393,8 +393,8 @@ namespace Hoops.Screens
                         if (user != null)
                         {
                             _gesture.Update(user);
-                            timeOutGesture.Update(user);
-                            passingGesture.Update(user);
+              //              timeOutGesture.Update(user);
+               //             passingGesture.Update(user);
                         }
                     }
                 }

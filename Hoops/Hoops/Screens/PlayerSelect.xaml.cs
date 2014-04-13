@@ -32,6 +32,8 @@ namespace Hoops.Screens
         static PassingGesture _gesture = new PassingGesture();
         static TeamSelect prevPage = new TeamSelect();
 
+        private string teamFolder = "CHI";
+
         //static Shooting nextPage = new Shooting();
 
         static bool recognized = false;
@@ -80,12 +82,113 @@ namespace Hoops.Screens
 
 
             //test adding a players
-            Application.Current.Properties["Team"] = "BOS";
+          //  Application.Current.Properties["Team"] = "BOS";
+
+            teamFolderName();
             readRoster();
         }
 
 
-
+        void teamFolderName()
+        {
+            String team = Application.Current.Properties["Team"].ToString();
+            switch (team)
+            {
+                case "atlanta": 
+                    teamFolder = "ATL";
+                    break;
+                case "boston":
+                    teamFolder = "BOS";
+                    break;
+                case "brooklyn":
+                    teamFolder = "BRK";
+                    break;
+                case "charlotte":
+                    teamFolder = "CHA";
+                    break;
+                case "chicago":
+                    teamFolder = "CHI";
+                    break;
+                case "cleveland":
+                    teamFolder = "CLE";
+                    break;
+                case "detroit":
+                    teamFolder = "DET";
+                    break;
+                case "indiana":
+                    teamFolder = "IND";
+                    break;
+                case "miami":
+                    teamFolder = "MIA";
+                    break;
+                case "milwaukee":
+                    teamFolder = "MIL";
+                    break;
+                case "newyork":
+                    teamFolder = "NYK";
+                    break;
+                case "orlando":
+                    teamFolder = "ORL";
+                    break;
+                case "philadelphia":
+                    teamFolder = "PHI";
+                    break;
+                case "toronto": 
+                    teamFolder = "TOR";
+                    break;
+                case "washington":
+                    teamFolder = "WAS";
+                    break;
+                case "dallas":
+                    teamFolder = "DAL";
+                    break;
+                case "denver":
+                    teamFolder = "DEN";
+                    break;
+                case "goldenstate":
+                    teamFolder = "GSW";
+                    break;
+                case "houston":
+                    teamFolder = "HOU";
+                    break;
+                case "lac":
+                    teamFolder = "LAC";
+                    break;
+                case "lal":
+                    teamFolder = "LAL";
+                    break;
+                case "memphis":
+                    teamFolder = "MEM";
+                    break;
+                case "minnesota":
+                    teamFolder = "MIN";
+                    break;
+                case "neworleans":
+                    teamFolder = "NOP";
+                    break;
+                case "okc":
+                    teamFolder = "OKC";
+                    break;
+                case "phoenix":
+                    teamFolder = "PHO";
+                    break;
+                case "portland":
+                    teamFolder = "POR";
+                    break;
+                case "sacramento":
+                    teamFolder = "SAC";
+                    break;
+                case "sanantonio":
+                    teamFolder = "SAS";
+                    break;
+                case "utah":
+                    teamFolder = "UTA";
+                    break;
+                default:
+                    teamFolder = "UTA";
+                    break;
+            }
+        }
         void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (var frame = e.OpenSkeletonFrame())
@@ -414,13 +517,13 @@ namespace Hoops.Screens
         {
             //error check
             //Not the best way to do the relative path but since for now the code executes either in debug, it will work
-            if (!Directory.Exists("../../" + playerPhotoLoc + Application.Current.Properties["Team"]))
+            if (!Directory.Exists("../../" + playerPhotoLoc + teamFolder))
             {
-                MessageBox.Show(playerPhotoLoc + Application.Current.Properties["Team"] + " directory does not exist");
+                MessageBox.Show(playerPhotoLoc + teamFolder + " directory does not exist");
                 return;
             }
             //if it does exist then we check the roster file
-            if (!File.Exists("../../" + playerPhotoLoc + Application.Current.Properties["Team"] + "/roster.txt"))
+            if (!File.Exists("../../" + playerPhotoLoc + teamFolder + "/roster.txt"))
             {
                 MessageBox.Show("The roster file for " + Application.Current.Properties[""] + " does not exist");
                 return;
@@ -429,7 +532,7 @@ namespace Hoops.Screens
 
 
 
-            string[] lines = System.IO.File.ReadAllLines("../../" + playerPhotoLoc + Application.Current.Properties["Team"] + "/roster.txt");
+            string[] lines = System.IO.File.ReadAllLines("../../" + playerPhotoLoc + teamFolder + "/roster.txt");
 
 
             string[] delimiter = new string[] { "," };
@@ -463,7 +566,7 @@ namespace Hoops.Screens
                     if (sorted[x] != null)
                     {
                         count++;
-                        addPlayer(count, sorted[x][1], "../" + playerPhotoLoc + Application.Current.Properties["Team"] + "/" + sorted[x][2]);
+                        addPlayer(count, sorted[x][1], "../" + playerPhotoLoc + teamFolder + "/" + sorted[x][2]);
                     }
 
 
@@ -478,7 +581,7 @@ namespace Hoops.Screens
                 for (int x = 0; x < lines.Length; x++)
                 {
                     string[] cur = lines[x].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-                    addPlayer(x, cur[0], "../" + playerPhotoLoc + Application.Current.Properties["Team"] + "/" + cur[1]);
+                    addPlayer(x, cur[0], "../" + playerPhotoLoc + teamFolder + "/" + cur[1]);
                 }
             }
         }
