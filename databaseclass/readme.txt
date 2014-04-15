@@ -6,7 +6,7 @@ Dave Bai CS422 Hoops Project
 
 3) To run use the class in your program, use Class1.METHODNAMEHERE();
 
-4) The following are the methods: 
+4) The following are the methods:
 
 ******************************************************************************************************************
 a) string TotalNBAPlayers(); 
