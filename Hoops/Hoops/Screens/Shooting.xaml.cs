@@ -27,6 +27,7 @@ namespace Hoops.Screens
         static TimeOutGesture timeOutGesture = new TimeOutGesture();
         static PassingGesture passingGesture = new PassingGesture();
         string[] bioStats = new string[10];
+        static KinectSensor sensor;
 
         public Shooting()
         {
@@ -42,7 +43,7 @@ namespace Hoops.Screens
         }
         private void Shooting_Loaded(object sender, RoutedEventArgs e)
         {
-            var sensor = KinectSensor.KinectSensors.Where(
+            sensor = KinectSensor.KinectSensors.Where(
                                    s => s.Status == KinectStatus.Connected).FirstOrDefault();
 
             if (sensor != null)
@@ -403,6 +404,8 @@ namespace Hoops.Screens
 
         static void Gesture_GestureRecognized(object sender, EventArgs e)
         {
+            sensor.Stop();
+            sensor.Dispose();
             Switcher.Switch(new Stats());
         }
 
