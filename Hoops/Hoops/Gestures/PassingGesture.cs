@@ -19,20 +19,22 @@ namespace Gestures
 
         Boolean[] isSegmentStarted = new Boolean[2];
 
+        int length;
         public PassingGesture()
         {
           //  ShootingSegment2 shoot0 = new ShootingSegment2();
-            ShootingSegment1 shoot1 = new ShootingSegment1();
-            ShootingSegment2 shoot2 = new ShootingSegment2();
+            PassingSegment1 seg1 = new PassingSegment1();
+            PassingSegment2 seg2 = new PassingSegment2();
 
             _segments = new IGestureSegment[]
             {
              //   shoot0,
-                shoot1,
-                shoot2
+                seg1,
+                seg2
             };
 
-            for (int i = 0; i <2; i++)
+            length = _segments.Length;
+            for (int i = 0; i <length; i++)
             {
                 isSegmentStarted[i] = false;
             }   
@@ -41,13 +43,12 @@ namespace Gestures
         public void Update(Skeleton skeleton)
         {
             GesturePartResult result = _segments[_currentSegment].Update(skeleton);
-     
 
-            if (result == GesturePartResult.Succeeded && _currentSegment<2)
+            if (result == GesturePartResult.Succeeded && _currentSegment<length)
             {
                 isSegmentStarted[_currentSegment] = true;
                 Console.WriteLine("\n" + _currentSegment);
-                if (_currentSegment + 1 < _segments.Length)
+                if (_currentSegment + 1 < length)
                 {
                     _currentSegment++;
                     _frameCount = 0;
@@ -57,7 +58,7 @@ namespace Gestures
                     Console.WriteLine("\nNull gesture");
                     if (GestureRecognized != null)
                     {
-                        Console.WriteLine("\nCall gestureRec");
+                        Console.WriteLine("\nCall Passing gestureRec");
                         GestureRecognized(this, new EventArgs());
                      //   Reset();
                     }

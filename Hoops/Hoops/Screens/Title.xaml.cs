@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
+using Microsoft.Kinect.Toolkit;
 
 namespace Hoops.Screens
 {
@@ -21,11 +22,14 @@ namespace Hoops.Screens
     /// </summary>
     public partial class Title : UserControl, ISwitchable
     {
-        private static KinectSensor sensor;
-        private static TipOff tipOff = new TipOff();      
+        private KinectSensorChooser sensorChooser;
+
+        private TipOff tipOff = new TipOff();
         public Title()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            sensorChooser = new KinectSensorChooser();
+            sensorChooserUi.KinectSensorChooser = sensorChooser;
         }
 
        public void UtilizeState(object state)
@@ -35,16 +39,39 @@ namespace Hoops.Screens
 
         private void Title_Loaded(object sender, RoutedEventArgs e)
         {
-            sensor = KinectSensor.KinectSensors.Where(
-                                    s => s.Status == KinectStatus.Connected).FirstOrDefault();
-            if (sensor != null)
+            Console.WriteLine(" loaded ");
+            sensorChooser.KinectChanged += new EventHandler<KinectChangedEventArgs>(sensorChooser_KinectChanged);
+            sensorChooser.Start(); 
+        }
+
+        void sensorChooser_KinectChanged(object sender, KinectChangedEventArgs e)
+        {
+            Console.WriteLine(" KinectChanged");
+            StopKinect(e.OldSensor);
+
+            if (e.NewSensor == null)
             {
-                sensor.SkeletonStream.Enable();
-                sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-                sensor.Start();
+                Console.WriteLine(" e.NewSensor = null");
+                return;
+            }
+
+            e.NewSensor.SkeletonStream.Enable();
+            e.NewSensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensorChooser_SkeletonFrameReady);
+            e.NewSensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
+            e.NewSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
+            try
+            {
+                e.NewSensor.Start();
+                Console.WriteLine(" e.NewSensor  is started");
+            }
+            catch (System.IO.IOException)
+            {
+                Console.WriteLine(" Exception");
+
             }
         }
-        static void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+      
+        void sensorChooser_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (var frame = e.OpenSkeletonFrame())
             {
@@ -61,13 +88,26 @@ namespace Hoops.Screens
 
                         if (user != null)
                         {
-                            sensor.Stop();
-                            sensor.Dispose();
+                            tipOff.PassedSensorChooser = sensorChooser;
+                            sensorChooser.Kinect.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(sensorChooser_SkeletonFrameReady);
                             Switcher.Switch(tipOff);
+                           
                         }
                     }
                 }
             }
         }
+
+        private void StopKinect(KinectSensor sensor)
+        {
+            if (sensor != null)
+            {
+                if (sensor.IsRunning)
+                {
+                    sensor.Stop();
+                }
+            }
+        }
+
     }
 }

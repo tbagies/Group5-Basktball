@@ -14,6 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
+using Microsoft.Kinect.Toolkit;
 using Gestures;
 
 namespace Hoops.Screens
@@ -23,19 +24,27 @@ namespace Hoops.Screens
     /// </summary>
     public partial class Shooting : UserControl, ISwitchable
     {
-        static ShootingGesture _gesture = new ShootingGesture();
-        static TimeOutGesture timeOutGesture = new TimeOutGesture();
-        static PassingGesture passingGesture = new PassingGesture();
-        string[] bioStats = new string[10];
-        static KinectSensor sensor;
+        private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
+            }
+        }
 
+        private ShootingGesture _gesture = new ShootingGesture();
+        private TimeOutGesture timeOutGesture = new TimeOutGesture();
+        private PassingGesture passingGesture = new PassingGesture();
+        string[] bioStats = new string[10];
         public Shooting()
         {
             InitializeComponent();
-
             loadFromDatabase();
+            Console.Write(" FROM SHOOTING (string)App.Current.Properties[Player] = " + (string)App.Current.Properties["Player"]);
             load((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], bioStats[1]);
-
         }
         public void UtilizeState(object state)
         {
@@ -43,28 +52,26 @@ namespace Hoops.Screens
         }
         private void Shooting_Loaded(object sender, RoutedEventArgs e)
         {
-            sensor = KinectSensor.KinectSensors.Where(
-                                   s => s.Status == KinectStatus.Connected).FirstOrDefault();
-
-            if (sensor != null)
-            {
-                sensor.SkeletonStream.Enable();
-                sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-                _gesture.GestureRecognized += Gesture_GestureRecognized;
-             //   timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-              //  passingGesture.GestureRecognized += passingGesture_GestureRecognized;  
-                sensor.Start();
-            }
+            sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
+            _gesture.GestureRecognized += Gesture_GestureRecognized;
+            timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+            passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
         }
 
         void timeOutGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new PlayerSelect());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
         }
 
         void passingGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new TeamSelect());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
         }
         private void load(string team, string player, string number)
         {
@@ -376,7 +383,7 @@ namespace Hoops.Screens
             bioStats[9] = "$17000000";
         
         }
-        static void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (var frame = e.OpenSkeletonFrame())
             {
@@ -394,19 +401,20 @@ namespace Hoops.Screens
                         if (user != null)
                         {
                             _gesture.Update(user);
-              //              timeOutGesture.Update(user);
-               //             passingGesture.Update(user);
+                            timeOutGesture.Update(user);
+                            passingGesture.Update(user);
                         }
                     }
                 }
             }
         }
 
-        static void Gesture_GestureRecognized(object sender, EventArgs e)
+        void Gesture_GestureRecognized(object sender, EventArgs e)
         {
-            sensor.Stop();
-            sensor.Dispose();
-            Switcher.Switch(new Stats());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            Stats s = new Stats();
+            s.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(s);
         }
 
        

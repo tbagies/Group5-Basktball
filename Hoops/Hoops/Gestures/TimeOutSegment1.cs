@@ -16,13 +16,10 @@ namespace Gestures
             if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.HandLeft].Position.Y 
                && Math.Abs(skeleton.Joints[JointType.HandRight].Position.Y - skeleton.Joints[JointType.HandLeft].Position.Y) >  th
                 && skeleton.Joints[JointType.ElbowLeft].Position.Y > skeleton.Joints[JointType.ElbowRight].Position.Y)
+                if (skeleton.Joints[JointType.ElbowLeft].Position.Z > skeleton.Joints[JointType.ElbowRight].Position.Z
+                    && skeleton.Joints[JointType.WristLeft].Position.Z > skeleton.Joints[JointType.WristRight].Position.Z)
             {
-                
-                {
-                    Console.WriteLine(skeleton.Joints[JointType.HandRight].Position.X + " " +
-                    skeleton.Joints[JointType.ElbowRight].Position.X);
-                    return GesturePartResult.Succeeded;
-                }
+                return GesturePartResult.Succeeded;
             }
 
             // Hand dropped
@@ -32,12 +29,14 @@ namespace Gestures
     
     class TimeOutSegment2 : IGestureSegment
     {
-        float th = 0.01f;
+        float th = 0.1f;
         public GesturePartResult Update(Skeleton skeleton)
         {
             // HWrisr above head
             if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.HandLeft].Position.Y
-               && skeleton.Joints[JointType.ElbowLeft].Position.Y < skeleton.Joints[JointType.ElbowRight].Position.Y)
+               && skeleton.Joints[JointType.ElbowLeft].Position.Y < skeleton.Joints[JointType.ElbowRight].Position.Y
+                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             
             {
 

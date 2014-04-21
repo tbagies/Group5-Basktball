@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hoops.Screens;
+using Microsoft.Kinect.Toolkit;
 
 namespace Hoops
 {
@@ -21,22 +22,19 @@ namespace Hoops
     /// </summary>
    public partial class PageSwitch : Window
     {
+       private Title title = new Title();
         public PageSwitch()
         {
             InitializeComponent();
-            Switcher.pageSwitch = this;
-
-            App.Current.Properties["Team"] = "chicago";
+       //     App.Current.Properties["Team"] = "chicago";
             App.Current.Properties["Player"] = "Derrick Rose";
-            //home page goes here
-            Switcher.Switch(new Title());
+            Switcher.pageSwitch = this;
+            Switcher.Switch(title);
         }
         public void Navigate(UserControl nextPage)
         {
             this.grid0.Children.Clear();
             this.grid0.Children.Add(nextPage);
-            
-           // this.Content = nextPage;
             
         }
 
@@ -44,7 +42,6 @@ namespace Hoops
         {
            this.grid0.Children.Clear();
             this.grid0.Children.Add(nextPage);
-        //    this.Content = nextPage;
             ISwitchable s = nextPage as ISwitchable;
 
             if (s != null)

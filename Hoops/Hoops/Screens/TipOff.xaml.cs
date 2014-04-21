@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
 using Gestures;
+using Microsoft.Kinect.Toolkit;
 
 namespace Hoops.Screens
 {
@@ -22,72 +23,93 @@ namespace Hoops.Screens
     /// </summary>
     public partial class TipOff : UserControl, ISwitchable
     {
-       private KinectSensor sensor;
-       private static JumpGesture _gesture = new JumpGesture();
-       private static TeamSelect teamSelect = new TeamSelect();
-       private bool recognized = false;
+        private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = sensorChooser;
+            }
+        }
+        private JumpGesture _gesture = new JumpGesture();
+        private TeamSelect teamSelect = new TeamSelect();
+        private bool gestureRecognized = false;
         public TipOff()
         {
             InitializeComponent();
+            Console.WriteLine("TippOFF");
         }
+
         public void UtilizeState(object state)
         {
+            Console.WriteLine("UtilizeState");
            Loaded += TipOff_Loaded;
         }
 
         void TipOff_Loaded(object sender, RoutedEventArgs e)
         {
-            sensor = KinectSensor.KinectSensors.Where(
-                                    s => s.Status == KinectStatus.Connected).FirstOrDefault();
-            if (sensor != null)
+            Console.WriteLine("TippOFF Loadded sensorChooser = " + sensorChooser);
+            if (!gestureRecognized)
             {
-                sensor.SkeletonStream.Enable();
-                sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-                if(_gesture!= null)
-                    _gesture.GestureRecognized += Gesture_GestureRecognized;
-                sensor.Start();
+                Console.WriteLine("IF");
+                sensorChooser.Kinect.SkeletonFrameReady += sensorChooser_SkeletonFrameReady;
+                _gesture.GestureRecognized += Gesture_GestureRecognized;
             }
-            
+            else
+            {
+                Console.WriteLine("ELSE");
+                teamSelect.PassedSensorChooser = sensorChooser;
+                Switcher.Switch(teamSelect);
+            }
+            Console.WriteLine("AfterSensorStartingStatment");
         }
 
-        //event handler for going to next screen, for now it uses a button
-        static void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        void sensorChooser_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            using (var frame = e.OpenSkeletonFrame())
-            {
-                if (frame != null)
+            Console.WriteLine("Skeleton");
+               using (var frame = e.OpenSkeletonFrame())
                 {
-                    Skeleton[] skeletons = new Skeleton[frame.SkeletonArrayLength];
-
-                    frame.CopySkeletonDataTo(skeletons);
-
-                    if (skeletons.Length > 0)
+                    if (frame != null)
                     {
-                        var user = skeletons.Where(
-                                   u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
-                        if (user != null && _gesture != null)
+                        Skeleton[] skeletons = new Skeleton[frame.SkeletonArrayLength];
+
+                        frame.CopySkeletonDataTo(skeletons);
+
+                        if (skeletons.Length > 0)
                         {
-                            _gesture.Update(user);
+                            var user = skeletons.Where(
+                                       u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
+                            if (user != null)
+                            {
+                                _gesture.Update(user);
+                            }
                         }
                     }
                 }
-            }
+            
         }
        
       void Gesture_GestureRecognized(object sender, EventArgs e)
         {
-            recognized = true;
-            _gesture = null;
-            stopKinect();
+            gestureRecognized = true;
+            Console.WriteLine("From JUMPING TipOff Screen");
+            
+            teamSelect.PassedSensorChooser = sensorChooser;
+            sensorChooser.Kinect.SkeletonFrameReady -= sensorChooser_SkeletonFrameReady;
             Switcher.Switch(teamSelect);
         }
 
-       private void stopKinect()
-       {
-           sensor.Stop();
-           sensor.Dispose();
-        //   this.unl.grid1.Children.Clear();
-         //  this.unl.grid2.Children.Clear();
-       }
+      private void StopKinect(KinectSensor sensor)
+      {
+          if (sensor != null)
+          {
+              if (sensor.IsRunning)
+              {
+                  sensor.Stop();
+              }
+          }
+      }
     }
 }

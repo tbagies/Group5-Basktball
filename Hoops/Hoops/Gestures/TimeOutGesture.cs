@@ -39,8 +39,6 @@ namespace Gestures
         public void Update(Skeleton skeleton)
         {
             GesturePartResult result = _segments[_currentSegment].Update(skeleton);
-     
-
             if (result == GesturePartResult.Succeeded && !isSegmentStarted[0])
             {
                 isSegmentStarted[_currentSegment] = true;
@@ -55,7 +53,7 @@ namespace Gestures
                     Console.WriteLine("\nNull gesture");
                     if (GestureRecognized != null)
                     {
-                        Console.WriteLine("\nCall gestureRec");
+                        Console.WriteLine("\nCall TimeOut gestureRec");
                         GestureRecognized(this, new EventArgs());
                   //      Reset();
                     }

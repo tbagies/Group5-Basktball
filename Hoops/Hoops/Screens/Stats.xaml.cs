@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Media;
 using Gestures;
 using Microsoft.Kinect;
+using Microsoft.Kinect.Toolkit;
 
 
 namespace Hoops.Screens
@@ -37,9 +38,20 @@ namespace Hoops.Screens
         double totalTeamPlayers;
         string playerNumber;
 
-        static ShootingGesture _gesture = new ShootingGesture();
-        static TimeOutGesture timeOutGesture = new TimeOutGesture();
-        static PassingGesture passingGesture = new PassingGesture();
+        private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
+            }
+        }
+        private TimeOutGesture timeOutGesture = new TimeOutGesture();
+        private PassingGesture passingGesture = new PassingGesture();
+        private BouncingGesture bouncingGesture = new BouncingGesture();
+        private BouncingGestureBack bouncingGestureBack = new BouncingGestureBack();
 
         string[,] statsArray = new string[8, 3];
 
@@ -58,32 +70,43 @@ namespace Hoops.Screens
         }
 
         /* *************** GESTURES ******************************/
-        private void Shooting_Loaded(object sender, RoutedEventArgs e)
+        private void Stats_Loaded(object sender, RoutedEventArgs e)
         {
-         var sensor = KinectSensor.KinectSensors.Where(
-                                   s => s.Status == KinectStatus.Connected).FirstOrDefault();
-
-            if (sensor != null)
-            {
-                sensor.SkeletonStream.Enable();
-                sensor.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-                _gesture.GestureRecognized += Gesture_GestureRecognized;
+                sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
                 timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-                passingGesture.GestureRecognized += passingGesture_GestureRecognized;  
-                sensor.Start();
-            }
+                passingGesture.GestureRecognized += passingGesture_GestureRecognized;
+                bouncingGesture.GestureRecognized += bouncingGesture_GestureRecognized;
+                bouncingGestureBack.GestureRecognized += bouncingGestureBack_GestureRecognized;
+        }
+
+        void bouncingGestureBack_GestureRecognized(object sender, EventArgs e)
+        {
+            backward();
+            Console.WriteLine("BACKWARD counter " + count);
+        }
+
+        void bouncingGesture_GestureRecognized(object sender, EventArgs e)
+        {
+            forward();
+            Console.WriteLine("FORWARD counter " + count);
         }
 
         void timeOutGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new PlayerSelect());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
         }
 
         void passingGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new TeamSelect());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
         }
-        static void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (var frame = e.OpenSkeletonFrame())
             {
@@ -100,19 +123,15 @@ namespace Hoops.Screens
 
                         if (user != null)
                         {
-                            _gesture.Update(user);
                             timeOutGesture.Update(user);
                             passingGesture.Update(user);
+                            bouncingGesture.Update(user);
                         }
                     }
                 }
             }
         }
 
-        static void Gesture_GestureRecognized(object sender, EventArgs e)
-        {
-            Switcher.Switch(new Stats());
-        }
 
         /************************END GESTURES **************************/
 
@@ -126,7 +145,8 @@ namespace Hoops.Screens
             Switcher.Switch(new Hoops.Screens.Shooting());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+      //  private void Button_Click(object sender, RoutedEventArgs e)
+        private void forward()
         {
             if (count < 8)
             {
@@ -222,7 +242,8 @@ namespace Hoops.Screens
             }
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+      //  private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void backward()
         {
             if (count > 1)
             {

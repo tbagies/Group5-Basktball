@@ -14,13 +14,13 @@ namespace Gestures
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position!=0 && skeleton.Joints[JointType.Spine].Position.Y > old_position + th)
+                if (old_position!=0 && skeleton.Joints[JointType.HipCenter].Position.Y > old_position + th)
                 {
                     Console.WriteLine("UP " + skeleton.Joints[JointType.Spine].Position.Y + "\n");
                      return GesturePartResult.Succeeded;
                 }
                 // Hand dropped
-                old_position = skeleton.Joints[JointType.Spine].Position.Y;
+                old_position = skeleton.Joints[JointType.HipCenter].Position.Y;
                 return GesturePartResult.Failed;
             }
         }
@@ -32,14 +32,14 @@ namespace Gestures
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position != 0 && skeleton.Joints[JointType.Spine].Position.Y < old_position + th)
+                if (old_position != 0 && skeleton.Joints[JointType.HipCenter].Position.Y < old_position + th)
                 {
-                    Console.WriteLine("DOWN " + skeleton.Joints[JointType.Spine].Position.Y + "\n");
+                    Console.WriteLine("DOWN " + skeleton.Joints[JointType.HipCenter].Position.Y + "\n");
                     return GesturePartResult.Succeeded;
                 }
 
                 // Hand dropped
-                old_position = skeleton.Joints[JointType.Spine].Position.Y;
+                old_position = skeleton.Joints[JointType.HipCenter].Position.Y;
                 return GesturePartResult.Failed;
             }
         }

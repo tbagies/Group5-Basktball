@@ -56,11 +56,11 @@ namespace Gestures
                        _jumpCount++;
                         Console.WriteLine("\nNull gesture " + GestureRecognized);
                         Console.WriteLine("\n counter " + _jumpCount);
-                        if (GestureRecognized != null && _jumpCount<=length )
+                        Console.WriteLine("\n GestureRecognized " + GestureRecognized);
+                        if (GestureRecognized != null && _jumpCount<=length)
                         {
                             Console.WriteLine("\nCall gestureRec");
                             GestureRecognized(this, new EventArgs());
-                            
                         }
                     }
                 }

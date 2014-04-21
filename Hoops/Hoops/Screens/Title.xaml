@@ -3,22 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
              x:Class="Hoops.Screens.Title" 
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1000" Loaded="Title_Loaded" >
     <Grid x:Name="cl">
+
         <Grid.Background>
             <ImageBrush ImageSource="../resources/Screen1/background.png"/>
         </Grid.Background>
         <!--Button used as a temp way to navigate-->
-     <!--   <Button x:Name="NEXT" Panel.ZIndex="1" Content="NEXT" HorizontalAlignment="Right" Margin="925,310,0,0" VerticalAlignment="Top" Width="75" Click="NEXT_Click"/>
+        <!--   <Button x:Name="NEXT" Panel.ZIndex="1" Content="NEXT" HorizontalAlignment="Right" Margin="925,310,0,0" VerticalAlignment="Top" Width="75" Click="NEXT_Click"/>
 -->
         <Rectangle HorizontalAlignment="Center" Height="702" Margin="-2,-2,0,0" VerticalAlignment="Top" Width="1002">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Hoops;component/resources/Screen1/title.png" Stretch="Uniform"/>
             </Rectangle.Fill>
         </Rectangle>
-
-        
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
     </Grid>
 </UserControl>

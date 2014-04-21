@@ -9,45 +9,37 @@ namespace Gestures
 {
     class PassingSegment1: IGestureSegment
     {
-        private float old_positionLeft = 0;
-        private float old_positionRight = 0;
-        private float th = 0.01f;
+        private float th = 0.1f;
         public GesturePartResult Update(Skeleton skeleton)
         {
             // HWrisr above head
-            if (old_positionLeft != 0 && old_positionRight != 0 
-               && skeleton.Joints[JointType.HandRight].Position.X == skeleton.Joints[JointType.ShoulderCenter].Position.X
-            && skeleton.Joints[JointType.HandLeft].Position.X == skeleton.Joints[JointType.ShoulderCenter].Position.X
-             && skeleton.Joints[JointType.WristLeft].Position.X < old_positionLeft + th
-             && skeleton.Joints[JointType.WristRight].Position.X < old_positionRight + th)
+            if (Math.Abs(skeleton.Joints[JointType.ElbowLeft].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y) <= th
+            && skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ElbowLeft].Position.Z
+             && skeleton.Joints[JointType.HandRight].Position.Z > skeleton.Joints[JointType.ElbowRight].Position.Z
+                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             {
                     return GesturePartResult.Succeeded;
             }
-            old_positionRight = skeleton.Joints[JointType.WristRight].Position.X;
-            old_positionLeft = skeleton.Joints[JointType.WristLeft].Position.X;
-            // Hand dropped
+                         // Hand dropped
             return GesturePartResult.Failed;
         }
     }
 
     class PassingSegment2 : IGestureSegment
     {
-        private float old_positionLeft = 0;
-        private float old_positionRight = 0;
         private float th = 0.01f;
         public GesturePartResult Update(Skeleton skeleton)
         {
-            // HWrisr above head
-            if (old_positionLeft != 0 && skeleton.Joints[JointType.WristLeft].Position.X < old_positionLeft + th
-                 && old_positionRight != 0 && skeleton.Joints[JointType.WristRight].Position.X < old_positionRight + th)
+            if (Math.Abs(skeleton.Joints[JointType.ElbowLeft].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y) <= th
+                && skeleton.Joints[JointType.HandLeft].Position.Z < skeleton.Joints[JointType.ElbowLeft].Position.Z
+                && skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z
+                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
             {
-                    return GesturePartResult.Succeeded;
+                return GesturePartResult.Succeeded;
             }
-
-            old_positionLeft = skeleton.Joints[JointType.WristLeft].Position.X;
-            old_positionRight = skeleton.Joints[JointType.WristRight].Position.X;
-            // Hand dropped
-            return GesturePartResult.Failed;
+            return GesturePartResult.Failed; 
         }
     }
 }

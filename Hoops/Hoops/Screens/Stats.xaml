@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1137.5">
+             d:DesignHeight="700" d:DesignWidth="1137.5" Loaded="Stats_Loaded">
     <UserControl.Resources>
         <Style x:Key="ellipsePoints" TargetType="Ellipse">
             <Setter Property="Fill" Value="{Binding color2}"/>
@@ -278,9 +279,9 @@
 
 
 
-        <Button Content="Button" HorizontalAlignment="Left" Margin="989,47,0,0" VerticalAlignment="Top" Width="110" Height="64" Click="Button_Click"/>
+    <!--   <Button Content="Button" HorizontalAlignment="Left" Margin="989,47,0,0" VerticalAlignment="Top" Width="110" Height="64" Click="Button_Click"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Width="121" Height="66" Click="Button_Click_1"/>
-        <TextBlock Name="label1" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="39,0,994,10" FontSize="35" TextWrapping="Wrap" Text="PTS" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
+      -->  <TextBlock Name="label1" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="39,0,994,10" FontSize="35" TextWrapping="Wrap" Text="PTS" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
         <TextBlock Name="label2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="139,0,894,10" FontSize="35" TextWrapping="Wrap" Text="AST" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
         <TextBlock Name="label3" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="239,0,794,10" FontSize="35" TextWrapping="Wrap" Text="RB" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
         <TextBlock Name="label4" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="339,0,694,10" FontSize="35" TextWrapping="Wrap" Text="3P" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
@@ -297,6 +298,7 @@
         <TextBlock Name="StatLabel2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="900,572,38,55" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="70" Height="73" Width="200"/>
         <TextBlock Name ="rank1" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="989,356,38,308" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="30" Height="36" Width="111"/>
         <TextBlock Name ="rank2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="989,395,38,269" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="30" Height="36" Width="111"/>
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" />
 
     </Grid>
 </UserControl>

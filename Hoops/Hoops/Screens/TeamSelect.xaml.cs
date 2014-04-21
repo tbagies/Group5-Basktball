@@ -24,10 +24,22 @@ namespace Hoops.Screens
     /// </summary>
     public partial class TeamSelect : UserControl, ISwitchable
     {
+     //  private static KinectSensorChooser sensorChooser;
+
         private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
+            }
+        }
         public TeamSelect()
         {
             InitializeComponent();
+            Console.WriteLine("TeamSelect Cons");
         }
 
         public void UtilizeState(object state)
@@ -37,10 +49,10 @@ namespace Hoops.Screens
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            sensorChooser = new KinectSensorChooser();
-            sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
-            sensorChooserUi.KinectSensorChooser = sensorChooser;
-            sensorChooser.Start();
+            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
+            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
+            Console.WriteLine("TeamSelect Loaded");
+            kinectRegion.KinectSensor = sensorChooser.Kinect;
 
             addTile("../../resources/Screen3/Logos/East/boston.png"); // runtime error here, cant find source
             addTile("../../resources/Screen3/Logos/East/atlanta.png");
@@ -74,54 +86,6 @@ namespace Hoops.Screens
             addTile2("../../resources/Screen3/Logos/West/sacramento.png");
             addTile2("../../resources/Screen3/Logos/West/sanantonio.png");
             addTile2("../../resources/Screen3/Logos/West/utah.png");
-        }
-
-        private void SensorChooserOnKinectChanged(object sender, KinectChangedEventArgs args)
-        {
-            bool error = false;  
-            if (args.OldSensor != null)   
-            {  
-                try  
-                {   
-                    args.OldSensor.DepthStream.Range = DepthRange.Default; 
-                    args.OldSensor.SkeletonStream.EnableTrackingInNearRange = false; 
-                    args.OldSensor.DepthStream.Disable();  
-                    args.OldSensor.SkeletonStream.Disable();  
-                }  
-                catch (InvalidOperationException)  
-                {    
-                    error = true;  
-                } 
-            }  
-            if (args.NewSensor != null)  
-            {
-                try
-                {
-                    args.NewSensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
-                    args.NewSensor.SkeletonStream.Enable();
-                    try
-                    {
-                        args.NewSensor.DepthStream.Range = DepthRange.Near;
-                        args.NewSensor.SkeletonStream.EnableTrackingInNearRange = true;
-                        args.NewSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Seated;
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        args.NewSensor.DepthStream.Range = DepthRange.Default;
-                        args.NewSensor.SkeletonStream.EnableTrackingInNearRange = false;
-                        error = true;
-                    }
-                }
-                catch (InvalidOperationException)
-                {
-                    error = true;
-                }
-            }
-            if (!error)
-            {
-                kinectRegion.KinectSensor = args.NewSensor;
-         //       kinectRegion2.KinectSensor = args.NewSensor;
-            }
         }
 
         // adds the team buttons for the Eastern Conference 
@@ -169,13 +133,41 @@ namespace Hoops.Screens
 
         private void tileButtonOnClick(object sender, RoutedEventArgs e)
         {
-            var temp = (KinectTileButton)sender;
-         //  
+            var temp = (KinectTileButton)sender; 
             String[] delimiter = new String[]{"/","."};
             String[] str = (temp.Tag.ToString()).Split(delimiter,StringSplitOptions.RemoveEmptyEntries);
             App.Current.Properties["Team"] = str[str.Length-2];
-            sensorChooser.Stop();
-            Switcher.Switch(new PlayerSelect()); 
+            Console.WriteLine(str[str.Length - 2]);
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+
+            timeOutGif.Close();
+            passGif.Close();
+
+            Switcher.Switch(p); 
+        }
+
+        private void StopKinect(KinectSensor sensor)
+        {
+            if (sensor != null)
+            {
+                if (sensor.IsRunning)
+                {
+                    sensor.Stop();
+                }
+            }
+        }
+
+        //gif loop stuff
+        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timeOutGif.Position = new TimeSpan(0, 0, 1);
+            timeOutGif.Play();
+        }
+        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            passGif.Position = new TimeSpan(0, 0, 1);
+            passGif.Play();
         }
     }
 }

@@ -57,7 +57,7 @@ namespace Gestures
                     Console.WriteLine("\nNull gesture");
                     if (GestureRecognized != null)
                     {
-                        Console.WriteLine("\nCall gestureRec");
+                        Console.WriteLine("\nCall Shooting gestureRec");
                         GestureRecognized(this, new EventArgs());
                      //   Reset();
                     }
