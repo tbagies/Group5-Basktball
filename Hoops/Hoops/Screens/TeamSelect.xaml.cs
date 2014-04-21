@@ -37,6 +37,10 @@ namespace Hoops.Screens
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
+            //gifs sources are here
+           // timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
+           // passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
+
             sensorChooser = new KinectSensorChooser();
             sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
             sensorChooserUi.KinectSensorChooser = sensorChooser;
@@ -176,6 +180,18 @@ namespace Hoops.Screens
             App.Current.Properties["Team"] = str[str.Length-2];
             sensorChooser.Stop();
             Switcher.Switch(new PlayerSelect()); 
+        }
+
+        //gif loop stuff
+        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timeOutGif.Position = new TimeSpan(0, 0, 1);
+            timeOutGif.Play();
+        }
+        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            passGif.Position = new TimeSpan(0, 0, 1);
+            passGif.Play();
         }
     }
 }

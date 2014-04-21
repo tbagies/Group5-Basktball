@@ -89,5 +89,14 @@ namespace Hoops.Screens
         //   this.unl.grid1.Children.Clear();
          //  this.unl.grid2.Children.Clear();
        }
+
+       //debug stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       private void goNext(object sender, RoutedEventArgs e)
+       {
+           recognized = true;
+           _gesture = null;
+           stopKinect();
+           Switcher.Switch(teamSelect);
+       }
     }
 }

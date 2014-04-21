@@ -69,5 +69,13 @@ namespace Hoops.Screens
                 }
             }
         }
+
+        //debug stuff!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        private void goNext(object sender, RoutedEventArgs e)
+        {
+            sensor.Stop();
+            sensor.Dispose();
+            Switcher.Switch(tipOff);
+        }
     }
 }

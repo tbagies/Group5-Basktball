@@ -32,16 +32,11 @@ namespace Hoops.Screens
         static PassingGesture _gesture = new PassingGesture();
         static TeamSelect prevPage = new TeamSelect();
 
-        private string teamFolder = "CHI";
-
-        //static Shooting nextPage = new Shooting();
-
-        static bool recognized = false;
-
-
+        private string teamFolder = "CHI";  
         private string playerPhotoLoc = "resources/playerPhotos/";
+       
         private KinectSensorChooser sensorChooser;
-
+        static bool recognized = false;
 
         public PlayerSelect()
         {
@@ -50,7 +45,6 @@ namespace Hoops.Screens
                                                s => s.Status == KinectStatus.Connected).FirstOrDefault();
         }
 
-
         public void UtilizeState(object state)
         {
             if (!recognized)
@@ -58,16 +52,16 @@ namespace Hoops.Screens
             stopKinect();
         }
 
-
         void PlayerSelect_Loaded(object sender, RoutedEventArgs e)
         {
-
+            //gifs sources are here
+            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
+            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
 
             sensorChooser = new KinectSensorChooser();
             sensorChooser.KinectChanged += sensorChooser_KinectChanged;
             sensorChooserUi.KinectSensorChooser = this.sensorChooser;
             sensorChooser.Start();
-
 
             if (sensor != null && !recognized)
             {
@@ -79,15 +73,10 @@ namespace Hoops.Screens
 
                 sensor.Start();
             }
-
-
-            //test adding a players
-          //  Application.Current.Properties["Team"] = "BOS";
-
+           
             teamFolderName();
             readRoster();
         }
-
 
         void teamFolderName()
         {
@@ -214,7 +203,6 @@ namespace Hoops.Screens
             }
         }
 
-
         static void Gesture_GestureRecognized(object sender, EventArgs e)
         {
             //_gesture = null;
@@ -222,7 +210,6 @@ namespace Hoops.Screens
             //recognized = true;
             //Switcher.Switch(prevPage);
         }
-
 
         private void stopKinect()
         {
@@ -232,13 +219,9 @@ namespace Hoops.Screens
             sensor = null;
         }
 
-
         private void sensorChooser_KinectChanged(object sender, KinectChangedEventArgs args)
-        {
-            //MessageBox.Show(args.NewSensor == null ? "No Kinnect" : args.NewSensor.Status.ToString());
+        {         
             bool error = false;
-
-
             if (args.OldSensor != null)
             {
                 try
@@ -250,10 +233,6 @@ namespace Hoops.Screens
                 }
                 catch (InvalidOperationException) { error = true; }
             }
-
-
-
-
             if (args.NewSensor != null)
             {
                 try
@@ -261,19 +240,12 @@ namespace Hoops.Screens
                     args.NewSensor.DepthStream.Enable(
                         Microsoft.Kinect.DepthImageFormat.Resolution640x480Fps30);
                     args.NewSensor.SkeletonStream.Enable();
-
-
-
-
                 }
                 catch (InvalidOperationException) { error = true; }
             }
             if (!error)
                 kinectRegion.KinectSensor = args.NewSensor;
         }
-
-
-
 
         /// <summary>
         /// This method will add the picture to the corresponding tile
@@ -288,15 +260,9 @@ namespace Hoops.Screens
             photo.UriSource = new Uri(@photoLocation, UriKind.RelativeOrAbsolute);
             photo.EndInit();
 
-
-
-
             Image img = new Image();
             img.Stretch = Stretch.Uniform;
             img.Source = photo;
-
-
-
 
             switch (tilePosition)
             {
@@ -306,7 +272,6 @@ namespace Hoops.Screens
                     p1.Opacity = 100;
                     p1.Visibility = System.Windows.Visibility.Visible;
                     p1.IsEnabled = true;
-
 
                     t1.Width = p1.Width;
                     t1.Margin = new Thickness(p1.Margin.Left, p1.Margin.Top + p1.Height, p1.Margin.Right, 0);
@@ -319,9 +284,6 @@ namespace Hoops.Screens
                     p2.Opacity = 100;
                     p2.Visibility = System.Windows.Visibility.Visible;
                     p2.IsEnabled = true;
-
-
-
 
                     //why does this NOT work!
                     t2.Width = p2.Width;
@@ -336,13 +298,10 @@ namespace Hoops.Screens
                     p3.Visibility = System.Windows.Visibility.Visible;
                     p3.IsEnabled = true;
 
-
                     t3.Width = p3.Width;
                     t3.Margin = new Thickness(p3.Margin.Left, p3.Margin.Top + p3.Height, p3.Margin.Right, 0);
                     t3.TextAlignment = TextAlignment.Center;
                     t3.Text = playerName;
-
-
                     break;
                 case 4:
                     p4.Content = img;
@@ -351,12 +310,12 @@ namespace Hoops.Screens
                     p4.Visibility = System.Windows.Visibility.Visible;
                     p4.IsEnabled = true;
 
-
                     t4.Width = p4.Width;
                     t4.Margin = new Thickness(p4.Margin.Left, p4.Margin.Top + p4.Height, p4.Margin.Right, 0);
                     t4.TextAlignment = TextAlignment.Center;
                     t4.Text = playerName;
                     break;
+              
                 case 5:
                     p5.Content = img;
                     p5.Tag = playerName;
@@ -364,12 +323,12 @@ namespace Hoops.Screens
                     p5.Visibility = System.Windows.Visibility.Visible;
                     p5.IsEnabled = true;
 
-
                     t5.Width = p1.Width;
                     t5.Margin = new Thickness(p5.Margin.Left, p5.Margin.Top + p5.Height, p5.Margin.Right, 0);
                     t5.TextAlignment = TextAlignment.Center;
                     t5.Text = playerName;
                     break;
+               
                 case 6:
                     p6.Content = img;
                     p6.Tag = playerName;
@@ -390,12 +349,12 @@ namespace Hoops.Screens
                     p7.Visibility = System.Windows.Visibility.Visible;
                     p7.IsEnabled = true;
 
-
                     t7.Width = p1.Width;
                     t7.Margin = new Thickness(p7.Margin.Left, p7.Margin.Top + p7.Height, p7.Margin.Right, 0);
                     t7.TextAlignment = TextAlignment.Center;
                     t7.Text = playerName;
                     break;
+                
                 case 8:
                     p8.Content = img;
                     p8.Tag = playerName;
@@ -403,12 +362,12 @@ namespace Hoops.Screens
                     p8.Visibility = System.Windows.Visibility.Visible;
                     p8.IsEnabled = true;
 
-
                     t8.Width = p8.Width;
                     t8.Margin = new Thickness(p8.Margin.Left, p8.Margin.Top + p8.Height, p8.Margin.Right, 0);
                     t8.TextAlignment = TextAlignment.Center;
                     t8.Text = playerName;
                     break;
+                
                 case 9:
                     p9.Content = img;
                     p9.Tag = playerName;
@@ -416,12 +375,12 @@ namespace Hoops.Screens
                     p9.Visibility = System.Windows.Visibility.Visible;
                     p9.IsEnabled = true;
 
-
                     t9.Width = p9.Width;
                     t9.Margin = new Thickness(p9.Margin.Left, p9.Margin.Top + p9.Height, p9.Margin.Right, 0);
                     t9.TextAlignment = TextAlignment.Center;
                     t9.Text = playerName;
                     break;
+               
                 case 10:
                     p10.Content = img;
                     p10.Tag = playerName;
@@ -442,12 +401,12 @@ namespace Hoops.Screens
                     p11.Visibility = System.Windows.Visibility.Visible;
                     p11.IsEnabled = true;
 
-
                     t11.Width = p11.Width;
                     t11.Margin = new Thickness(p11.Margin.Left, p11.Margin.Top + p11.Height, p11.Margin.Right, 0);
                     t11.TextAlignment = TextAlignment.Center;
                     t11.Text = playerName;
                     break;
+                
                 case 12:
                     p12.Content = img;
                     p12.Tag = playerName;
@@ -455,12 +414,12 @@ namespace Hoops.Screens
                     p12.Visibility = System.Windows.Visibility.Visible;
                     p12.IsEnabled = true;
 
-
                     t12.Width = p12.Width;
                     t12.Margin = new Thickness(p12.Margin.Left, p12.Margin.Top + p12.Height, p12.Margin.Right, 0);
                     t12.TextAlignment = TextAlignment.Center;
                     t12.Text = playerName;
                     break;
+              
                 case 13:
                     p13.Content = img;
                     p13.Tag = playerName;
@@ -468,12 +427,12 @@ namespace Hoops.Screens
                     p13.Visibility = System.Windows.Visibility.Visible;
                     p13.IsEnabled = true;
 
-
                     t13.Width = p13.Width;
                     t13.Margin = new Thickness(p13.Margin.Left, p13.Margin.Top + p13.Height, p13.Margin.Right, 0);
                     t13.TextAlignment = TextAlignment.Center;
                     t13.Text = playerName;
                     break;
+                
                 case 14:
                     p14.Content = img;
                     p14.Tag = playerName;
@@ -481,12 +440,12 @@ namespace Hoops.Screens
                     p14.Visibility = System.Windows.Visibility.Visible;
                     p14.IsEnabled = true;
 
-
                     t14.Width = p14.Width;
                     t14.Margin = new Thickness(p14.Margin.Left, p14.Margin.Top + p14.Height, p14.Margin.Right, 0);
                     t14.TextAlignment = TextAlignment.Center;
                     t14.Text = playerName;
                     break;
+              
                 case 15:
                     p15.Content = img;
                     p15.Tag = playerName;
@@ -494,12 +453,12 @@ namespace Hoops.Screens
                     p15.Visibility = System.Windows.Visibility.Visible;
                     p15.IsEnabled = true;
 
-
                     t15.Width = p15.Width;
                     t15.Margin = new Thickness(p15.Margin.Left, p15.Margin.Top + p15.Height, p15.Margin.Right, 0);
                     t15.TextAlignment = TextAlignment.Center;
                     t15.Text = playerName;
                     break;
+               
                 default:
                     break;
             }
@@ -529,18 +488,11 @@ namespace Hoops.Screens
                 return;
             }
 
-
-
-
             string[] lines = System.IO.File.ReadAllLines("../../" + playerPhotoLoc + teamFolder + "/roster.txt");
-
 
             string[] delimiter = new string[] { "," };
             string[] first = lines[0].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
             int tmp;
-
-
-
 
             //if the roster contains the jersey numbers
             if (int.TryParse(first[0], out tmp))
@@ -556,9 +508,6 @@ namespace Hoops.Screens
                     sorted[jersey] = cur;
                 }
 
-
-
-
                 //add the players
                 int count = 0;
                 for (int x = 0; x < sorted.Length; x++)
@@ -568,10 +517,6 @@ namespace Hoops.Screens
                         count++;
                         addPlayer(count, sorted[x][1], "../" + playerPhotoLoc + teamFolder + "/" + sorted[x][2]);
                     }
-
-
-
-
                 }
             }
             //the roster does not contain the jersey numbers
@@ -586,9 +531,6 @@ namespace Hoops.Screens
             }
         }
 
-
-
-
         /// <summary>
         /// This method will be called once a user selects a player
         /// </summary>
@@ -598,12 +540,25 @@ namespace Hoops.Screens
         {
             var temp = (KinectTileButton)sender;
             string name = (string)temp.Tag;
-            sensor.Stop();
+
+            if(sensor != null)
+                sensor.Stop();
+            
             Application.Current.Properties["Player"] = (string)temp.Tag;
             Switcher.Switch(new Shooting());
         }
 
-
+        //gif loop stuff
+        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timeOutGif.Position = new TimeSpan(0, 0, 1);
+            timeOutGif.Play();
+        }
+        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            passGif.Position = new TimeSpan(0, 0, 1);
+            passGif.Play();
+        }
 
 
         //butons used for testing
@@ -614,10 +569,10 @@ namespace Hoops.Screens
             Switcher.Switch(new Shooting());
         }
 
-
         private void PREV_Click(object sender, RoutedEventArgs e)
         {
-            sensor.Stop();
+            if(sensor != null)
+                sensor.Stop();
             Switcher.Switch(prevPage);
         }
     }

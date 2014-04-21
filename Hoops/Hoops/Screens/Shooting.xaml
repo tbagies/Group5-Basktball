@@ -27,8 +27,11 @@
         <TextBlock Name="experience" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,520,0,0" TextWrapping="Wrap" Text="Experience: 1" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
         <TextBlock Name="salary" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,600,0,0" TextWrapping="Wrap" Text="salary: $17,632,688" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
         <TextBlock Name="college" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="70,390,0,0" TextWrapping="Wrap" Text="Memphis" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="81" Width="194"/>
+        
         <Image Source="../resources/shoot.gif"  HorizontalAlignment="Left" Height="280" Margin="736,281,0,0" VerticalAlignment="Top" Width="371"/>
-
+        <!--Gifs go here-->
+        
+        
         <!--Button used as a temp way to navigate-->
 
 

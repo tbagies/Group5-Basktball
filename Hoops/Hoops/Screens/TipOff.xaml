@@ -27,8 +27,12 @@
         </Rectangle>
 
         <TextBlock Name="giflabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="50" Margin="677,0,5,28" Text="Jump for the ball to start!" VerticalAlignment="Bottom" Width="456" TextAlignment="Center" FontSize="50" Foreground="White"/>
-    </Grid>
 
+
+        <!--Debug stuff will remove later-->
+        <Button Content="Button" Name ="Next" HorizontalAlignment="Left" Margin="912,296,0,0" VerticalAlignment="Top" Width="75" Click="goNext"/>
+
+    </Grid>
 
     <!--  <Grid Name="grid1" >
         

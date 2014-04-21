@@ -8,22 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1137.5" Loaded="OnLoaded">
     <Grid Style="{StaticResource background}">
-        <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="120" Margin="10" VerticalAlignment="Top" Width="697"/>
-        <Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
+        <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="134" Margin="0,10,10,0" VerticalAlignment="Top" Width="767"/>
+        <Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"/>
+        <Rectangle Name="RRef"  Style="{StaticResource refButton}" HorizontalAlignment="Right" Height="134" Margin="0,10,20,0" VerticalAlignment="Top" Width="161"/>
+        <TextBlock Name="titleLabel" Text="Select Team" TextAlignment="Center" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="137" Margin="180,7,190,0" VerticalAlignment="Top" Width="768" FontSize="135" Foreground="White"/>
 
-
-        <!--<Image Name="gif" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" gif:ImageBehavior.AnimatedSource="../resources/Shared/pass.gif"></Image>-->
-
-
-        <Rectangle Name="RRef"  Style="{StaticResource refButton}" HorizontalAlignment="Right" Height="120" Margin="0,10,10,0" VerticalAlignment="Top" Width="120"/>
-
-
-        <TextBlock Name="titleLabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="120" Margin="220,10,220,0" Text="Select Team" VerticalAlignment="Top" Width="698" TextAlignment="Center" FontSize="110" Foreground="White"/>
-       <!-- <Rectangle Name="Western" Margin="9,495,850,10" >
+        <!-- <Rectangle Name="Western" Margin="9,495,850,10" >
             <Rectangle.Fill>
                 <ImageBrush ImageSource="../resources/Screen3/Logos/West/west.png"/>
             </Rectangle.Fill>
         </Rectangle>-->
+
         <Grid>
             <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
             <k:KinectRegion Name="kinectRegion">
@@ -32,6 +27,11 @@
                 </k:KinectScrollViewer>
             </k:KinectRegion>
         </Grid>
+
+        <!--Gif stuff-->
+        <!--<Image Name="gif" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" gif:ImageBehavior.AnimatedSource="../resources/Shared/pass.gif"></Image>-->
+        <MediaElement x:Name="timeOutGif" MediaEnded="timeOutGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="10,10,981,593" Source="../resources/pass.gif"/>
+        <MediaElement x:Name="passGif"  MediaEnded="passGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="981,10,10,593"/>
 
     </Grid>
 </UserControl>

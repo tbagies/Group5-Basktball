@@ -725,7 +725,10 @@
     <Resource Include="resources\playerPhotos\WAS\trevor_booker.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="resources\tech.gif" />
+    <Resource Include="resources\Shoot.gif" />
     <Resource Include="resources\Screen2\!basketball4.jpg" />
+    <Resource Include="resources\pass.gif" />
     <Content Include="resources\Screen6\dribble.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
