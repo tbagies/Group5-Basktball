@@ -30,7 +30,7 @@ namespace Gestures
             {
              //   shoot0,
                 seg1,
-                seg2
+     //           seg2
             };
 
             length = _segments.Length;

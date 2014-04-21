@@ -13,11 +13,11 @@ namespace Gestures
         public GesturePartResult Update(Skeleton skeleton)
         {
             // HWrisr above head
-            if (Math.Abs(skeleton.Joints[JointType.ElbowLeft].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y) <= th
-            && skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ElbowLeft].Position.Z
+            if (//Math.Abs(skeleton.Joints[JointType.ElbowLeft].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y) <= th
+             skeleton.Joints[JointType.HandLeft].Position.Z > skeleton.Joints[JointType.ElbowLeft].Position.Z
              && skeleton.Joints[JointType.HandRight].Position.Z > skeleton.Joints[JointType.ElbowRight].Position.Z
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
-                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y)
             {
                     return GesturePartResult.Succeeded;
             }
@@ -34,8 +34,8 @@ namespace Gestures
             if (Math.Abs(skeleton.Joints[JointType.ElbowLeft].Position.Y - skeleton.Joints[JointType.ElbowRight].Position.Y) <= th
                 && skeleton.Joints[JointType.HandLeft].Position.Z < skeleton.Joints[JointType.ElbowLeft].Position.Z
                 && skeleton.Joints[JointType.HandRight].Position.Z < skeleton.Joints[JointType.ElbowRight].Position.Z
-                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.Head].Position.Y
-                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.Head].Position.Y)
+                && skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y
+                && skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.ShoulderCenter].Position.Y)
             {
                 return GesturePartResult.Succeeded;
             }
