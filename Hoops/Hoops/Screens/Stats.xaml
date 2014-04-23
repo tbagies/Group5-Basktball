@@ -277,9 +277,12 @@
             </Rectangle.RenderTransform>
         </Rectangle>
 
+        <!--Gif stuff-->
+        <!--<Image Name="gif" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" gif:ImageBehavior.AnimatedSource="../resources/Shared/pass.gif"></Image>-->
+        <MediaElement x:Name="timeOutGif" MediaEnded="timeOutGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="10,10,981,593"/>
+        <MediaElement x:Name="passGif"  MediaEnded="passGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="981,10,10,593"/>
 
-
-    <!--   <Button Content="Button" HorizontalAlignment="Left" Margin="989,47,0,0" VerticalAlignment="Top" Width="110" Height="64" Click="Button_Click"/>
+        <!--   <Button Content="Button" HorizontalAlignment="Left" Margin="989,47,0,0" VerticalAlignment="Top" Width="110" Height="64" Click="Button_Click"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Width="121" Height="66" Click="Button_Click_1"/>
       -->  <TextBlock Name="label1" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="39,0,994,10" FontSize="35" TextWrapping="Wrap" Text="PTS" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>
         <TextBlock Name="label2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="139,0,894,10" FontSize="35" TextWrapping="Wrap" Text="AST" TextAlignment="Center" VerticalAlignment="Bottom" Height="35" Width="105"/>

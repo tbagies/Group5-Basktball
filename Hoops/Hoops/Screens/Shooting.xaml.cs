@@ -52,6 +52,10 @@ namespace Hoops.Screens
         }
         private void Shooting_Loaded(object sender, RoutedEventArgs e)
         {
+            //gif stuff
+            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
+            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
+
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
             _gesture.GestureRecognized += Gesture_GestureRecognized;
             timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
@@ -63,6 +67,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(t);
         }
 
@@ -71,6 +80,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(p);
         }
         private void load(string team, string player, string number)
@@ -414,9 +428,25 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             Stats s = new Stats();
             s.PassedSensorChooser = sensorChooser;
+            
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(s);
         }
 
+        //gif loop stuff
+        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timeOutGif.Position = new TimeSpan(0, 0, 1);
+            timeOutGif.Play();
+        }
+        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            passGif.Position = new TimeSpan(0, 0, 1);
+            passGif.Play();
+        }
        
        
     }

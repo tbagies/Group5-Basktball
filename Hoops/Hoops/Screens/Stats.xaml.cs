@@ -72,6 +72,10 @@ namespace Hoops.Screens
         /* *************** GESTURES ******************************/
         private void Stats_Loaded(object sender, RoutedEventArgs e)
         {
+            //gif stuff
+            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
+            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
+
                 sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
                 timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
                 passingGesture.GestureRecognized += passingGesture_GestureRecognized;
@@ -96,6 +100,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(t);
         }
 
@@ -104,6 +113,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(p);
         }
         void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
@@ -674,6 +688,18 @@ namespace Hoops.Screens
             playerPhoto.EndInit();
             playerPic.Source = playerPhoto;
 
+        }
+
+        //gif loop stuff
+        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            timeOutGif.Position = new TimeSpan(0, 0, 1);
+            timeOutGif.Play();
+        }
+        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            passGif.Position = new TimeSpan(0, 0, 1);
+            passGif.Play();
         }
 
     }

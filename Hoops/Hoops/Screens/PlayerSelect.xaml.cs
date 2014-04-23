@@ -101,6 +101,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(t);
         }
 
@@ -109,6 +114,11 @@ namespace Hoops.Screens
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
             TeamSelect p = new TeamSelect();
             p.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            timeOutGif.Close();
+            passGif.Close();
+
             Switcher.Switch(p);
         }
 
