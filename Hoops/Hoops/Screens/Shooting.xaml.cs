@@ -355,9 +355,9 @@ namespace Hoops.Screens
             teamLogo.Source = teamPic;
 
             // Set the player picture
-            string temp;
-            temp = player.Replace(" ", "_");
-            string path2 = "../resources/playerPhotos/" + shortTeam + "/" + temp + ".png";
+            //string temp = App.Current.Properties["PlayerPhoto"].ToString();
+            //temp = player.Replace(" ", "_");
+            string path2 = "../resources/playerPhotos/" + shortTeam + "/" + App.Current.Properties["PlayerPhoto"].ToString();
             BitmapImage playerPhoto = new BitmapImage();
             playerPhoto.BeginInit();
             playerPhoto.UriSource = new Uri(path2, UriKind.Relative);

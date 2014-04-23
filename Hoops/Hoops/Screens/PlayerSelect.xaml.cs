@@ -43,8 +43,8 @@ namespace Hoops.Screens
         private TeamSelect page = new TeamSelect();      
 
         private string teamFolder = "CHI";
-        //static Shooting nextPage = new Shooting();
         private string playerPhotoLoc = "resources/playerPhotos/";
+        private string[] photos = new string [20];                  //15 should be fine but 20 to be safe
 
         public PlayerSelect()
         {
@@ -474,6 +474,7 @@ namespace Hoops.Screens
                     {
                         count++;
                         addPlayer(count, sorted[x][1], "../" + playerPhotoLoc + teamFolder + "/" + sorted[x][2]);
+                        photos[x] = sorted[x][2];
                     }
 
                 }
@@ -487,6 +488,7 @@ namespace Hoops.Screens
                 {
                     string[] cur = lines[x].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
                     addPlayer(x+1, cur[0], "../" + playerPhotoLoc + teamFolder + "/" + cur[1]);
+                    photos[x] = cur[1];
                 }
             }
         }
@@ -501,9 +503,9 @@ namespace Hoops.Screens
             var temp = (KinectTileButton)sender;
             string name = (string)temp.Tag;
 
-            Console.WriteLine(temp.Content.ToString() + "");
-
+            App.Current.Properties["PlayerPhoto"] = getPhotoLocation(temp.Name.ToString());
             App.Current.Properties["Player"] = (String)temp.Tag.ToString();
+            
             Console.WriteLine("IN PLAYER SELECT: App.Current.Properties['Player'] " + App.Current.Properties["Player"].ToString());
 
             Shooting p = new Shooting();
@@ -514,6 +516,62 @@ namespace Hoops.Screens
             passGif.Close();
 
             Switcher.Switch(p);
+        }
+
+        private string getPhotoLocation(string tile)
+        {
+            string fileName = "";
+            switch (tile)
+            {
+                case "p1":
+                    fileName = photos[0];
+                    break;
+                case "p2":
+                    fileName = photos[1];
+                    break;
+                case "p3":
+                    fileName = photos[2];
+                    break;
+                case "p4":
+                    fileName = photos[3];
+                    break;
+                case "p5":
+                    fileName = photos[4];
+                    break;
+                case "p6":
+                    fileName = photos[5];
+                    break;
+                case "p7":
+                    fileName = photos[6];
+                    break;
+                case "p8":
+                    fileName = photos[7];
+                    break;
+                case "p9":
+                    fileName = photos[8];
+                    break;
+                case "p10":
+                    fileName = photos[9];
+                    break;
+                case "p11":
+                    fileName = photos[10];
+                    break;
+                case "p12":
+                    fileName = photos[11];
+                    break;
+                case "p13":
+                    fileName = photos[12];
+                    break;
+                case "p14":
+                    fileName = photos[13];
+                    break;
+                case "p15":
+                    fileName = photos[14];
+                    break;
+                default:
+                    break;
+            }
+            return fileName;
         }
 
         //gif loop stuff
