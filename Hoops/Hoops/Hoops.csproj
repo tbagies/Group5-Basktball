@@ -38,7 +38,7 @@
       <HintPath>..\..\Dependencies\Coding4Fun.Kinect.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="HoopsData">
-      <HintPath>..\..\..\..\Git\Group5-Basktball-master\Hoops\Hoops\bin\Debug\HoopsData.dll</HintPath>
+      <HintPath>..\..\Dependencies\HoopsData.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

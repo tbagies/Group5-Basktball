@@ -50,9 +50,6 @@
         <TextBlock Name="playerNameLabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="120" Margin="181,7,310,0" Text="" VerticalAlignment="Top" Width="630" TextAlignment="Left" FontSize="135" Foreground="White"/>
         <TextBlock Name="playerNumberLabel" Style="{StaticResource appFont}" HorizontalAlignment="Center" Height="120" Margin="811,5,194,0" Text="1 " VerticalAlignment="Top" Width="133" TextAlignment="Right" FontSize="135" Foreground="White"/>
 
-        <!--Button used as a temp way to navigate-->
-        <Button x:Name="PREV" Panel.ZIndex="1" Content="PREV" HorizontalAlignment="Left" Margin="0,310,0,0" VerticalAlignment="Top" Width="75" Click="PREV_Click"  RenderTransformOrigin="-12.066,0.486"/>
-
         <Image Name="court" HorizontalAlignment="Center" Height="484" Margin="10,0,260,45" VerticalAlignment="Bottom" Width="868" Source="../resources/screen6/court.png"/>
         <Image Name="rightInfo" Margin="860,140,0,0" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="510" Width="241" Source="../resources/screen6/rside.png"/>
         <Image Name="teamLogo"  VerticalAlignment="Center" Stretch="Uniform"  HorizontalAlignment="Center" Margin="860,0,0,230" Source="../resources/screen3/Logos/East/chicago.png" Height="109"/>

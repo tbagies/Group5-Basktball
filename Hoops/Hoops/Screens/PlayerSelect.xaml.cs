@@ -478,6 +478,7 @@ namespace Hoops.Screens
 
                 }
             }
+
             //the roster does not contain the jersey numbers
             else
             {
@@ -485,7 +486,7 @@ namespace Hoops.Screens
                 for (int x = 0; x < lines.Length; x++)
                 {
                     string[] cur = lines[x].Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-                    addPlayer(x, cur[0], "../" + playerPhotoLoc + teamFolder + "/" + cur[1]);
+                    addPlayer(x+1, cur[0], "../" + playerPhotoLoc + teamFolder + "/" + cur[1]);
                 }
             }
         }
@@ -499,11 +500,15 @@ namespace Hoops.Screens
         {
             var temp = (KinectTileButton)sender;
             string name = (string)temp.Tag;
+
+            Console.WriteLine(temp.Content.ToString() + "");
+
+            App.Current.Properties["Player"] = (String)temp.Tag.ToString();
+            Console.WriteLine("IN PLAYER SELECT: App.Current.Properties['Player'] " + App.Current.Properties["Player"].ToString());
+
             Shooting p = new Shooting();
             p.PassedSensorChooser = sensorChooser;
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-            App.Current.Properties["Player"] = (String) temp.Tag.ToString();
-            Console.WriteLine("App.Current.Properties['Player'] " + App.Current.Properties["Player"].ToString());
 
             timeOutGif.Close();
             passGif.Close();
