@@ -55,6 +55,7 @@ namespace Hoops.Screens
             //gif stuff
             timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
             passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
+            shootGif.Source = new Uri("../../resources/Shoot.gif", UriKind.RelativeOrAbsolute);
 
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
             _gesture.GestureRecognized += Gesture_GestureRecognized;
@@ -71,6 +72,7 @@ namespace Hoops.Screens
             //gif stuff
             timeOutGif.Close();
             passGif.Close();
+            shootGif.Close();
 
             Switcher.Switch(t);
         }
@@ -84,6 +86,7 @@ namespace Hoops.Screens
             //gif stuff
             timeOutGif.Close();
             passGif.Close();
+            shootGif.Close();
 
             Switcher.Switch(p);
         }
@@ -432,6 +435,7 @@ namespace Hoops.Screens
             //gif stuff
             timeOutGif.Close();
             passGif.Close();
+            shootGif.Close();
 
             Switcher.Switch(s);
         }
@@ -446,6 +450,12 @@ namespace Hoops.Screens
         {
             passGif.Position = new TimeSpan(0, 0, 1);
             passGif.Play();
+        }
+
+        private void shootGif_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            shootGif.Position = new TimeSpan(0, 0, 1);
+            shootGif.Play();
         }
        
        
