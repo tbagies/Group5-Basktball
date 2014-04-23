@@ -4,6 +4,6 @@
         Title="MainWindow" Height="700" Width="1000">
         <!--For some reason this sets the size for all pages-->
     <Grid>
-        
+       
     </Grid>
 </Window>

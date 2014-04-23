@@ -133,6 +133,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="resources\big_noodle_titling.ttf" />
     <None Include="resources\Screen2\.DS_Store" />
     <None Include="resources\Screen3\.DS_Store" />
     <None Include="resources\Screen3\Logos\.DS_Store" />

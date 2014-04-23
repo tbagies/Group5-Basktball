@@ -23,6 +23,7 @@ namespace templateDemo.Screens
         public PlayerSelect()
         {
             InitializeComponent();
+            App.Current.Properties["Player"] = "Derrick Rose";
         }
 
         public void UtilizeState(object state)

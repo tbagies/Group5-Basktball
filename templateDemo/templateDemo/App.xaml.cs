@@ -13,5 +13,10 @@ namespace templateDemo
     /// </summary>
     public partial class App : Application
     {
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            this.Properties["Team"] = "";
+            this.Properties["Player"] = "";
+        }
     }
 }
