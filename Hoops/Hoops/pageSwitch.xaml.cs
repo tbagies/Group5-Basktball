@@ -13,30 +13,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Hoops.Screens;
+using Microsoft.Kinect.Toolkit;
 
 namespace Hoops
 {
     /// <summary>
     /// Interaction logic for PageSwitch.xaml
     /// </summary>
-    public partial class PageSwitch : Window
+   public partial class PageSwitch : Window
     {
+       private Title title = new Title();
         public PageSwitch()
         {
             InitializeComponent();
+       //     App.Current.Properties["Team"] = "chicago";
+            App.Current.Properties["Player"] = "Derrick Rose";
             Switcher.pageSwitch = this;
-            
-            //home page goes here
-            Switcher.Switch(new Title());
+            Switcher.Switch(title);
         }
         public void Navigate(UserControl nextPage)
         {
-            this.Content = nextPage;
+            this.grid0.Children.Clear();
+            this.grid0.Children.Add(nextPage);
+            
         }
 
         public void Navigate(UserControl nextPage, object state)
         {
-            this.Content = nextPage;
+           this.grid0.Children.Clear();
+            this.grid0.Children.Add(nextPage);
             ISwitchable s = nextPage as ISwitchable;
 
             if (s != null)

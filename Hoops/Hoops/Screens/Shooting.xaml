@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="1137.5">
+             d:DesignHeight="750" d:DesignWidth="1137.5" Loaded="Shooting_Loaded">
     <Grid Style="{StaticResource background}">
         <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="134" Margin="0,10,10,0" VerticalAlignment="Top" Width="767"/>
         <Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"/>
@@ -28,10 +29,10 @@
         <TextBlock Name="salary" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,600,0,0" TextWrapping="Wrap" Text="salary: $17,632,688" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
         <TextBlock Name="college" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="70,390,0,0" TextWrapping="Wrap" Text="Memphis" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="81" Width="194"/>
 
+        <MediaElement Source="../resources/shoot.gif" HorizontalAlignment="Left" Height="280" Margin="736,281,0,0" VerticalAlignment="Top" Width="371" LoadedBehavior="Play"/>
         <!--Button used as a temp way to navigate-->
-        <Button x:Name="NEXT" Panel.ZIndex="1" Content="NEXT" HorizontalAlignment="Right" Margin="925,310,0,0" VerticalAlignment="Top" Width="75" Click="NEXT_Click"/>
-        <Button x:Name="PREV" Panel.ZIndex="1" Content="PREV" HorizontalAlignment="Left" Margin="0,310,0,0" VerticalAlignment="Top" Width="75" Click="PREV_Click" RenderTransformOrigin="-12.066,0.486"/>
 
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" />
 
     </Grid>
 </UserControl>

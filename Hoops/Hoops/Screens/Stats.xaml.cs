@@ -14,6 +14,10 @@ using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
+using Gestures;
+using Microsoft.Kinect;
+using Microsoft.Kinect.Toolkit;
+using HoopsData;
 
 
 namespace Hoops.Screens
@@ -34,6 +38,23 @@ namespace Hoops.Screens
         double totalNBAPlayers;
         double totalTeamPlayers;
         string playerNumber;
+        string teamAbbr;
+
+
+        private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
+            }
+        }
+        private TimeOutGesture timeOutGesture = new TimeOutGesture();
+        private PassingGesture passingGesture = new PassingGesture();
+        private BouncingGesture bouncingGesture = new BouncingGesture();
+        private BouncingGestureBack bouncingGestureBack = new BouncingGestureBack();
 
         string[,] statsArray = new string[8, 3];
 
@@ -47,9 +68,74 @@ namespace Hoops.Screens
         {
             InitializeComponent();
             populateArrays();
-            loadStats();
-            loadInfo((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], playerNumber);
+            loadInfo((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"]);
         }
+
+        /* *************** GESTURES ******************************/
+        private void Stats_Loaded(object sender, RoutedEventArgs e)
+        {
+                sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
+                timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+                passingGesture.GestureRecognized += passingGesture_GestureRecognized;
+                bouncingGesture.GestureRecognized += bouncingGesture_GestureRecognized;
+                bouncingGestureBack.GestureRecognized += bouncingGestureBack_GestureRecognized;
+        }
+
+        void bouncingGestureBack_GestureRecognized(object sender, EventArgs e)
+        {
+            backward();
+            Console.WriteLine("BACKWARD counter " + count);
+        }
+
+        void bouncingGesture_GestureRecognized(object sender, EventArgs e)
+        {
+            forward();
+            Console.WriteLine("FORWARD counter " + count);
+        }
+
+        void timeOutGesture_GestureRecognized(object sender, EventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
+        }
+
+        void passingGesture_GestureRecognized(object sender, EventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
+        }
+        void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            using (var frame = e.OpenSkeletonFrame())
+            {
+                if (frame != null)
+                {
+                    Skeleton[] skeletons = new Skeleton[frame.SkeletonArrayLength];
+
+                    frame.CopySkeletonDataTo(skeletons);
+
+                    if (skeletons.Length > 0)
+                    {
+                        var user = skeletons.Where(
+                                   u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
+
+                        if (user != null)
+                        {
+                            timeOutGesture.Update(user);
+                            passingGesture.Update(user);
+                            bouncingGesture.Update(user);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /************************END GESTURES **************************/
 
         public void UtilizeState(object state)
         {
@@ -61,7 +147,8 @@ namespace Hoops.Screens
             Switcher.Switch(new Hoops.Screens.Shooting());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+      //  private void Button_Click(object sender, RoutedEventArgs e)
+        private void forward()
         {
             if (count < 8)
             {
@@ -74,15 +161,23 @@ namespace Hoops.Screens
 
                 // Get the ranking to adjust the bar graph heights
                 string rankString1 = statsArray[count, 1];
+                if (rankString1 == "")
+                    rankString1 = "0";
                 double dRank1 = Convert.ToDouble(rankString1);
                 double percent1 = dRank1 / totalTeamPlayers;
                 double result1 = 330.0 * percent1;
+                if (result1 == 0)
+                    result1 = 330.0;
                 result1 = 330.0 - result1;
 
                 string rankString2 = statsArray[count, 2];
+                if (rankString2 == "")
+                    rankString2 = "0";
                 double dRank2 = Convert.ToDouble(rankString2);
                 double percent2 = dRank2 / totalNBAPlayers;
                 double result2 = 330.0 * percent2;
+                if (result2 == 0)
+                    result2 = 330.0;
                 result2 = 330.0 - result2;
 
                 // Update the ranking labels in the right box
@@ -130,7 +225,7 @@ namespace Hoops.Screens
                 labelsAnimation.RepeatBehavior = new RepeatBehavior(2);
                 labelsAnimation.Duration = new Duration(TimeSpan.FromSeconds(.2));
                 // Animation label on right
-                
+
                 DoubleAnimation statsAnimation = new DoubleAnimation();
                 statsAnimation.To = 80;
                 statsAnimation.AutoReverse = true;
@@ -157,7 +252,8 @@ namespace Hoops.Screens
             }
 
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+      //  private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void backward()
         {
             if (count > 1)
             {
@@ -194,6 +290,12 @@ namespace Hoops.Screens
 
                 string rankString1 = statsArray[count - 1, 1];
                 string rankString2 = statsArray[count - 1, 2];
+
+                if (rankString1 == "")
+                    rankString1 = "0";
+                if (rankString2 == "")
+                    rankString2 = "0";
+
                 // Update the ranking labels in the right box
                 rank1.Text = rankString1 + " / " + totalTeamPlayers.ToString();
                 rank2.Text = rankString2 + " / " + totalNBAPlayers.ToString();
@@ -294,36 +396,48 @@ namespace Hoops.Screens
             // GET DATA FROM DATABASE HERE
             //
             //***************************************************************************
-            statsArray[0, 0] = "12.3";
-            statsArray[0, 1] = "1";
-            statsArray[0, 2] = "275";
-            statsArray[1, 0] = "5.2";
-            statsArray[1, 1] = "7";
-            statsArray[1, 2] = "1";
-            statsArray[2, 0] = "6.1";
-            statsArray[2, 1] = "1";
-            statsArray[2, 2] = "275";
-            statsArray[3, 0] = "3.5";
-            statsArray[3, 1] = "7";
-            statsArray[3, 2] = "1";
-            statsArray[4, 0] = "0.7";
-            statsArray[4, 1] = "1";
-            statsArray[4, 2] = "275";
-            statsArray[5, 0] = "4.6";
-            statsArray[5, 1] = "7";
-            statsArray[5, 2] = "1";
-            statsArray[6, 0] = "10.3";
-            statsArray[6, 1] = "1";
-            statsArray[6, 2] = "275";
-            statsArray[7, 0] = "6.6";
-            statsArray[7, 1] = "7";
-            statsArray[7, 2] = "1";
+            // Get stats from file
+            string[,] stats = Class1.GetPlayerStats(teamAbbr, (string)App.Current.Properties["Player"]);
+
+            // Points per game
+            statsArray[0, 0] = stats[7, 0];
+            statsArray[0, 1] = stats[7, 1];
+            statsArray[0, 2] = stats[7, 2];
+            // Assists per game
+            statsArray[1, 0] = stats[4, 0];
+            statsArray[1, 1] = stats[4, 1];
+            statsArray[1, 2] = stats[4, 2];
+            // Rebounds per game
+            statsArray[2, 0] = stats[3, 0];
+            statsArray[2, 1] = stats[3, 1];
+            statsArray[2, 2] = stats[3, 2];
+            // 3 Pointers per game
+            statsArray[3, 0] = stats[9, 0];
+            statsArray[3, 1] = stats[9, 1];
+            statsArray[3, 2] = stats[9, 2];
+            // Blocks per game
+            statsArray[4, 0] = stats[6, 0];
+            statsArray[4, 1] = stats[6, 1];
+            statsArray[4, 2] = stats[6, 2];
+            // Steals per game
+            statsArray[5, 0] = stats[5, 0];
+            statsArray[5, 1] = stats[5, 1];
+            statsArray[5, 2] = stats[5, 2];
+            // Field goals per game
+            statsArray[6, 0] = stats[8, 0];
+            statsArray[6, 1] = stats[8, 1];
+            statsArray[6, 2] = stats[8, 2];
+            // Free throws per game
+            statsArray[7, 0] = stats[10, 0];
+            statsArray[7, 1] = stats[10, 1];
+            statsArray[7, 2] = stats[10, 2];
+
 
             //***********************************************
             // Get the total number of players for rankings
             //***********************************************
-            totalNBAPlayers = 550;
-            totalTeamPlayers = 15;
+            totalNBAPlayers = Convert.ToDouble(Class1.TotalNBAPlayers());
+            totalTeamPlayers = Convert.ToDouble(Class1.TotalTeamPlayers(teamAbbr));
 
             for (int i = 0; i < 8; i++)
             {
@@ -333,16 +447,16 @@ namespace Hoops.Screens
             //***********************************
             // Get player number from database
             //***********************************
-            playerNumber = "24";
+            string[] bio = Class1.GetPlayerBio(teamAbbr, (string)App.Current.Properties["Player"]);
+            playerNumberLabel.Text = bio[1];
 
         }
 
-        private void loadInfo(string team, string player, string number)
+        private void loadInfo(string team, string player)
         {
             if (player.Length > 13)
                 playerNameLabel.FontSize = 120;
             playerNameLabel.Text = player;
-            playerNumberLabel.Text = number;
 
             string shortTeam = "";
             string conference = "";
@@ -560,6 +674,11 @@ namespace Hoops.Screens
                 color2 = "#FF9100";
             }
 
+            // set global variable for team abbreviation
+            teamAbbr = shortTeam;
+            // Call to load the stats in
+            loadStats();
+
             // Set team colors in graphs and graph points
             BrushConverter converter1 = new System.Windows.Media.BrushConverter();
             BrushConverter converter2 = new System.Windows.Media.BrushConverter();
@@ -589,5 +708,6 @@ namespace Hoops.Screens
             playerPic.Source = playerPhoto;
 
         }
+
     }
 }

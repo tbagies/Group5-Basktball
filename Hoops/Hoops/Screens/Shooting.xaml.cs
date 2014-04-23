@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Kinect;
+using Microsoft.Kinect.Toolkit;
+using Gestures;
+using HoopsData;
 
 namespace Hoops.Screens
 {
@@ -21,33 +25,56 @@ namespace Hoops.Screens
     /// </summary>
     public partial class Shooting : UserControl, ISwitchable
     {
-        string [] bioStats = new string[10];
+        private KinectSensorChooser sensorChooser;
+        public KinectSensorChooser PassedSensorChooser
+        {
+            set
+            {
+                if (value != null)
+                    this.sensorChooser = value;
+                this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
+            }
+        }
 
+        private ShootingGesture _gesture = new ShootingGesture();
+        private TimeOutGesture timeOutGesture = new TimeOutGesture();
+        private PassingGesture passingGesture = new PassingGesture();
+        string[] bioStats;
         public Shooting()
         {
             InitializeComponent();
-            loadFromDatabase();
-            load((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"], bioStats[1]);
+            Console.Write(" FROM SHOOTING (string)App.Current.Properties[Player] = " + (string)App.Current.Properties["Player"]);
+            load((string)App.Current.Properties["Team"], (string)App.Current.Properties["Player"]);
         }
         public void UtilizeState(object state)
         {
-            throw new NotImplementedException();
+            Loaded +=Shooting_Loaded;
+        }
+        private void Shooting_Loaded(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
+            _gesture.GestureRecognized += Gesture_GestureRecognized;
+            timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+            passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
         }
 
-        //event handler for going to next screen, for now it uses a button
-        private void NEXT_Click(object sender, RoutedEventArgs e)
+        void timeOutGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new Stats());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
         }
 
-        private void PREV_Click(object sender, RoutedEventArgs e)
+        void passingGesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.Switch(new PlayerSelect());
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
         }
-
-        private void load(string team, string player, string number)
+        private void load(string team, string player)
         {
-            // Animate the label in the bottom
             DoubleAnimation labelAnimation = new DoubleAnimation();
             labelAnimation.To = 60;
             labelAnimation.AutoReverse = true;
@@ -55,12 +82,7 @@ namespace Hoops.Screens
             labelAnimation.Duration = new Duration(TimeSpan.FromSeconds(.3));
             label.BeginAnimation(FontSizeProperty, labelAnimation);
 
-            // Set the text for the name 
-            if (player.Length > 13)
-                playerNameLabel.FontSize = 120;
-            playerNameLabel.Text = player;
-            playerNumberLabel.Text = number;
-
+            
             string shortTeam = "";
             string teamName = "";
             string conference = "";
@@ -326,7 +348,31 @@ namespace Hoops.Screens
             playerPhoto.EndInit();
             playerPic.Source = playerPhoto;
 
+
+            // Load the info from database
+            bioStats = Class1.GetPlayerBio(shortTeam, player);
+
+            // Set the text for the name 
+            if (player.Length > 13)
+                playerNameLabel.FontSize = 120;
+            playerNameLabel.Text = player;
+            playerNumberLabel.Text = bioStats[1];
+
+            // Adjust the font size if the name is too long to fit in screen
+            if (bioStats[8].Length > 12)
+                college.FontSize = 35;
+            if (bioStats[8].Length > 24)
+                college.FontSize = 28;
+            birthdate.FontSize = 38;
+
             //Update text
+            if (team == "okc")
+                team = "oklahoma city";
+            else if (team == "lal" || team == "lac")
+                team = "los angeles";
+
+
+            // Update text
             teamLabel.Text = team + " " + teamName;
             numberLabel.Text = "number: " + bioStats[1];
             positionLabel.Text = "position: " + bioStats[3];
@@ -339,21 +385,42 @@ namespace Hoops.Screens
 
         }
 
-        void loadFromDatabase()
+        
+        void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            // LOAD INFO FROM DATABASE TO ARRAY
+            using (var frame = e.OpenSkeletonFrame())
+            {
+                if (frame != null)
+                {
+                    Skeleton[] skeletons = new Skeleton[frame.SkeletonArrayLength];
 
-            // Sample data
-            bioStats[0] = "LAL";
-            bioStats[1] = "5";
-            bioStats[2] = "Kobe Bryant";
-            bioStats[3] = "SG";
-            bioStats[4] = "6-11";
-            bioStats[5] = "260";
-            bioStats[6] = "July 29 1982";
-            bioStats[7] = "2";
-            bioStats[8] = "Duke";
-            bioStats[9] = "$17000000";
+                    frame.CopySkeletonDataTo(skeletons);
+
+                    if (skeletons.Length > 0)
+                    {
+                        var user = skeletons.Where(
+                                   u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
+
+                        if (user != null)
+                        {
+                            _gesture.Update(user);
+                            timeOutGesture.Update(user);
+                            passingGesture.Update(user);
+                        }
+                    }
+                }
+            }
         }
+
+        void Gesture_GestureRecognized(object sender, EventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            Stats s = new Stats();
+            s.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(s);
+        }
+
+       
+       
     }
 }
