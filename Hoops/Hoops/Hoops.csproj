@@ -722,6 +722,9 @@
     <Resource Include="resources\playerPhotos\WAS\trevor_booker.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\sounds\click.wav" />
+    <Content Include="resources\sounds\swish.wav" />
+    <Content Include="resources\sounds\theme.wav" />
     <Resource Include="resources\Shoot.gif" />
     <Resource Include="resources\tech.gif" />
     <Resource Include="resources\Screen2\!basketball4.jpg" />

@@ -1,6 +1,7 @@
 ﻿<Application x:Class="Hoops.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:k="http://schemas.microsoft.com/kinect/2013"
              StartupUri="PageSwitch.xaml">
     <Application.Resources>
         <Style x:Key="background" TargetType="Grid">

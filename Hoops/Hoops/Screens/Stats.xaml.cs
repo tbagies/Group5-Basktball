@@ -19,7 +19,6 @@ using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit;
 using HoopsData;
 
-
 namespace Hoops.Screens
 {
     /// <summary>
@@ -714,6 +713,7 @@ namespace Hoops.Screens
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
@@ -722,6 +722,7 @@ namespace Hoops.Screens
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             Shooting p = new Shooting();
             p.PassedSensorChooser = sensorChooser;

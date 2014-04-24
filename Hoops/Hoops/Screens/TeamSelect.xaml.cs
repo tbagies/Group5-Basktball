@@ -27,6 +27,8 @@ namespace Hoops.Screens
      //  private static KinectSensorChooser sensorChooser;
 
         private KinectSensorChooser sensorChooser;
+        private MediaPlayer mplayer = new MediaPlayer();
+
         public KinectSensorChooser PassedSensorChooser
         {
             set
@@ -131,6 +133,7 @@ namespace Hoops.Screens
 
         private void tileButtonOnClick(object sender, RoutedEventArgs e)
         {
+            
             var temp = (KinectTileButton)sender; 
             String[] delimiter = new String[]{"/","."};
             String[] str = (temp.Tag.ToString()).Split(delimiter,StringSplitOptions.RemoveEmptyEntries);
@@ -139,6 +142,8 @@ namespace Hoops.Screens
             Console.WriteLine("FROM TITLEBUTTON");
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
+            
+            Switcher.playClick();
             Switcher.Switch(p); 
         }
 

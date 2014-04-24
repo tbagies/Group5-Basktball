@@ -27,7 +27,6 @@
                 </k:KinectScrollViewer>
             </k:KinectRegion>
         </Grid>
-
     </Grid>
 </UserControl>
 

@@ -50,6 +50,9 @@ namespace Hoops.Screens
 
         void TipOff_Loaded(object sender, RoutedEventArgs e)
         {
+            //play song
+            Switcher.playTheme();
+
             Console.WriteLine("TippOFF Loadded sensorChooser = " + sensorChooser);
             if (!gestureRecognized)
             {

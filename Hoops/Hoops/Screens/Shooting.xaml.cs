@@ -429,7 +429,7 @@ namespace Hoops.Screens
             
             //gif stuff
             shootGif.Close();
-
+            Switcher.playSwish();
             Switcher.Switch(s);
         }
 
@@ -442,25 +442,27 @@ namespace Hoops.Screens
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
+
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
 
             //gif stuff
             shootGif.Close();
-
             Switcher.Switch(p);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
+
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
 
             //gif stuff
             shootGif.Close();
-
             Switcher.Switch(t);
         }
        
