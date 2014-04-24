@@ -37,8 +37,8 @@ namespace Hoops.Screens
         }
 
         private ShootingGesture _gesture = new ShootingGesture();
-        private TimeOutGesture timeOutGesture = new TimeOutGesture();
-        private PassingGesture passingGesture = new PassingGesture();
+       // private TimeOutGesture timeOutGesture = new TimeOutGesture();
+       // private PassingGesture passingGesture = new PassingGesture();
         string[] bioStats;
         public Shooting()
         {
@@ -53,43 +53,38 @@ namespace Hoops.Screens
         private void Shooting_Loaded(object sender, RoutedEventArgs e)
         {
             //gif stuff
-            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
-            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
-            shootGif.Source = new Uri("../../resources/Shoot.gif", UriKind.RelativeOrAbsolute);
-
+            shootGif.Source = new Uri("../../resources/Shoot.gif", UriKind.RelativeOrAbsolute);          
+            KinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
             _gesture.GestureRecognized += Gesture_GestureRecognized;
-            timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-            passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
+          //  timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+          //  passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
         }
 
-        void timeOutGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-            TeamSelect t = new TeamSelect();
-            t.PassedSensorChooser = sensorChooser;
+        //void timeOutGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+        //    TeamSelect t = new TeamSelect();
+        //    t.PassedSensorChooser = sensorChooser;
 
-            //gif stuff
-            timeOutGif.Close();
-            passGif.Close();
-            shootGif.Close();
+        //    //gif stuff
+        //    shootGif.Close();
 
-            Switcher.Switch(t);
-        }
+        //    Switcher.Switch(t);
+        //}
 
-        void passingGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-            PlayerSelect p = new PlayerSelect();
-            p.PassedSensorChooser = sensorChooser;
+        //void passingGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+        //    PlayerSelect p = new PlayerSelect();
+        //    p.PassedSensorChooser = sensorChooser;
 
-            //gif stuff
-            timeOutGif.Close();
-            passGif.Close();
-            shootGif.Close();
+        //    //gif stuff
+        //    shootGif.Close();
 
-            Switcher.Switch(p);
-        }
+        //    Switcher.Switch(p);
+        //}
+
         private void load(string team, string player)
         {
             DoubleAnimation labelAnimation = new DoubleAnimation();
@@ -418,8 +413,8 @@ namespace Hoops.Screens
                         if (user != null)
                         {
                             _gesture.Update(user);
-                            timeOutGesture.Update(user);
-                            passingGesture.Update(user);
+                          //  timeOutGesture.Update(user);
+                          //  passingGesture.Update(user);
                         }
                     }
                 }
@@ -433,29 +428,40 @@ namespace Hoops.Screens
             s.PassedSensorChooser = sensorChooser;
             
             //gif stuff
-            timeOutGif.Close();
-            passGif.Close();
             shootGif.Close();
 
             Switcher.Switch(s);
         }
 
         //gif loop stuff
-        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            timeOutGif.Position = new TimeSpan(0, 0, 1);
-            timeOutGif.Play();
-        }
-        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            passGif.Position = new TimeSpan(0, 0, 1);
-            passGif.Play();
-        }
-
         private void shootGif_MediaEnded(object sender, RoutedEventArgs e)
         {
             shootGif.Position = new TimeSpan(0, 0, 1);
             shootGif.Play();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            PlayerSelect p = new PlayerSelect();
+            p.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            shootGif.Close();
+
+            Switcher.Switch(p);
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+
+            //gif stuff
+            shootGif.Close();
+
+            Switcher.Switch(t);
         }
        
        

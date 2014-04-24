@@ -28,12 +28,6 @@
             </k:KinectRegion>
         </Grid>
 
-        <!--Gif stuff-->
-        <!--<Image Name="gif" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" gif:ImageBehavior.AnimatedSource="../resources/Shared/pass.gif"></Image>-->
-        <MediaElement x:Name="timeOutGif" MediaEnded="timeOutGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="10,10,981,593"/>
-        <MediaElement x:Name="passGif"  MediaEnded="passGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="981,10,10,593"/>
-
-
     </Grid>
 </UserControl>
 

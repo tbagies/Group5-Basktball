@@ -49,9 +49,6 @@ namespace Hoops.Screens
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
-            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
-
             Console.WriteLine("TeamSelect Loaded");
             kinectRegion.KinectSensor = sensorChooser.Kinect;
 
@@ -142,10 +139,6 @@ namespace Hoops.Screens
             Console.WriteLine("FROM TITLEBUTTON");
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
-
-            timeOutGif.Close();
-            passGif.Close();
-
             Switcher.Switch(p); 
         }
 
@@ -158,18 +151,6 @@ namespace Hoops.Screens
                     sensor.Stop();
                 }
             }
-        }
-
-        //gif loop stuff
-        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            timeOutGif.Position = new TimeSpan(0, 0, 1);
-            timeOutGif.Play();
-        }
-        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            passGif.Position = new TimeSpan(0, 0, 1);
-            passGif.Play();
         }
     }
 }

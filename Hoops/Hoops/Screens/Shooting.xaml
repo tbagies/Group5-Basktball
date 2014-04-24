@@ -33,11 +33,23 @@
         <!--Button used as a temp way to navigate-->
 
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" />
+        <k:KinectRegion Name="KinectRegion">
+            <Grid>
+                <k:KinectTileButton x:Name="Home" Click="Home_Click" Margin="0,10,24,609" Height="Auto" Width="152" HorizontalAlignment="Right" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}">
+                    <k:KinectTileButton.Background>
+                        <ImageBrush ImageSource="/Hoops;component/resources/Home.png" Stretch="Uniform"/>
+                    </k:KinectTileButton.Background>
+                </k:KinectTileButton>
 
-        <!--Gif stuff-->
-        <!--<Image Name="gif" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" gif:ImageBehavior.AnimatedSource="../resources/Shared/pass.gif"></Image>-->
-        <MediaElement x:Name="timeOutGif" MediaEnded="timeOutGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="10,10,981,593"/>
-        <MediaElement x:Name="passGif"  MediaEnded="passGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="981,10,10,593"/>
-            <MediaElement x:Name="shootGif"  MediaEnded="shootGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="727,186,20,174"/>
+                <k:KinectTileButton x:Name="Back" Click="Back_Click" Margin="10,10,0,609" Height="Auto" Width="152" HorizontalAlignment="Left" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" RenderTransformOrigin="0.418,0.056">
+                    <k:KinectTileButton.Background>
+                        <ImageBrush ImageSource="/Hoops;component/resources/Back.png" Stretch="Uniform"/>
+                    </k:KinectTileButton.Background>
+                </k:KinectTileButton>
+            </Grid>
+        </k:KinectRegion>
+
+        <!--Shooting gif stuff-->
+        <MediaElement x:Name="shootGif"  MediaEnded="shootGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="727,186,20,174"/>
     </Grid>
 </UserControl>

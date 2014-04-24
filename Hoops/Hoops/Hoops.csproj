@@ -727,6 +727,8 @@
     <Resource Include="resources\Screen2\!basketball4.jpg" />
     <Resource Include="resources\pass.gif" />
     <Resource Include="data.txt" />
+    <Resource Include="resources\back.png" />
+    <Resource Include="resources\Home.png" />
     <Content Include="resources\Screen6\dribble.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

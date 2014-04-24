@@ -38,8 +38,8 @@ namespace Hoops.Screens
                 this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
             }
         }
-        private TimeOutGesture timeOutGesture = new TimeOutGesture();
-        private PassingGesture passingGesture = new PassingGesture();
+       // private TimeOutGesture timeOutGesture = new TimeOutGesture();
+       // private PassingGesture passingGesture = new PassingGesture();
         private TeamSelect page = new TeamSelect();      
 
         private string teamFolder = "CHI";
@@ -59,13 +59,10 @@ namespace Hoops.Screens
 
         void PlayerSelect_Loaded(object sender, RoutedEventArgs e)
         {
-            timeOutGif.Source = new Uri("../../resources/tech.gif", UriKind.RelativeOrAbsolute);
-            passGif.Source = new Uri("../../resources/pass.gif", UriKind.RelativeOrAbsolute);
-
             kinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Kinect_SkeletonFrameReady;
-            timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-            passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
+           // timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+           // passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
             
             teamFolderName();
             readRoster();
@@ -88,39 +85,29 @@ namespace Hoops.Screens
 
                         if (user != null)
                         {
-                            timeOutGesture.Update(user);
-                            passingGesture.Update(user);
+                            //timeOutGesture.Update(user);
+                            //passingGesture.Update(user);
                         }
                     }
                 }
             }
         }
 
-        void timeOutGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-            TeamSelect t = new TeamSelect();
-            t.PassedSensorChooser = sensorChooser;
+        //void timeOutGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+        //    TeamSelect t = new TeamSelect();
+        //    t.PassedSensorChooser = sensorChooser;
+        //    Switcher.Switch(t);
+        //}
 
-            //gif stuff
-            timeOutGif.Close();
-            passGif.Close();
-
-            Switcher.Switch(t);
-        }
-
-        void passingGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-            TeamSelect p = new TeamSelect();
-            p.PassedSensorChooser = sensorChooser;
-
-            //gif stuff
-            timeOutGif.Close();
-            passGif.Close();
-
-            Switcher.Switch(p);
-        }
+        //void passingGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+        //    TeamSelect p = new TeamSelect();
+        //    p.PassedSensorChooser = sensorChooser;
+        //    Switcher.Switch(p);
+        //}
 
         void teamFolderName()
         {
@@ -511,10 +498,6 @@ namespace Hoops.Screens
             Shooting p = new Shooting();
             p.PassedSensorChooser = sensorChooser;
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-
-            timeOutGif.Close();
-            passGif.Close();
-
             Switcher.Switch(p);
         }
 
@@ -574,17 +557,20 @@ namespace Hoops.Screens
             return fileName;
         }
 
-        //gif loop stuff
-        private void timeOutGif_MediaEnded(object sender, RoutedEventArgs e)
+        private void Home_Click(object sender, RoutedEventArgs e)
         {
-            timeOutGif.Position = new TimeSpan(0, 0, 1);
-            timeOutGif.Play();
-        }
-        private void passGif_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            passGif.Position = new TimeSpan(0, 0, 1);
-            passGif.Play();
+            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+            TeamSelect p = new TeamSelect();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
         }
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
+        }
     }
 }
