@@ -7,41 +7,45 @@
              mc:Ignorable="d" 
              d:DesignHeight="750" d:DesignWidth="1137.5" Loaded="Shooting_Loaded">
     <Grid Style="{StaticResource background}">
-        <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="134" Margin="0,10,10,0" VerticalAlignment="Top" Width="767"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="76*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="134" Margin="180,10,190,0" VerticalAlignment="Top" Width="768"/>
         <Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"/>
         <Rectangle Name="RRef"  Style="{StaticResource refButton}" HorizontalAlignment="Right" Height="134" Margin="0,10,20,0" VerticalAlignment="Top" Width="161"/>
-        <TextBlock Name="playerNameLabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="120" Margin="181,7,310,0" Text="Derrick rose" VerticalAlignment="Top" Width="630" TextAlignment="Left" FontSize="135" Foreground="White"/>
+        <TextBlock Name="playerNameLabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="120" Margin="190,7,318,0" Text="Derrick rose" VerticalAlignment="Top" Width="630" TextAlignment="Left" FontSize="135" Foreground="White"/>
         <TextBlock Name="playerNumberLabel" Style="{StaticResource appFont}" HorizontalAlignment="Center" Height="120" Margin="811,5,194,0" Text="1 " VerticalAlignment="Top" Width="133" TextAlignment="Right" FontSize="135" Foreground="White"/>
-        <Image Name="player_background" Margin="0,0,420,90" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="311" Width="698" Source="../resources/screen5/player_background.png"/>
-        <Image Name="playerInfo_background" Margin="0,450,420,0" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="250" Width="698" Source="../resources/screen5/info_background.png"/>
-        <Image Name="gif_background" Margin="700,60,0,0" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="451" Width="403" Source="../resources/screen5/gif_background.png"/>
-        <Image Name="playerPic" VerticalAlignment="Center" Stretch="Uniform"  HorizontalAlignment="Center" Margin="0,0,750,85" Height="294" Source="../resources/playerPhotos/CHI/derrick_rose.png" Width="360"/>
-        <Image Name="teamLogo" VerticalAlignment="Center" Stretch="Uniform"  HorizontalAlignment="Center" Margin="0,0,120,90" Height="280" Source="../resources/Screen3/Logos/East/chicago.png" Width="360"/>
-        <TextBlock Name="label" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="720,624,18,10" TextWrapping="Wrap" Text="Shoot to show stats" VerticalAlignment="Center" TextAlignment="Center" FontSize="50" Height="66" Width="400"/>
-        <TextBlock Name="teamLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,280,720,0" TextWrapping="Wrap" Text="chicago bulls" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="numberLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,360,720,0" TextWrapping="Wrap" Text="Number: 1" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="positionLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,440,680,0" TextWrapping="Wrap" Text="Position: power forward" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="400"/>
-        <TextBlock Name="birthdate" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,520,720,0" TextWrapping="Wrap" Text="Birthdate: Oct 4, 1988" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="height" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,600,720,0" TextWrapping="Wrap" Text="Height: 6'3&quot;" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="weight" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,280,0,0" TextWrapping="Wrap" Text="weight: 190 lbs" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,360,240,0" TextWrapping="Wrap" Text="College:" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="120"/>
-        <TextBlock Name="experience" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,520,0,0" TextWrapping="Wrap" Text="Experience: 1" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="salary" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="0,600,0,0" TextWrapping="Wrap" Text="salary: $17,632,688" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360"/>
-        <TextBlock Name="college" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="70,390,0,0" TextWrapping="Wrap" Text="Memphis" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="81" Width="194"/>
+        <Image Name="player_background" Margin="10,174,430,264" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="312" Width="698" Source="../resources/screen5/player_background.png" Grid.RowSpan="2"/>
+        <Image Name="playerInfo_background" Margin="10,181,430,25" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="250" Width="698" Source="../resources/screen5/info_background.png" Grid.Row="1"/>
+        <Image Name="gif_background" Margin="718,180,18,120" VerticalAlignment="Center" Stretch="Uniform" HorizontalAlignment="Center" Height="450" Width="402" Source="../resources/screen5/gif_background.png" Grid.RowSpan="2"/>
+        <Image Name="playerPic" VerticalAlignment="Center" Stretch="Uniform"  HorizontalAlignment="Center" Margin="14,186,764,270" Height="294" Source="../resources/playerPhotos/CHI/derrick_rose.png" Width="360" Grid.RowSpan="2"/>
+        <Image Name="teamLogo" VerticalAlignment="Center" Stretch="Uniform"  HorizontalAlignment="Center" Margin="329,190,449,280" Height="280" Source="../resources/Screen3/Logos/East/chicago.png" Width="360" Grid.RowSpan="2"/>
+        <TextBlock Name="label" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="720,355,18,35" TextWrapping="Wrap" Text="Shoot to show stats" VerticalAlignment="Center" TextAlignment="Center" FontSize="50" Height="66" Width="400" Grid.Row="1"/>
+        <TextBlock Name="teamLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="29,195,749,209" TextWrapping="Wrap" Text="chicago bulls" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="numberLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="29,235,749,169" TextWrapping="Wrap" Text="Number: 1" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="positionLabel" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="29,275,709,129" TextWrapping="Wrap" Text="Position: power forward" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="400" Grid.Row="1"/>
+        <TextBlock Name="birthdate" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="29,315,749,89" TextWrapping="Wrap" Text="Birthdate: Oct 4, 1988" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="height" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="29,355,749,49" TextWrapping="Wrap" Text="Height: 6'3&quot;" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="weight" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="389,195,389,209" TextWrapping="Wrap" Text="weight: 190 lbs" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="389,235,629,169" TextWrapping="Wrap" Text="College:" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="120" Grid.Row="1"/>
+        <TextBlock Name="experience" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="389,315,389,89" TextWrapping="Wrap" Text="Experience: 1" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="salary" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="389,355,389,49" TextWrapping="Wrap" Text="salary: $17,632,688" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="52" Width="360" Grid.Row="1"/>
+        <TextBlock Name="college" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="507,236,437,140" TextWrapping="Wrap" Text="Memphis" VerticalAlignment="Center" TextAlignment="Left" FontSize="45" Height="80" Width="194" Grid.Row="1"/>
 
         <!--<MediaElement Source="../resources/shoot.gif" HorizontalAlignment="Left" Height="280" Margin="736,281,0,0" VerticalAlignment="Top" Width="371" LoadedBehavior="Play"/>-->
         <!--Button used as a temp way to navigate-->
 
-        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" />
-        <k:KinectRegion Name="KinectRegion">
-            <Grid>
-                <k:KinectTileButton x:Name="Home" Click="Home_Click" Margin="0,10,24,609" Height="Auto" Width="152" HorizontalAlignment="Right" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}">
+        <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" Margin="549,0" />
+        <k:KinectRegion Name="KinectRegion" Margin="0,-6,0,124">
+            <Grid Margin="0,10,0,-142" RenderTransformOrigin="1.961,0.629">
+                <k:KinectTileButton x:Name="Home" Click="Home_Click" Margin="0,0,25,162" Height="Auto" Width="152" HorizontalAlignment="Right" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}">
                     <k:KinectTileButton.Background>
                         <ImageBrush ImageSource="/Hoops;component/resources/Home.png" Stretch="Uniform"/>
                     </k:KinectTileButton.Background>
                 </k:KinectTileButton>
 
-                <k:KinectTileButton x:Name="Back" Click="Back_Click" Margin="10,10,0,609" Height="Auto" Width="152" HorizontalAlignment="Left" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" RenderTransformOrigin="0.418,0.056">
+                <k:KinectTileButton x:Name="Back" Click="Back_Click" Margin="10,0,0,162" Height="Auto" Width="152" HorizontalAlignment="Left" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" RenderTransformOrigin="0.418,0.056">
                     <k:KinectTileButton.Background>
                         <ImageBrush ImageSource="/Hoops;component/resources/Back.png" Stretch="Uniform"/>
                     </k:KinectTileButton.Background>
@@ -50,6 +54,6 @@
         </k:KinectRegion>
 
         <!--Shooting gif stuff-->
-        <MediaElement x:Name="shootGif"  MediaEnded="shootGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="727,186,20,174"/>
+        <MediaElement x:Name="shootGif"  MediaEnded="shootGif_MediaEnded" UnloadedBehavior="Manual" LoadedBehavior="Play" Stretch="Fill" Margin="727,186,20,174" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>

@@ -50,8 +50,8 @@ namespace Hoops.Screens
                 this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
             }
         }
-        private TimeOutGesture timeOutGesture = new TimeOutGesture();
-        private PassingGesture passingGesture = new PassingGesture();
+       // private TimeOutGesture timeOutGesture = new TimeOutGesture();
+       // private PassingGesture passingGesture = new PassingGesture();
         private BouncingGesture bouncingGesture = new BouncingGesture();
         private BouncingGestureBack bouncingGestureBack = new BouncingGestureBack();
 
@@ -74,9 +74,10 @@ namespace Hoops.Screens
         /* *************** GESTURES ******************************/
         private void Stats_Loaded(object sender, RoutedEventArgs e)
         {
+            KinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-            timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-            passingGesture.GestureRecognized += passingGesture_GestureRecognized;
+          //  timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
+          //  passingGesture.GestureRecognized += passingGesture_GestureRecognized;
             bouncingGesture.GestureRecognized += bouncingGesture_GestureRecognized;
             bouncingGestureBack.GestureRecognized += bouncingGestureBack_GestureRecognized;
         }
@@ -93,21 +94,22 @@ namespace Hoops.Screens
             Console.WriteLine("FORWARD counter " + count);
         }
 
-        void timeOutGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-            TeamSelect t = new TeamSelect();
-            t.PassedSensorChooser = sensorChooser;
-            Switcher.Switch(t);
-        }
+        //void timeOutGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+        //    TeamSelect t = new TeamSelect();
+        //    t.PassedSensorChooser = sensorChooser;
+        //    Switcher.Switch(t);
+        //}
 
-        void passingGesture_GestureRecognized(object sender, EventArgs e)
-        {
-            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-            PlayerSelect p = new PlayerSelect();
-            p.PassedSensorChooser = sensorChooser;
-            Switcher.Switch(p);
-        }
+        //void passingGesture_GestureRecognized(object sender, EventArgs e)
+        //{
+        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+        //    PlayerSelect p = new PlayerSelect();
+        //    p.PassedSensorChooser = sensorChooser;
+        //    Switcher.Switch(p);
+        //}
+
         void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
             using (var frame = e.OpenSkeletonFrame())
@@ -125,8 +127,8 @@ namespace Hoops.Screens
 
                         if (user != null)
                         {
-                            timeOutGesture.Update(user);
-                            passingGesture.Update(user);
+                            //timeOutGesture.Update(user);
+                            //passingGesture.Update(user);
                             bouncingGesture.Update(user);
                         }
                     }
@@ -708,6 +710,22 @@ namespace Hoops.Screens
             playerPhoto.EndInit();
             playerPic.Source = playerPhoto;
 
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            TeamSelect t = new TeamSelect();
+            t.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(t);
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+            Shooting p = new Shooting();
+            p.PassedSensorChooser = sensorChooser;
+            Switcher.Switch(p);
         }
     }
 }
