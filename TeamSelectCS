@@ -1,0 +1,54 @@
+ // adds the team buttons for the Eastern Conference 
+        void addTile(string a)
+        {
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(a, UriKind.Relative);
+            bi.EndInit();
+
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+
+            var button = new KinectTileButton
+            {
+                //ADD: equal to the picture
+                Background = picture,
+                BorderThickness = new Thickness(0),
+                Height = 200,
+                Width = 200,
+                Foreground = Brushes.White,
+                Tag = a
+            };
+            button.Click += tileButtonOnClick;
+
+            //ADD: Add the east coast teams
+            EastContent.Children.Add(button);
+        }
+
+        // adds the team buttons for the Western Conference 
+        void addTile2(string a)
+        {
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(a, UriKind.Relative);
+            bi.EndInit();
+
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+            
+            var button = new KinectTileButton
+            {
+                // ADD: equal to the picture
+                Background = picture,
+                BorderThickness = new Thickness(0),
+                Height = 200,
+                Width = 200,
+                Foreground = Brushes.White,
+                Tag = a
+                
+            };
+            button.Click += tileButtonOnClick;
+            WestContent.Children.Add(button);
+        }
