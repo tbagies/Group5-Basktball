@@ -1,0 +1,19 @@
+        <Grid>
+            <Image HorizontalAlignment="Right" Height="273" Margin="0,0,0,120" VerticalAlignment="Center" Width="871" Source="../resources/Screen3/team_background.png" />
+            <Image HorizontalAlignment="Right" Height="273" Margin="0,420,0,0" VerticalAlignment="Center" Width="871" Source="../resources/Screen3/team_background.png" />
+            <Image HorizontalAlignment="Center" Height="241" Margin="0,430,880,0" VerticalAlignment="Center" Width="243" Source="../resources/Screen3/Logos/West/west.png" />
+            <Image HorizontalAlignment="Center" Height="241" Margin="0,0,880,110" VerticalAlignment="Center" Width="243" Source="../resources/Screen3/Logos/East/east.png" />
+            <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" Name="sensorChooserUi" />
+            <k:KinectRegion Name="kinectRegion">
+                <Grid Margin="289,206,0,54">
+                    <k:KinectScrollViewer Grid.Row="0" HorizontalContentAlignment ="Left" VerticalScrollBarVisibility="Disabled" VerticalAlignment="Center" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" PanningMode="HorizontalOnly" Margin="0,0,10,240">
+                        <StackPanel Orientation="Horizontal" x:Name="EastContent" HorizontalAlignment="Right"/>
+                    </k:KinectScrollViewer>
+                    <k:KinectScrollViewer Margin="0,260,10,0" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" CanContentScroll="True" PanningMode="HorizontalOnly" Width="813" >
+                        <StackPanel Orientation="Horizontal" x:Name="WestContent" HorizontalAlignment="Right"/>
+                    </k:KinectScrollViewer>
+                </Grid>
+            </k:KinectRegion>
+        </Grid>
+        
+        
