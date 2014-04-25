@@ -39,6 +39,7 @@ namespace Hoops.Screens
 
         private void Title_Loaded(object sender, RoutedEventArgs e)
         {
+            Switcher.stopTheme();
             Console.WriteLine(" loaded ");
             sensorChooser.KinectChanged += new EventHandler<KinectChangedEventArgs>(sensorChooser_KinectChanged);
             sensorChooser.Start(); 
