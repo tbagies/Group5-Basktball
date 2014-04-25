@@ -47,7 +47,7 @@ namespace Hoops.Screens
         void sensorChooser_KinectChanged(object sender, KinectChangedEventArgs e)
         {
             Console.WriteLine(" KinectChanged");
-            StopKinect(e.OldSensor);
+    //        StopKinect(e.OldSensor);
 
             if (e.NewSensor == null)
             {

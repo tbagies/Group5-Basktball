@@ -14,9 +14,9 @@ namespace Gestures
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position!=0 && skeleton.Joints[JointType.HandLeft].Position.Y < old_position + th)
+                if (skeleton.Joints[JointType.HandLeft].Position.Y > skeleton.Joints[JointType.HipLeft].Position.Y)
                 {
-                    if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X)
+                    if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.HipLeft].Position.X)
                     {
                         Console.WriteLine("Down " + skeleton.Joints[JointType.HandLeft].Position.Y + "\n");
 
@@ -36,9 +36,9 @@ namespace Gestures
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position != 0 && skeleton.Joints[JointType.HandLeft].Position.Y > old_position + th)
+                if (skeleton.Joints[JointType.HandLeft].Position.Y < skeleton.Joints[JointType.HipLeft].Position.Y)
                 {
-                    if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.ElbowLeft].Position.X)
+                    if (skeleton.Joints[JointType.HandLeft].Position.X < skeleton.Joints[JointType.HipLeft].Position.X)
                     {
                         Console.WriteLine("UP " + skeleton.Joints[JointType.HandLeft].Position.Y + "\n");
 
