@@ -89,6 +89,8 @@ namespace Hoops.Screens
                                     frame.Dispose();                               
                                     sensorChooser.Kinect.Stop();
                                     sensorChooser.Kinect.Dispose();
+
+                                    //sometimes causes bad things
                                     sensorChooser.Stop();
                                     Title t = new Title();
                                     Switcher.Switch(t);
