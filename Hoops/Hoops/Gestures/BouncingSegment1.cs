@@ -10,15 +10,15 @@ namespace Gestures
         public class BounceingSegment1 : IGestureSegment
         {
             private float old_position=0;
-            private float th = 0.01f;
+            private float th = 1.0f;
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position!=0 && skeleton.Joints[JointType.HandRight].Position.Y < old_position + th)
+                if (skeleton.Joints[JointType.HandRight].Position.Y > skeleton.Joints[JointType.HipRight].Position.Y)
                 {
-                    if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X)
+                    if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.HipRight].Position.X)
                     {
-                        Console.WriteLine("Down " + skeleton.Joints[JointType.HandRight].Position.Y + "\n");
+                        Console.WriteLine("UP " + skeleton.Joints[JointType.HandRight].Position.Y + "\n");
 
                         return GesturePartResult.Succeeded;
                     }
@@ -36,11 +36,11 @@ namespace Gestures
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position != 0 && skeleton.Joints[JointType.HandRight].Position.Y > old_position + th)
+                if (skeleton.Joints[JointType.HandRight].Position.Y < skeleton.Joints[JointType.HipRight].Position.Y)
                 {
-                    if (skeleton.Joints[JointType.HandRight].Position.X < skeleton.Joints[JointType.ElbowRight].Position.X)
+                    if (skeleton.Joints[JointType.HandRight].Position.X > skeleton.Joints[JointType.HipRight].Position.X)
                     {
-                        Console.WriteLine("UP " + skeleton.Joints[JointType.HandRight].Position.Y + "\n");
+                        Console.WriteLine("DOWN " + skeleton.Joints[JointType.HandRight].Position.Y + "\n");
 
                         return GesturePartResult.Succeeded;
                     }

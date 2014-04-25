@@ -38,10 +38,8 @@ namespace Hoops.Screens
                 this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
             }
         }
-       // private TimeOutGesture timeOutGesture = new TimeOutGesture();
-       // private PassingGesture passingGesture = new PassingGesture();
-        private TeamSelect page = new TeamSelect();      
 
+        private int counter = 0;
         private string teamFolder = "CHI";
         private string playerPhotoLoc = "resources/playerPhotos/";
         private string[] photos = new string [20];                  //15 should be fine but 20 to be safe
@@ -49,7 +47,6 @@ namespace Hoops.Screens
         public PlayerSelect()
         {
             InitializeComponent();
-            page.PassedSensorChooser = sensorChooser;
         }
 
         public void UtilizeState(object state)
@@ -59,10 +56,9 @@ namespace Hoops.Screens
 
         void PlayerSelect_Loaded(object sender, RoutedEventArgs e)
         {
+
             kinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Kinect_SkeletonFrameReady;
-           // timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-           // passingGesture.GestureRecognized += passingGesture_GestureRecognized; 
             teamFolderName();
             readRoster();
         }
@@ -82,31 +78,30 @@ namespace Hoops.Screens
                         var user = skeletons.Where(
                                    u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
 
-                        if (user != null)
+                        if (user == null)
                         {
-                            //timeOutGesture.Update(user);
-                            //passingGesture.Update(user);
+                            counter++;
+                            if (counter > 150)
+                            {
+                                Console.WriteLine(" PLAYERSELECT COunter " + counter);
+                                sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+                                frame.Dispose();
+                                
+                                sensorChooser.Stop();
+                                kinectRegion.KinectSensor.Stop();
+                                kinectRegion.KinectSensor.Dispose();
+                                Title t = new Title();
+                                Switcher.Switch(t);
+                            }
+                        }
+                        else
+                        {
+                            counter--;
                         }
                     }
                 }
             }
         }
-
-        //void timeOutGesture_GestureRecognized(object sender, EventArgs e)
-        //{
-        //    sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-        //    TeamSelect t = new TeamSelect();
-        //    t.PassedSensorChooser = sensorChooser;
-        //    Switcher.Switch(t);
-        //}
-
-        //void passingGesture_GestureRecognized(object sender, EventArgs e)
-        //{
-        //    sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
-        //    TeamSelect p = new TeamSelect();
-        //    p.PassedSensorChooser = sensorChooser;
-        //    Switcher.Switch(p);
-        //}
 
         void teamFolderName()
         {
@@ -486,8 +481,6 @@ namespace Hoops.Screens
         /// <param name="e"></param>
         private void playerSelected(object sender, RoutedEventArgs e)
         {
-            Switcher.playClick();
-
             var temp = (KinectTileButton)sender;
             string name = (string)temp.Tag;
 
@@ -495,9 +488,11 @@ namespace Hoops.Screens
             App.Current.Properties["Player"] = (String)temp.Tag.ToString();
             
             Console.WriteLine("IN PLAYER SELECT: App.Current.Properties['Player'] " + App.Current.Properties["Player"].ToString());
+            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
             Shooting p = new Shooting();
             p.PassedSensorChooser = sensorChooser;
-            sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
+            
+
             Switcher.Switch(p);
         }
 
@@ -559,7 +554,6 @@ namespace Hoops.Screens
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
             TeamSelect p = new TeamSelect();
             p.PassedSensorChooser = sensorChooser;
@@ -568,7 +562,6 @@ namespace Hoops.Screens
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Kinect_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;

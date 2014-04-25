@@ -23,12 +23,9 @@ namespace Hoops
    public partial class PageSwitch : Window
     {
        private Title title = new Title();
-       private MediaPlayer shortPlayer = new MediaPlayer();
-       private MediaPlayer themePlayer = new MediaPlayer();
         public PageSwitch()
         {
             InitializeComponent();
-            themePlayer.MediaEnded += MediaEnded;
        //     App.Current.Properties["Team"] = "chicago";
             App.Current.Properties["Player"] = "Derrick Rose";
             Switcher.pageSwitch = this;
@@ -52,36 +49,5 @@ namespace Hoops
             else
                 throw new ArgumentException("The next page is not switchable" + nextPage.Name.ToString());
         }
-        public void playClick()
-        {
-            shortPlayer.Open(new Uri("../../resources/sounds/click.wav", UriKind.Relative));
-            shortPlayer.Play();
-        }
-
-        public void playCheers()
-        {
-            shortPlayer.Open(new Uri("../../resources/sounds/cheers.wav", UriKind.Relative));
-            shortPlayer.Play();
-        }
-
-        public void playSwish()
-        {
-            shortPlayer.Open(new Uri("../../resources/sounds/swish.wav", UriKind.Relative));
-            shortPlayer.Play();
-        }
-
-        public void playTheme()
-        {
-            themePlayer.Open(new Uri("../../resources/sounds/theme.wav", UriKind.Relative));
-            themePlayer.Play();
-        }
-
-        private void MediaEnded(object sender, EventArgs e)
-        {
-            themePlayer.Position = TimeSpan.Zero;
-            themePlayer.Play();
-        }
-
-       
     }
 }

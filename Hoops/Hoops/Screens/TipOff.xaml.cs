@@ -24,6 +24,8 @@ namespace Hoops.Screens
     public partial class TipOff : UserControl, ISwitchable
     {
         private KinectSensorChooser sensorChooser;
+
+        private int counter = 0;
         public KinectSensorChooser PassedSensorChooser
         {
             set
@@ -34,8 +36,6 @@ namespace Hoops.Screens
             }
         }
         private JumpGesture _gesture = new JumpGesture();
-        private TeamSelect teamSelect = new TeamSelect();
-        private bool gestureRecognized = false;
         public TipOff()
         {
             InitializeComponent();
@@ -50,23 +50,9 @@ namespace Hoops.Screens
 
         void TipOff_Loaded(object sender, RoutedEventArgs e)
         {
-            //play song
-            Switcher.playTheme();
-
             Console.WriteLine("TippOFF Loadded sensorChooser = " + sensorChooser);
-            if (!gestureRecognized)
-            {
-                Console.WriteLine("IF");
-                sensorChooser.Kinect.SkeletonFrameReady += sensorChooser_SkeletonFrameReady;
-                _gesture.GestureRecognized += Gesture_GestureRecognized;
-            }
-            else
-            {
-                Console.WriteLine("ELSE");
-                teamSelect.PassedSensorChooser = sensorChooser;
-                Switcher.Switch(teamSelect);
-            }
-            Console.WriteLine("AfterSensorStartingStatment");
+            sensorChooser.Kinect.SkeletonFrameReady += sensorChooser_SkeletonFrameReady;
+            _gesture.GestureRecognized += Gesture_GestureRecognized;         
         }
 
         void sensorChooser_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
@@ -86,35 +72,38 @@ namespace Hoops.Screens
                                        u => u.TrackingState == SkeletonTrackingState.Tracked).FirstOrDefault();
                             if (user != null)
                             {
+                                counter--;
+                                Console.WriteLine(" user != null COunter " + counter);
                                 _gesture.Update(user);
                             }
+                            else
+                            {
+                                counter++;
+                                if(counter>150)
+                                {
+                                    Console.WriteLine(" TipOff COunter " + counter);
+                                    sensorChooser.Kinect.SkeletonFrameReady -= sensorChooser_SkeletonFrameReady;
+                                    frame.Dispose();                               
+                                    sensorChooser.Kinect.Stop();
+                                    sensorChooser.Kinect.Dispose();
+                                    sensorChooser.Stop();
+                                    Title t = new Title();
+                                    Switcher.Switch(t);
+                                }
+                            }
                         }
+                        
                     }
                 }
-            
         }
        
       void Gesture_GestureRecognized(object sender, EventArgs e)
         {
-            Switcher.playCheers();
-
-            gestureRecognized = true;
-            Console.WriteLine("From JUMPING TipOff Screen");
-            
+            Console.WriteLine("From JUMPING TipOff Screen"); 
+            TeamSelect teamSelect = new TeamSelect();
             teamSelect.PassedSensorChooser = sensorChooser;
             sensorChooser.Kinect.SkeletonFrameReady -= sensorChooser_SkeletonFrameReady;
             Switcher.Switch(teamSelect);
         }
-
-      private void StopKinect(KinectSensor sensor)
-      {
-          if (sensor != null)
-          {
-              if (sensor.IsRunning)
-              {
-                  sensor.Stop();
-              }
-          }
-      }
     }
 }

@@ -10,36 +10,21 @@ namespace Gestures
         public class JumpSegment1 : IGestureSegment
         {
             private float old_position=0;
-            private float th = 0.01f;
-            public GesturePartResult Update(Skeleton skeleton)
-            {
-                // Hand above elbow
-                if (old_position!=0 && skeleton.Joints[JointType.HipCenter].Position.Y > old_position + th)
-                {
-                    Console.WriteLine("UP " + skeleton.Joints[JointType.Spine].Position.Y + "\n");
-                     return GesturePartResult.Succeeded;
-                }
-                // Hand dropped
-                old_position = skeleton.Joints[JointType.HipCenter].Position.Y;
-                return GesturePartResult.Failed;
-            }
-        }
-
-        public class JumpSegment2 : IGestureSegment
-        {
-            private float old_position = 0;
             private float th = 0.1f;
             public GesturePartResult Update(Skeleton skeleton)
             {
                 // Hand above elbow
-                if (old_position != 0 && skeleton.Joints[JointType.HipCenter].Position.Y < old_position + th)
+                if (old_position!=0)
                 {
-                    Console.WriteLine("DOWN " + skeleton.Joints[JointType.HipCenter].Position.Y + "\n");
-                    return GesturePartResult.Succeeded;
+                    if (skeleton.Joints[JointType.Spine].Position.Y > old_position + th)
+                    {
+                        Console.WriteLine("UP " + skeleton.Joints[JointType.Spine].Position.Y + "\n" + old_position);
+                        return GesturePartResult.Succeeded;
+                    }
+                   
                 }
-
                 // Hand dropped
-                old_position = skeleton.Joints[JointType.HipCenter].Position.Y;
+                old_position = skeleton.Joints[JointType.Spine].Position.Y;
                 return GesturePartResult.Failed;
             }
         }

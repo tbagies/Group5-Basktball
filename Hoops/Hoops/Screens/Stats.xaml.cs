@@ -19,6 +19,7 @@ using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit;
 using HoopsData;
 
+
 namespace Hoops.Screens
 {
     /// <summary>
@@ -39,6 +40,7 @@ namespace Hoops.Screens
         string playerNumber;
         string teamAbbr;
 
+        private int counter = 0;
         private KinectSensorChooser sensorChooser;
         public KinectSensorChooser PassedSensorChooser
         {
@@ -49,8 +51,7 @@ namespace Hoops.Screens
                 this.sensorChooserUi.KinectSensorChooser = this.sensorChooser;
             }
         }
-       // private TimeOutGesture timeOutGesture = new TimeOutGesture();
-       // private PassingGesture passingGesture = new PassingGesture();
+
         private BouncingGesture bouncingGesture = new BouncingGesture();
         private BouncingGestureBack bouncingGestureBack = new BouncingGestureBack();
 
@@ -73,10 +74,8 @@ namespace Hoops.Screens
         /* *************** GESTURES ******************************/
         private void Stats_Loaded(object sender, RoutedEventArgs e)
         {
-            KinectRegion.KinectSensor = sensorChooser.Kinect;
+            kinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
-          //  timeOutGesture.GestureRecognized += timeOutGesture_GestureRecognized;
-          //  passingGesture.GestureRecognized += passingGesture_GestureRecognized;
             bouncingGesture.GestureRecognized += bouncingGesture_GestureRecognized;
             bouncingGestureBack.GestureRecognized += bouncingGestureBack_GestureRecognized;
         }
@@ -92,22 +91,6 @@ namespace Hoops.Screens
             forward();
             Console.WriteLine("FORWARD counter " + count);
         }
-
-        //void timeOutGesture_GestureRecognized(object sender, EventArgs e)
-        //{
-        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-        //    TeamSelect t = new TeamSelect();
-        //    t.PassedSensorChooser = sensorChooser;
-        //    Switcher.Switch(t);
-        //}
-
-        //void passingGesture_GestureRecognized(object sender, EventArgs e)
-        //{
-        //    sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
-        //    PlayerSelect p = new PlayerSelect();
-        //    p.PassedSensorChooser = sensorChooser;
-        //    Switcher.Switch(p);
-        //}
 
         void Sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
@@ -126,29 +109,35 @@ namespace Hoops.Screens
 
                         if (user != null)
                         {
-                            //timeOutGesture.Update(user);
-                            //passingGesture.Update(user);
+                            counter--;
                             bouncingGesture.Update(user);
+                            bouncingGestureBack.Update(user);
+                        }
+                        else
+                        {
+                            counter++;
+                            if (counter > 150)
+                            {
+                                Console.WriteLine(" STATS COunter " + counter);
+                                sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
+                                frame.Dispose();
+                                sensorChooser.Stop();
+                                kinectRegion.KinectSensor.Stop();
+                                kinectRegion.KinectSensor.Dispose();
+                                Title t = new Title();
+                                Switcher.Switch(t);
+                            }
                         }
                     }
                 }
             }
         }
 
-
-        /************************END GESTURES **************************/
-
         public void UtilizeState(object state)
         {
             throw new NotImplementedException();
         }
 
-        //private void PREV_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Switcher.Switch(new Hoops.Screens.Shooting());
-        //}
-
-      //  private void Button_Click(object sender, RoutedEventArgs e)
         private void forward()
         {
             if (count < 8)
@@ -713,7 +702,6 @@ namespace Hoops.Screens
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
@@ -722,7 +710,6 @@ namespace Hoops.Screens
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Switcher.playClick();
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             Shooting p = new Shooting();
             p.PassedSensorChooser = sensorChooser;

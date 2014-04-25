@@ -15,21 +15,17 @@ namespace Gestures
       
         int _frameCount = 0;
         int _jumpCount = 0;
-        int length;
+        int length=1;
         Boolean[] isJumpStarted = new Boolean[1];
         public event EventHandler GestureRecognized;
 
         public JumpGesture()
         {
-            JumpSegment2 jump0 = new JumpSegment2();
             JumpSegment1 jump1 = new JumpSegment1();
-            JumpSegment2 jump2 = new JumpSegment2();
 
              jump = new IGestureSegment[]
             {
-            //    jump0,
                 jump1
-          //      jump2
             };
              length = jump.Length;
             for (int i = 0; i < length; i++)
@@ -40,8 +36,7 @@ namespace Gestures
 
         public void Update(Skeleton skeleton)
         {
-            if (_jumpCount < length)
-            {
+            
                 GesturePartResult result = jump[_jumpCount].Update(skeleton);
                 if (result == GesturePartResult.Succeeded && _jumpCount < length)
                 {
@@ -53,34 +48,31 @@ namespace Gestures
                     }
                     else
                     {
-                       _jumpCount++;
-                        Console.WriteLine("\nNull gesture " + GestureRecognized);
-                        Console.WriteLine("\n counter " + _jumpCount);
-                        Console.WriteLine("\n GestureRecognized " + GestureRecognized);
-                        if (GestureRecognized != null && _jumpCount<=length)
+                        Console.WriteLine("\nNull gesture");
+                        if (GestureRecognized != null)
                         {
-                            Console.WriteLine("\nCall gestureRec");
+                            Console.WriteLine("\nCall Jumping gestureRec");
                             GestureRecognized(this, new EventArgs());
+                            //   Reset();
                         }
                     }
                 }
+
                 else if (result == GesturePartResult.Failed || _frameCount == WINDOW_SIZE)
                 {
-                    Reset();
-                 /*   if (_jumpCount > 0)
+                    if (_jumpCount > 0)
                     {
                         if (!isJumpStarted[_jumpCount - 1])
                         {
                             Console.WriteLine("\nRESET, FAILED");
                             Reset();
                         }
-                    }*/
+                    }
                 }
                 else
                 {
                     _frameCount++;
                 }
-            }
         }
 
         public void Reset()

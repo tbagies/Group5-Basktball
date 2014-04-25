@@ -8,7 +8,6 @@ using Microsoft.Kinect;
 using Microsoft.Kinect.Toolkit.Controls;
 using Microsoft.Kinect.Toolkit.Interaction;
 using Microsoft.Kinect.Toolkit;
-using System.Windows.Media;
 
 namespace Hoops
 {
@@ -16,38 +15,16 @@ namespace Hoops
     {
         public static PageSwitch pageSwitch;
         public static  UserControl _newPage;
-       
+        
         public static void Switch(UserControl newPage) 
         {
             _newPage = newPage;
             pageSwitch.Navigate(_newPage);
         }
-
         public static void Switch(UserControl newPage, object state)
         {
             _newPage = newPage;
             pageSwitch.Navigate(_newPage, state);
-        }
-
-        //sounds stuff
-        public static void playClick()
-        {
-            pageSwitch.playClick();
-        }
-
-        public static void playTheme()
-        {
-            pageSwitch.playTheme();
-        }
-
-        public static void playSwish()
-        {
-            pageSwitch.playSwish();
-        }
-
-        public static void playCheers()
-        {
-            pageSwitch.playCheers();
         }
     }
 
