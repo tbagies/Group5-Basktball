@@ -50,6 +50,9 @@ namespace Hoops.Screens
 
         void TipOff_Loaded(object sender, RoutedEventArgs e)
         {
+            //play song
+            Switcher.playTheme();
+
             Console.WriteLine("TippOFF Loadded sensorChooser = " + sensorChooser);
             sensorChooser.Kinect.SkeletonFrameReady += sensorChooser_SkeletonFrameReady;
             _gesture.GestureRecognized += Gesture_GestureRecognized;         
@@ -99,6 +102,7 @@ namespace Hoops.Screens
        
       void Gesture_GestureRecognized(object sender, EventArgs e)
         {
+            Switcher.playCheers();
             Console.WriteLine("From JUMPING TipOff Screen"); 
             TeamSelect teamSelect = new TeamSelect();
             teamSelect.PassedSensorChooser = sensorChooser;

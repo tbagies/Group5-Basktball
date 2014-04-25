@@ -42,11 +42,11 @@
 
     </UserControl.Resources>
 
-    <Grid Style="{StaticResource background}">
+    <Grid Style="{StaticResource background}" HorizontalAlignment="Left" Width="1138">
 
         <Rectangle Name="titleBackground" Style="{StaticResource titleBackground}" HorizontalAlignment="Center" Height="134" Margin="0,10,10,0" VerticalAlignment="Top" Width="767"/>
-        <Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"/>
-        <Rectangle Name="RRef"  Style="{StaticResource refButton}" HorizontalAlignment="Right" Height="134" Margin="0,10,20,0" VerticalAlignment="Top" Width="161"/>
+        <!--<Rectangle Name="LRef" Style="{StaticResource refButton}" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161"/>
+        <Rectangle Name="RRef"  Style="{StaticResource refButton}" HorizontalAlignment="Right" Height="134" Margin="0,10,20,0" VerticalAlignment="Top" Width="161"/>-->
         <TextBlock Name="playerNameLabel" Style="{StaticResource appFont}" TextWrapping="Wrap" HorizontalAlignment="Center" Height="120" Margin="181,7,310,0" Text="" VerticalAlignment="Top" Width="630" TextAlignment="Left" FontSize="135" Foreground="White"/>
         <TextBlock Name="playerNumberLabel" Style="{StaticResource appFont}" HorizontalAlignment="Center" Height="120" Margin="811,5,194,0" Text="1 " VerticalAlignment="Top" Width="133" TextAlignment="Right" FontSize="135" Foreground="White"/>
 
@@ -300,22 +300,21 @@
         <TextBlock Name="StatLabel2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="900,572,38,55" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="70" Height="73" Width="200"/>
         <TextBlock Name ="rank1" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="989,356,38,308" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="30" Height="36" Width="111"/>
         <TextBlock Name ="rank2" Style="{StaticResource appFont}" Foreground="White" HorizontalAlignment="Center" Margin="989,395,38,269" TextWrapping="Wrap" Text="" VerticalAlignment="Center" TextAlignment="Center" FontSize="30" Height="36" Width="111"/>
+        
         <k:KinectSensorChooserUI HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="sensorChooserUi" />
-
-        <k:KinectRegion Name="kinectRegion" Margin="0,0,0,550">
-            <Grid Margin="0,-13,0,-119" RenderTransformOrigin="1.961,0.629">
+        <k:KinectRegion Name="kinectRegion" Margin="0,0,0,125" VerticalAlignment="Top">
+            <Grid Margin="0,0,0,-142" RenderTransformOrigin="1.961,0.629" Height="311" VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="825*"/>
-                    <ColumnDefinition Width="313*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <k:KinectTileButton x:Name="Home" Click="Home_Click" Margin="0,13,24,118" Height="auto" Width="152" HorizontalAlignment="Right" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" Grid.Column="1" BorderThickness="1">
-                    <k:KinectTileButton.Background>
-                        <ImageBrush ImageSource="/Hoops;component/resources/Home.png" Stretch="Uniform"/>
-                    </k:KinectTileButton.Background>
-                </k:KinectTileButton>
-
-                <k:KinectTileButton x:Name="Back" Click="Back_Click" Margin="11,13,0,118" Height="Auto" Width="152" HorizontalAlignment="Left" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" RenderTransformOrigin="0.418,0.056">
-                    <k:KinectTileButton.Background>
+                            <k:KinectTileButton x:Name="Home" Click="Home_Click" HorizontalAlignment="Right" Height="134" Margin="0,10,20,0" VerticalAlignment="Top" Width="161" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" Grid.Column="1">
+                                <k:KinectTileButton.Background>
+                                    <ImageBrush ImageSource="/Hoops;component/resources/Home.png" Stretch="Uniform"/>
+                                </k:KinectTileButton.Background>
+                            </k:KinectTileButton>
+                            <k:KinectTileButton x:Name="Back" Click="Back_Click" HorizontalAlignment="Left" Height="134" Margin="10,10,0,0" VerticalAlignment="Top" Width="161" BorderBrush="{x:Null}" IsEnabled="True" Foreground="{x:Null}" RenderTransformOrigin="0.418,0.056">
+                                <k:KinectTileButton.Background>
                         <ImageBrush ImageSource="/Hoops;component/resources/Back.png" Stretch="Uniform"/>
                     </k:KinectTileButton.Background>
                 </k:KinectTileButton>

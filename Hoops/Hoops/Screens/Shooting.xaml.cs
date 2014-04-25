@@ -52,7 +52,7 @@ namespace Hoops.Screens
         private void Shooting_Loaded(object sender, RoutedEventArgs e)
         {
             shootGif.Source = new Uri("../../resources/Shoot.gif", UriKind.RelativeOrAbsolute);
-            kinectRegion.KinectSensor = sensorChooser.Kinect;
+            KinectRegion.KinectSensor = sensorChooser.Kinect;
             sensorChooser.Kinect.SkeletonFrameReady += Sensor_SkeletonFrameReady;
             _gesture.GestureRecognized += Gesture_GestureRecognized;
         }
@@ -397,8 +397,8 @@ namespace Hoops.Screens
                                 sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
                                 frame.Dispose();
                                 sensorChooser.Stop();
-                                kinectRegion.KinectSensor.Stop();
-                                kinectRegion.KinectSensor.Dispose();
+                                KinectRegion.KinectSensor.Stop();
+                                KinectRegion.KinectSensor.Dispose();
                                 
                                 Title t = new Title();
                                 Switcher.Switch(t);
@@ -418,7 +418,7 @@ namespace Hoops.Screens
             //gif stuff
            
             shootGif.Close();
-
+            Switcher.playSwish();
             Switcher.Switch(s);
         }
 
@@ -431,25 +431,27 @@ namespace Hoops.Screens
         }
         private void Back_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
+
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
 
             //gif stuff
             shootGif.Close();
-
             Switcher.Switch(p);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
+            Switcher.playClick();
+
             sensorChooser.Kinect.SkeletonFrameReady -= Sensor_SkeletonFrameReady;
             TeamSelect t = new TeamSelect();
             t.PassedSensorChooser = sensorChooser;
 
             //gif stuff
             shootGif.Close();
-
             Switcher.Switch(t);
         }
        

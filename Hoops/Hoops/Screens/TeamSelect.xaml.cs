@@ -27,8 +27,8 @@ namespace Hoops.Screens
         //  private static KinectSensorChooser sensorChooser;
 
         private KinectSensorChooser sensorChooser;
-
         private int counter = 0;
+
         public KinectSensorChooser PassedSensorChooser
         {
             set
@@ -97,9 +97,14 @@ namespace Hoops.Screens
             bi.UriSource = new Uri(a, UriKind.Relative);
             bi.EndInit();
 
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+
             var button = new KinectTileButton
             {
-                Background = new ImageBrush(bi),
+                //ADD: equal to the picture
+                Background = picture,
                 BorderThickness = new Thickness(0),
                 Height = 200,
                 Width = 200,
@@ -107,7 +112,9 @@ namespace Hoops.Screens
                 Tag = a
             };
             button.Click += tileButtonOnClick;
-            //      EastContent.Children.Add(button);
+
+            //ADD: Add the east coast teams
+            EastContent.Children.Add(button);
         }
 
         // adds the team buttons for the Western Conference 
@@ -118,9 +125,14 @@ namespace Hoops.Screens
             bi.UriSource = new Uri(a, UriKind.Relative);
             bi.EndInit();
 
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+
             var button = new KinectTileButton
             {
-                Background = new ImageBrush(bi),
+                // ADD: equal to the picture
+                Background = picture,
                 BorderThickness = new Thickness(0),
                 Height = 200,
                 Width = 200,
@@ -133,16 +145,20 @@ namespace Hoops.Screens
         }
 
         private void tileButtonOnClick(object sender, RoutedEventArgs e)
-        {
-            var temp = (KinectTileButton)sender;
-            String[] delimiter = new String[] { "/", "." };
-            String[] str = (temp.Tag.ToString()).Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-            App.Current.Properties["Team"] = str[str.Length - 2];
+        {        
+            var temp = (KinectTileButton)sender; 
+            String[] delimiter = new String[]{"/","."};
+            String[] str = (temp.Tag.ToString()).Split(delimiter,StringSplitOptions.RemoveEmptyEntries);
+            App.Current.Properties["Team"] = str[str.Length-2];
+
             Console.WriteLine(str[str.Length - 2]);
             Console.WriteLine("FROM TITLEBUTTON");
             PlayerSelect p = new PlayerSelect();
             p.PassedSensorChooser = sensorChooser;
-            Switcher.Switch(p);
+            
+            Switcher.playClick();
+            Switcher.Switch(p); 
+
         }
 
         void Kinect_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
