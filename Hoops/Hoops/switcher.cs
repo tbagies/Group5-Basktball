@@ -44,6 +44,11 @@ namespace Hoops
         {
             pageSwitch.playSwish();
         }
+
+        public static void playCheers()
+        {
+            pageSwitch.playCheers();
+        }
     }
 
     public static class HoopsSensor

@@ -96,6 +96,8 @@ namespace Hoops.Screens
        
       void Gesture_GestureRecognized(object sender, EventArgs e)
         {
+            Switcher.playCheers();
+
             gestureRecognized = true;
             Console.WriteLine("From JUMPING TipOff Screen");
             

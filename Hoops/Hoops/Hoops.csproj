@@ -722,6 +722,7 @@
     <Resource Include="resources\playerPhotos\WAS\trevor_booker.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\sounds\cheers.wav" />
     <Content Include="resources\sounds\click.wav" />
     <Content Include="resources\sounds\swish.wav" />
     <Content Include="resources\sounds\theme.wav" />

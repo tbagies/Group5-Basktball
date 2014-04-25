@@ -96,9 +96,14 @@ namespace Hoops.Screens
             bi.UriSource = new Uri(a, UriKind.Relative);
             bi.EndInit();
 
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+
             var button = new KinectTileButton
             {
-                Background = new ImageBrush(bi),
+                //ADD: equal to the picture
+                Background = picture,
                 BorderThickness = new Thickness(0),
                 Height = 200,
                 Width = 200,
@@ -106,7 +111,9 @@ namespace Hoops.Screens
                 Tag = a
             };
             button.Click += tileButtonOnClick;
-      //      EastContent.Children.Add(button);
+
+            //ADD: Add the east coast teams
+            EastContent.Children.Add(button);
         }
 
         // adds the team buttons for the Western Conference 
@@ -117,15 +124,20 @@ namespace Hoops.Screens
             bi.UriSource = new Uri(a, UriKind.Relative);
             bi.EndInit();
 
+            // ADD: THIS SO PICTURE IS NOT SKEWED
+            ImageBrush picture = new ImageBrush(bi);
+            picture.Stretch = Stretch.Uniform;
+
             var button = new KinectTileButton
             {
-                Background = new ImageBrush(bi),
+                // ADD: equal to the picture
+                Background = picture,
                 BorderThickness = new Thickness(0),
                 Height = 200,
                 Width = 200,
                 Foreground = Brushes.White,
                 Tag = a
-                
+
             };
             button.Click += tileButtonOnClick;
             WestContent.Children.Add(button);

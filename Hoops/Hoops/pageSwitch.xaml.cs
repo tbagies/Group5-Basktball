@@ -58,6 +58,12 @@ namespace Hoops
             shortPlayer.Play();
         }
 
+        public void playCheers()
+        {
+            shortPlayer.Open(new Uri("../../resources/sounds/cheers.wav", UriKind.Relative));
+            shortPlayer.Play();
+        }
+
         public void playSwish()
         {
             shortPlayer.Open(new Uri("../../resources/sounds/swish.wav", UriKind.Relative));
